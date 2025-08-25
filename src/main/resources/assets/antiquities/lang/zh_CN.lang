@@ -28,8 +28,6 @@ tile.antiquities.jungle_shelf_1.name=丛林木交叉架
 tile.antiquities.acacia_shelf_1.name=金合欢木交叉架
 tile.antiquities.dark_oak_shelf_1.name=深色橡木交叉架
 
-tile.antiquities.clock.name=时钟
-
 tile.antiquities.oak_shelf_2.name=橡木长架
 tile.antiquities.spruce_shelf_2.name=云杉木长架
 tile.antiquities.birch_shelf_2.name=白桦木长架
@@ -71,3 +69,5 @@ tile.antiquities.birch_rack.name=白桦木工具架
 tile.antiquities.jungle_rack.name=丛林木工具架
 tile.antiquities.acacia_rack.name=金合欢木工具架
 tile.antiquities.dark_oak_rack.name=深色橡木工具架
+
+tile.antiquities.clock.name=时钟
