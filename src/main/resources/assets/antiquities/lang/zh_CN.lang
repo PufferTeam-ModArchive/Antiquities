@@ -62,3 +62,10 @@ tile.antiquities.birch_jar.name=白桦木储物罐
 tile.antiquities.jungle_jar.name=丛林木储物罐
 tile.antiquities.acacia_jar.name=金合欢木储物罐
 tile.antiquities.dark_oak_jar.name=深色橡木储物罐
+
+tile.antiquities.oak_rack.name=橡木工具架
+tile.antiquities.spruce_rack.name=云杉木工具架
+tile.antiquities.birch_rack.name=白桦木工具架
+tile.antiquities.jungle_rack.name=丛林木工具架
+tile.antiquities.acacia_rack.name=金合欢木工具架
+tile.antiquities.dark_oak_rack.name=深色橡木工具架
