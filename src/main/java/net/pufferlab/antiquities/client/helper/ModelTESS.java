@@ -214,24 +214,31 @@ public class ModelTESS {
                     double z1 = box.posZ1 * scale;
                     double z2 = box.posZ2 * scale;
 
-                    // Rotate all 8 corners
-                    double[][] corners = new double[][] { rotate(renderer, x1, y1, z1), rotate(renderer, x2, y1, z1),
-                        rotate(renderer, x1, y2, z1), rotate(renderer, x2, y2, z1), rotate(renderer, x1, y1, z2),
-                        rotate(renderer, x2, y1, z2), rotate(renderer, x1, y2, z2), rotate(renderer, x2, y2, z2) };
+                    double px = renderer.rotationPointX;
+                    double py = renderer.rotationPointY;
+                    double pz = renderer.rotationPointZ;
 
-                    // Now compute true min/max after rotation
+                    // Build rotation matrix once
+                    double[][] R = getRotationMatrix(renderer);
+
+                    // 8 corners of the box
+                    double[][] corners = { { x1, y1, z1 }, { x2, y1, z1 }, { x1, y2, z1 }, { x2, y2, z1 },
+                        { x1, y1, z2 }, { x2, y1, z2 }, { x1, y2, z2 }, { x2, y2, z2 } };
+
                     double minX = Double.POSITIVE_INFINITY, minY = Double.POSITIVE_INFINITY,
                         minZ = Double.POSITIVE_INFINITY;
                     double maxX = Double.NEGATIVE_INFINITY, maxY = Double.NEGATIVE_INFINITY,
                         maxZ = Double.NEGATIVE_INFINITY;
 
                     for (double[] c : corners) {
-                        if (c[0] < minX) minX = c[0];
-                        if (c[0] > maxX) maxX = c[0];
-                        if (c[1] < minY) minY = c[1];
-                        if (c[1] > maxY) maxY = c[1];
-                        if (c[2] < minZ) minZ = c[2];
-                        if (c[2] > maxZ) maxZ = c[2];
+                        double[] r = rotate(R, px, py, pz, c[0], c[1], c[2]);
+
+                        if (r[0] < minX) minX = r[0];
+                        if (r[0] > maxX) maxX = r[0];
+                        if (r[1] < minY) minY = r[1];
+                        if (r[1] > maxY) maxY = r[1];
+                        if (r[2] < minZ) minZ = r[2];
+                        if (r[2] > maxZ) maxZ = r[2];
                     }
 
                     CustomRenderBlocks renderblocks2 = new CustomRenderBlocks();
@@ -255,6 +262,8 @@ public class ModelTESS {
 
                     TileEntityMetaFacing facing = (TileEntityMetaFacing) renderblocks.blockAccess
                         .getTileEntity(x, y, z);
+                    int facingMeta = facing.facingMeta;
+                    int facingType = facing.getFacingType();
                     renderblocks2.quadXNeg = 0;
                     renderblocks2.quadXPos = 1;
                     renderblocks2.quadYNeg = 2;
@@ -262,8 +271,7 @@ public class ModelTESS {
                     renderblocks2.quadZNeg = 4;
                     renderblocks2.quadZPos = 5;
 
-                    if ((facing.facingMeta == 2 && facing.getFacingType() == 1)
-                        || (facing.facingMeta == 4 && facing.getFacingType() == 0)) {
+                    if ((facingMeta == 2 && facingType == 1) || (facingMeta == 4 && facingType == 0)) {
                         renderblocks2.quadXNeg = 4;
                         renderblocks2.quadXPos = 5;
                         renderblocks2.quadZNeg = 0;
@@ -273,8 +281,7 @@ public class ModelTESS {
 
                     }
 
-                    if ((facing.facingMeta == 3 && facing.getFacingType() == 1)
-                        || (facing.facingMeta == 1 && facing.getFacingType() == 0)) {
+                    if ((facingMeta == 3 && facingType == 1) || (facingMeta == 1 && facingType == 0)) {
                         renderblocks2.quadXNeg = 1;
                         renderblocks2.quadXPos = 0;
                         renderblocks2.quadZNeg = 5;
@@ -283,8 +290,7 @@ public class ModelTESS {
                         renderblocks2.rotateYNeg = 1;
                     }
 
-                    if ((facing.facingMeta == 4 && facing.getFacingType() == 1)
-                        || (facing.facingMeta == 2 && facing.getFacingType() == 0)) {
+                    if ((facingMeta == 4 && facingType == 1) || (facingMeta == 2 && facingType == 0)) {
                         renderblocks2.quadXNeg = 5;
                         renderblocks2.quadXPos = 4;
                         renderblocks2.quadZNeg = 1;
@@ -309,35 +315,27 @@ public class ModelTESS {
         }
     }
 
-    public static double[] rotate(ModelRenderer renderer, double x, double y, double z) {
+    private static double[][] getRotationMatrix(ModelRenderer renderer) {
         double cosX = Math.cos(renderer.rotateAngleX), sinX = Math.sin(renderer.rotateAngleX);
         double cosY = Math.cos(renderer.rotateAngleY), sinY = Math.sin(renderer.rotateAngleY);
         double cosZ = Math.cos(renderer.rotateAngleZ), sinZ = Math.sin(renderer.rotateAngleZ);
-        double px = renderer.rotationPointX, py = renderer.rotationPointY, pz = renderer.rotateAngleZ;
 
-        // Step 1: translate so pivot is origin
-        x -= px;
-        y -= py;
-        z -= pz;
+        // Combined rotation matrix Rz * Ry * Rx
+        return new double[][] { { cosY * cosZ, cosZ * sinX * sinY - cosX * sinZ, sinX * sinZ + cosX * cosZ * sinY },
+            { cosY * sinZ, cosX * cosZ + sinX * sinY * sinZ, cosX * sinY * sinZ - cosZ * sinX },
+            { -sinY, cosY * sinX, cosX * cosY } };
+    }
 
-        // Step 2: rotate (same as before)
-        // Rotate around X
-        double y1 = y * cosX - z * sinX;
-        double z1 = y * sinX + z * cosX;
+    private static double[] rotate(double[][] R, double px, double py, double pz, double x, double y, double z) {
+        // Translate relative to pivot
+        double dx = x - px, dy = y - py, dz = z - pz;
 
-        // Rotate around Y
-        double x2 = x * cosY + z1 * sinY;
-        double z2 = -x * sinY + z1 * cosY;
+        // Matrix multiply
+        double nx = R[0][0] * dx + R[0][1] * dy + R[0][2] * dz;
+        double ny = R[1][0] * dx + R[1][1] * dy + R[1][2] * dz;
+        double nz = R[2][0] * dx + R[2][1] * dy + R[2][2] * dz;
 
-        // Rotate around Z
-        double x3 = x2 * cosZ - y1 * sinZ;
-        double y3 = x2 * sinZ + y1 * cosZ;
-
-        // Step 3: translate back
-        x3 += px;
-        y3 += py;
-        z2 += pz;
-
-        return new double[] { x3 + 0.5, y3 + 0.5, z2 + 0.5 };
+        // Translate back + 0.5 (your offset)
+        return new double[] { nx + px + 0.5, ny + py + 0.5, nz + pz + 0.5 };
     }
 }

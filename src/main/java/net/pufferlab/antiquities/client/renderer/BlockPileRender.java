@@ -13,6 +13,7 @@ import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class BlockPileRender implements ISimpleBlockRenderingHandler {
 
+    Tessellator tess = Tessellator.instance;
     final int renderID;
 
     public BlockPileRender(int blockComplexRenderID) {
@@ -25,8 +26,8 @@ public class BlockPileRender implements ISimpleBlockRenderingHandler {
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
         RenderBlocks renderer) {
-        Tessellator tess = Tessellator.instance;
         TileEntityPile pile = (TileEntityPile) world.getTileEntity(x, y, z);
+        if (pile == null) return false;
         int meta = world.getBlockMetadata(x, y, z);
         ModelPile model = new ModelPile();
 

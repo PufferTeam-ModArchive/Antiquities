@@ -35,7 +35,7 @@ public class CustomRenderBlocks extends RenderBlocks {
 
     public boolean mirrorText;
 
-    public static void rotateUVNeg(double[] U, double[] V, int rotation) {
+    public void rotateUVNeg(double[] U, double[] V, int rotation) {
         // rotation: 0 = no rotation, 1 = 90 CW, 2 = 180, 3 = 270 CW
         for (int r = 0; r < rotation; r++) {
             double tmpU = U[0], tmpV = V[0];
@@ -50,7 +50,7 @@ public class CustomRenderBlocks extends RenderBlocks {
         }
     }
 
-    public static void rotateUVPos(double[] U, double[] V, int rotation) {
+    public void rotateUVPos(double[] U, double[] V, int rotation) {
         // rotation: 0 = no rotation, 1 = 90 CW, 2 = 180, 3 = 270 CW
         for (int r = 0; r < rotation; r++) {
             double tmpU = U[0], tmpV = V[0];
@@ -65,7 +65,7 @@ public class CustomRenderBlocks extends RenderBlocks {
         }
     }
 
-    public static void flipUVNeg(double[] U, double[] V) {
+    public void flipUVNeg(double[] U, double[] V) {
         double tmpU = U[0], tmpV = V[0];
         U[0] = U[3];
         V[0] = V[3]; // top-left ↔ top-right
@@ -80,7 +80,7 @@ public class CustomRenderBlocks extends RenderBlocks {
         V[2] = tmpV;
     }
 
-    public static void flipUVPos(double[] U, double[] V) {
+    public void flipUVPos(double[] U, double[] V) {
         double tmpU = U[0], tmpV = V[0];
         U[0] = U[1];
         V[0] = V[1]; // top-left ↔ bottom-left

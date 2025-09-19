@@ -28,25 +28,25 @@ public class BlockShelfRender implements ISimpleBlockRenderingHandler {
     public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
         BlockShelf block2 = (BlockShelf) block;
         String wood = block2.getType(metadata);
-        model0.setFacing(0);
-        model1.setFacing(0);
-        model2.setFacing(0);
-        model3.setFacing(0);
-        model4.setFacing(0);
-        model5.setFacing(0);
+        int type = block2.getShelfType();
 
-        if (block2.getShelfType() == 0) {
+        if (type == 0) {
+            model0.setFacing(0);
             model0.render(wood);
-        } else if (block2.getShelfType() == 1) {
+        } else if (type == 1) {
+            model1.setFacing(0);
             model1.render(wood);
-        } else if (block2.getShelfType() == 2) {
+        } else if (type == 2) {
+            model2.setFacing(0);
             model2.render(wood);
-        }
-        if (block2.getShelfType() == 3) {
+        } else if (type == 3) {
+            model3.setFacing(0);
             model3.render(wood);
-        } else if (block2.getShelfType() == 4) {
+        } else if (type == 4) {
+            model4.setFacing(0);
             model4.render(wood);
-        } else if (block2.getShelfType() == 5) {
+        } else if (type == 5) {
+            model5.setFacing(0);
             model5.render(wood);
         }
     }
@@ -59,25 +59,25 @@ public class BlockShelfRender implements ISimpleBlockRenderingHandler {
         int meta = world.getBlockMetadata(shelf.xCoord, shelf.yCoord, shelf.zCoord);
         Tessellator tess = Tessellator.instance;
 
-        model0.setFacing(shelf.facingMeta);
-        model1.setFacing(shelf.facingMeta);
-        model2.setFacing(shelf.facingMeta);
-        model3.setFacing(shelf.facingMeta);
-        model4.setFacing(shelf.facingMeta);
-        model5.setFacing(shelf.facingMeta);
+        int type = block2.getShelfType();
 
-        if (block2.getShelfType() == 0) {
+        if (type == 0) {
+            model0.setFacing(shelf.facingMeta);
             model0.render(renderer, tess, block, meta, x, y, z);
-        } else if (block2.getShelfType() == 1) {
+        } else if (type == 1) {
+            model1.setFacing(shelf.facingMeta);
             model1.render(renderer, tess, block, meta, x, y, z);
-        } else if (block2.getShelfType() == 2) {
+        } else if (type == 2) {
+            model2.setFacing(shelf.facingMeta);
             model2.render(renderer, tess, block, meta, x, y, z);
-        }
-        if (block2.getShelfType() == 3) {
+        } else if (type == 3) {
+            model3.setFacing(shelf.facingMeta);
             model3.render(renderer, tess, block, meta, x, y, z);
-        } else if (block2.getShelfType() == 4) {
+        } else if (type == 4) {
+            model4.setFacing(shelf.facingMeta);
             model4.render(renderer, tess, block, meta, x, y, z);
-        } else if (block2.getShelfType() == 5) {
+        } else if (type == 5) {
+            model5.setFacing(shelf.facingMeta);
             model5.render(renderer, tess, block, meta, x, y, z);
         }
 

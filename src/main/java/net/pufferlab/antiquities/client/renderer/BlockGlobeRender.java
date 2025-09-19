@@ -1,13 +1,9 @@
 package net.pufferlab.antiquities.client.renderer;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
-import net.pufferlab.antiquities.blocks.BlockGlobe;
 import net.pufferlab.antiquities.client.models.ModelGlobe;
-import net.pufferlab.antiquities.tileentities.TileEntityGlobe;
 
 import org.lwjgl.opengl.GL11;
 
@@ -49,19 +45,7 @@ public class BlockGlobeRender implements ISimpleBlockRenderingHandler {
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
         RenderBlocks renderer) {
-        if (world == null || world.getTileEntity(x, y, z) != null) return false;
-        MovingObjectPosition mop = Minecraft.getMinecraft().objectMouseOver;
-        if (mop == null || mop.typeOfHit != MovingObjectPosition.MovingObjectType.BLOCK
-            || !(world.getBlock(mop.blockX, mop.blockY, mop.blockZ) instanceof BlockGlobe)) return false;
-        TileEntityGlobe globe = (TileEntityGlobe) world.getTileEntity(x, y, z);
-
-        model.setFacing(globe.facingMeta);
-
-        GL11.glPushMatrix();
-        GL11.glTranslatef((float) x + 0.5F, (float) y + 0.5F, (float) z + 0.5F);
-        model.render();
-        GL11.glPopMatrix();
-        return true;
+        return false;
     }
 
     @Override
