@@ -1,26 +1,17 @@
 package net.pufferlab.antiquities.client.models;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
-import net.pufferlab.antiquities.Antiquities;
 import net.pufferlab.antiquities.Constants;
 
-public class ModelGlobe extends ModelBase {
+public class ModelGlobe extends ModelFurniture {
 
-    private final ModelRenderer bb_main;
     private final ModelRenderer group;
     public ModelRenderer earth_r1;
     private final ModelRenderer cube_r1;
 
     public ModelGlobe() {
-        textureWidth = 64;
-        textureHeight = 64;
-
-        bb_main = new ModelRenderer(this);
-        setFacing(0);
-        bb_main.setRotationPoint(0.0F, 0.0F, 0.0F);
+        super(64, 64);
 
         group = new ModelRenderer(this);
         group.setRotationPoint(-7.5F, 7.0F, 7.5F);
@@ -50,19 +41,7 @@ public class ModelGlobe extends ModelBase {
         earth_r1.render(Constants.ModelConstant);
     }
 
-    public void bindTex(String fileName) {
-        Minecraft.getMinecraft().renderEngine
-            .bindTexture(Antiquities.asResource("textures/blocks/" + fileName + ".png"));
-    }
-
-    public void setFacing(int meta) {
-        int meta2 = meta + 1;
-        bb_main.rotateAngleY = (float) ((Math.toRadians(90 * meta2)) % 360);
-    }
-
-    public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
+    public String getName() {
+        return "globe";
     }
 }

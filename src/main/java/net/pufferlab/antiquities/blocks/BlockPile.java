@@ -190,6 +190,14 @@ public class BlockPile extends BlockContainer {
         return null;
     }
 
+    @Override
+    public int getDamageValue(World worldIn, int x, int y, int z) {
+        if (worldIn.getTileEntity(x, y, z) instanceof TileEntityPile te) {
+            return te.getLastItemMeta();
+        }
+        return 0;
+    }
+
     private void place(ItemStack stack, World world, int x, int y, int z, Block toPlace, int metadata,
         EntityPlayer player) {
         if (world.isAirBlock(x, y, z)) {
@@ -261,13 +269,17 @@ public class BlockPile extends BlockContainer {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister register) {
-        icons = new IIcon[1];
-        icons[0] = register.registerIcon("antiquities:pile");
+        icons = new IIcon[2];
+        icons[0] = register.registerIcon(Antiquities.MODID + ":pile");
+        icons[1] = register.registerIcon(Antiquities.MODID + ":null_pile");
     }
 
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-        return icons[0];
+        if (side == 99) {
+            return icons[0];
+        }
+        return icons[1];
     }
 
     @Override

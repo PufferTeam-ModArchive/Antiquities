@@ -10,11 +10,21 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.Vec3;
+import net.pufferlab.antiquities.Config;
 import net.pufferlab.antiquities.tileentities.TileEntityMetaFacing;
 
 public class ModelTESS {
 
     public static void render(RenderBlocks renderblocks, Tessellator tess, Block block, ModelRenderer renderer,
+        float scale, int x, int y, int z, int meta) {
+        if (Config.renderWithAO) {
+            renderBlockAO(renderblocks, tess, block, renderer, scale, x, y, z, meta);
+        } else {
+            renderBlock(renderblocks, tess, block, renderer, scale, x, y, z, meta);
+        }
+    }
+
+    public static void renderBlock(RenderBlocks renderblocks, Tessellator tess, Block block, ModelRenderer renderer,
         float scale, int x, int y, int z, int meta) {
         if (!renderer.isHidden && renderer.showModel) {
 
@@ -163,7 +173,7 @@ public class ModelTESS {
         }
     }
 
-    public static void renderBlock(RenderBlocks renderblocks, Tessellator tess, Block block, ModelRenderer renderer,
+    public static void renderBlockAO(RenderBlocks renderblocks, Tessellator tess, Block block, ModelRenderer renderer,
         float scale, int x, int y, int z, int meta) {
         if (!renderer.isHidden && renderer.showModel) {
 
@@ -242,6 +252,10 @@ public class ModelTESS {
                     }
 
                     CustomRenderBlocks renderblocks2 = new CustomRenderBlocks();
+                    TileEntityMetaFacing facing = (TileEntityMetaFacing) renderblocks.blockAccess
+                        .getTileEntity(x, y, z);
+                    int facingMeta = facing.facingMeta;
+                    int facingType = facing.getFacingType();
 
                     renderblocks2.modelbox = box;
                     renderblocks2.modelrenderer = renderer;
@@ -260,10 +274,6 @@ public class ModelTESS {
                     renderblocks2.rotateZPos = 3;
                     renderblocks2.mirrorText = true;
 
-                    TileEntityMetaFacing facing = (TileEntityMetaFacing) renderblocks.blockAccess
-                        .getTileEntity(x, y, z);
-                    int facingMeta = facing.facingMeta;
-                    int facingType = facing.getFacingType();
                     renderblocks2.quadXNeg = 0;
                     renderblocks2.quadXPos = 1;
                     renderblocks2.quadYNeg = 2;
@@ -271,7 +281,27 @@ public class ModelTESS {
                     renderblocks2.quadZNeg = 4;
                     renderblocks2.quadZPos = 5;
 
-                    if ((facingMeta == 2 && facingType == 1) || (facingMeta == 4 && facingType == 0)) {
+                    int rotateMeta = 0;
+                    if (facingType == -1) {
+                        int angleToRotate = ((int) Math.round(Math.toDegrees(renderer.rotateAngleY) / 90)) % 4;
+                        if (angleToRotate == 1) {
+                            rotateMeta = 3;
+                        } else if (angleToRotate == 2) {
+                            rotateMeta = 1;
+                        } else if (angleToRotate == 3) {
+                            rotateMeta = 2;
+                        }
+                    } else {
+                        if ((facingMeta == 2 && facingType == 1) || (facingMeta == 4 && facingType == 0)) {
+                            rotateMeta = 1;
+                        } else if ((facingMeta == 3 && facingType == 1) || (facingMeta == 1 && facingType == 0)) {
+                            rotateMeta = 2;
+                        } else if ((facingMeta == 4 && facingType == 1) || (facingMeta == 2 && facingType == 0)) {
+                            rotateMeta = 3;
+                        }
+                    }
+
+                    if (rotateMeta == 1) {
                         renderblocks2.quadXNeg = 4;
                         renderblocks2.quadXPos = 5;
                         renderblocks2.quadZNeg = 0;
@@ -281,7 +311,7 @@ public class ModelTESS {
 
                     }
 
-                    if ((facingMeta == 3 && facingType == 1) || (facingMeta == 1 && facingType == 0)) {
+                    if (rotateMeta == 2) {
                         renderblocks2.quadXNeg = 1;
                         renderblocks2.quadXPos = 0;
                         renderblocks2.quadZNeg = 5;
@@ -290,7 +320,7 @@ public class ModelTESS {
                         renderblocks2.rotateYNeg = 1;
                     }
 
-                    if ((facingMeta == 4 && facingType == 1) || (facingMeta == 2 && facingType == 0)) {
+                    if (rotateMeta == 3) {
                         renderblocks2.quadXNeg = 5;
                         renderblocks2.quadXPos = 4;
                         renderblocks2.quadZNeg = 1;

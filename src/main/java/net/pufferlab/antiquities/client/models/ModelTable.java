@@ -1,19 +1,10 @@
 package net.pufferlab.antiquities.client.models;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.client.renderer.Tessellator;
-import net.pufferlab.antiquities.Antiquities;
-import net.pufferlab.antiquities.Constants;
-import net.pufferlab.antiquities.client.helper.ModelTESS;
 
-public class ModelTable extends ModelBase {
+public class ModelTable extends ModelFurniture {
 
-    private final ModelRenderer bb_main;
     public ModelRenderer leg1;
     public ModelRenderer leg2;
     public ModelRenderer leg3;
@@ -43,11 +34,7 @@ public class ModelTable extends ModelBase {
     public ModelRenderer top4LB;
 
     public ModelTable() {
-        textureWidth = 128;
-        textureHeight = 128;
-
-        bb_main = new ModelRenderer(this);
-        bb_main.setRotationPoint(0.0F, 0.0F, 0.0F);
+        super(128, 128);
 
         leg1 = new ModelRenderer(this);
         leg1.setRotationPoint(0.0F, 0.0F, 0.0F);
@@ -177,25 +164,7 @@ public class ModelTable extends ModelBase {
         bb_main.addChild(top4LB);
     }
 
-    public void render(String type) {
-        bindTex(type + "_table");
-        bb_main.rotateAngleX = (float) Math.toRadians(180);
-        bb_main.render(Constants.ModelConstant);
-    }
-
-    public void render(RenderBlocks renderblocks, Tessellator tess, Block block, int meta, int x, int y, int z) {
-        bb_main.rotateAngleX = (float) Math.toRadians(180);
-        ModelTESS.render(renderblocks, tess, block, bb_main, Constants.ModelConstant, x, y, z, meta);
-    }
-
-    public void bindTex(String fileName) {
-        Minecraft.getMinecraft().renderEngine
-            .bindTexture(Antiquities.asResource("textures/blocks/" + fileName + ".png"));
-    }
-
-    public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
+    public String getName() {
+        return "table";
     }
 }

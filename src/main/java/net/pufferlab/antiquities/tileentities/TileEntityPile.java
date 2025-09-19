@@ -9,6 +9,10 @@ public class TileEntityPile extends TileEntityInventory {
         super(64);
     }
 
+    public int getFacingType() {
+        return -1;
+    }
+
     public boolean addItemInPile(ItemStack ingot) {
         for (int i = 0; i < getSizeInventory(); i++) {
             if (getInventoryStack(i) == null) {
@@ -32,11 +36,20 @@ public class TileEntityPile extends TileEntityInventory {
 
     public Item getLastItem() {
         for (int i = 0; i < getSizeInventory(); i++) {
-            if (getInventoryStack(i) == null) {
+            if (getInventoryStack(i) == null && i != 0) {
                 return getInventoryStack(i - 1).getItem();
             }
         }
         return getInventoryStack(getSizeInventory() - 1).getItem();
+    }
+
+    public int getLastItemMeta() {
+        for (int i = 0; i < getSizeInventory(); i++) {
+            if (getInventoryStack(i) == null && i != 0) {
+                return getInventoryStack(i - 1).getItemDamage();
+            }
+        }
+        return getInventoryStack(getSizeInventory() - 1).getItemDamage();
     }
 
     public int getLayer() {

@@ -9,6 +9,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class Config {
 
     public static String greeting = "Hello World";
+    public static boolean renderWithAO;
     public static float globeMaxSpeed;
     public static float globeSpeedAddition;
     public static float globeSpeedDeceleration;
@@ -18,7 +19,11 @@ public class Config {
     public static void synchronizeConfiguration(File configFile) {
         Configuration configuration = new Configuration(configFile);
 
-        greeting = configuration.getString("greeting", Configuration.CATEGORY_GENERAL, greeting, "How shall I greet?");
+        renderWithAO = configuration.getBoolean(
+            "renderWithAO",
+            Configuration.CATEGORY_GENERAL,
+            true,
+            "Render most blocks with AO, if you put this to false, it will render the blocks in a different way that will not have AO but may be less buggy and consistent.");
         globeMaxSpeed = configuration.getFloat(
             "globeMaxSpeed",
             Configuration.CATEGORY_GENERAL,
