@@ -24,9 +24,9 @@ public class ModelPile extends ModelFurniture {
 
     public void renderIngot(int i, String metal) {
         ModelRenderer layer;
-        float posX = -6.5F;
-        float posY = -2.0F + 8F;
-        float posZ = 4.5F;
+        double posX = -6.5;
+        double posY = -2.0 + 8;
+        double posZ = 4.5;
         int i2 = i % 4;
         int i3 = i % 8;
         int i5 = (int) (double) (i / 8);
@@ -50,10 +50,10 @@ public class ModelPile extends ModelFurniture {
         }
         posY = posY - (2 * i5);
         if (i3 > 3) {
-            posX = posX + 7F;
+            posX = posX + 7;
         }
         posZ = posZ - (4 * i2);
-        layer.cubeList.add(new ModelBox(bb_main, texX, texY, posX, posY, posZ, 6, 2, 3, 0.0F));
+        layer.cubeList.add(new ModelBox(bb_main, texX, texY, (float) posX, (float) posY, (float) posZ, 6, 2, 3, 0.0F));
     }
 
     public void resetFacing() {

@@ -15,18 +15,18 @@ public class ModelGlobe extends ModelFurniture {
 
         group = new ModelRenderer(this);
         group.setRotationPoint(-7.5F, 7.0F, 7.5F);
-        group.cubeList.add(new ModelBox(group, 0, 0, 4.5F, 15.0F - 16F, -10.5F, 6, 2, 6, 0.0F));
-        group.cubeList.add(new ModelBox(group, 14, 8, 6.5F, 13.0F - 16F, -8.5F, 2, 2, 2, 0.0F));
+        group.cubeList.add(new ModelBox(group, 0, 0, 4.5F, -1F, -10.5F, 6, 2, 6, 0.0F));
+        group.cubeList.add(new ModelBox(group, 14, 8, 6.5F, -3F, -8.5F, 2, 2, 2, 0.0F));
         bb_main.addChild(group);
 
         earth_r1 = new ModelRenderer(this);
-        earth_r1.cubeList.add(new ModelBox(earth_r1, 0, 32, -4.0F, -13.25F + 8F, -4.0F, 8, 8, 8, 0.0F));
+        earth_r1.cubeList.add(new ModelBox(earth_r1, 0, 32, -4.0F, -5.25F, -4.0F, 8, 8, 8, 0.0F));
 
         cube_r1 = new ModelRenderer(this);
         cube_r1.setRotationPoint(7.5F, 8.0F, -7.5F);
         group.addChild(cube_r1);
         setRotationAngle(cube_r1, -0.3927F, 0.0F, 0.0F);
-        cube_r1.cubeList.add(new ModelBox(cube_r1, 0, 8, 0.0F, -5.0F - 15F, -0.5F - 5F, 0, 10, 7, 0.0F));
+        cube_r1.cubeList.add(new ModelBox(cube_r1, 0, 8, 0.0F, -20.0F, -5.5F, 0, 10, 7, 0.0F));
     }
 
     public void render() {

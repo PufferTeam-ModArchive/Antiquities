@@ -6,12 +6,12 @@ public class ModelShelfLongCase extends ModelFurniture {
 
     public ModelShelfLongCase() {
         super(64, 64);
-        bb_main.cubeList.add(new ModelBox(bb_main, 0, 0, -8.0F, -15.0F + 8F, 6.0F, 16, 6, 2, 0.0F));
-        bb_main.cubeList.add(new ModelBox(bb_main, 0, 0, -8.0F, -7.0F + 8F, 6.0F, 16, 6, 2, 0.0F));
+        bb_main.cubeList.add(new ModelBox(bb_main, 0, 0, -8.0F, -7.0F, 6.0F, 16, 6, 2, 0.0F));
+        bb_main.cubeList.add(new ModelBox(bb_main, 0, 0, -8.0F, 1.0F, 6.0F, 16, 6, 2, 0.0F));
 
-        bb_main.cubeList.add(new ModelBox(bb_main, 1, 50, -8.0F, -16.0F + 8F, 0.0F, 16, 1, 8, 0.0F));
-        bb_main.cubeList.add(new ModelBox(bb_main, 1, 42, -8.0F, -1.0F + 8F, 0.0F, 16, 1, 8, 0.0F));
-        bb_main.cubeList.add(new ModelBox(bb_main, 1, 42, -8.0F, -9.0F + 8F, 0.0F, 16, 2, 8, 0.0F));
+        bb_main.cubeList.add(new ModelBox(bb_main, 1, 50, -8.0F, -8.0F, 0.0F, 16, 1, 8, 0.0F));
+        bb_main.cubeList.add(new ModelBox(bb_main, 1, 42, -8.0F, 7.0F, 0.0F, 16, 1, 8, 0.0F));
+        bb_main.cubeList.add(new ModelBox(bb_main, 1, 42, -8.0F, -1.0F, 0.0F, 16, 2, 8, 0.0F));
     }
 
     public String getName() {

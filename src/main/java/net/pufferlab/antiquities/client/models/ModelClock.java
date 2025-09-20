@@ -14,14 +14,14 @@ public class ModelClock extends ModelFurniture {
 
         clock_hand = new ModelRenderer(this);
         clock_hand.setRotationPoint(0.0F, 0.0F, 0.0F);
-        clock_hand.cubeList.add(new ModelBox(clock_hand, 1, 18, -6.0F, -8.5F + 8F, 5.5F, 7, 1, 0, 0.0F));
+        clock_hand.cubeList.add(new ModelBox(clock_hand, 1, 18, -6.0F, -0.5F, 5.5F, 7, 1, 0, 0.0F));
 
         clock_hand_hour = new ModelRenderer(this);
         clock_hand_hour.setRotationPoint(0.0F, 0.0F, 0.0F);
-        clock_hand_hour.cubeList.add(new ModelBox(clock_hand_hour, 16, 18, 0.0F, -8.5F + 8F, 5.5F, 5, 1, 0, 0.0F));
+        clock_hand_hour.cubeList.add(new ModelBox(clock_hand_hour, 16, 18, 0.0F, -0.5F, 5.5F, 5, 1, 0, 0.0F));
 
-        bb_main.cubeList.add(new ModelBox(bb_main, 0, 0, -8.0F, -16.0F + 8F, 6.0F, 16, 16, 2, 0.0F));
-        bb_main.cubeList.add(new ModelBox(bb_main, 0, 19, -1.0F, -9.0F + 8F, 5.0F, 2, 2, 1, 0.0F));
+        bb_main.cubeList.add(new ModelBox(bb_main, 0, 0, -8.0F, -8F, 6.0F, 16, 16, 2, 0.0F));
+        bb_main.cubeList.add(new ModelBox(bb_main, 0, 19, -1.0F, -1F, 5.0F, 2, 2, 1, 0.0F));
     }
 
     public void render() {
