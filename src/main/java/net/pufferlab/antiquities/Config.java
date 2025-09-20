@@ -10,6 +10,7 @@ public class Config {
 
     public static String greeting = "Hello World";
     public static boolean renderWithAO;
+    public static boolean enableRecipes;
     public static float globeMaxSpeed;
     public static float globeSpeedAddition;
     public static float globeSpeedDeceleration;
@@ -24,6 +25,11 @@ public class Config {
             Configuration.CATEGORY_GENERAL,
             true,
             "Render most blocks with AO, if you put this to false, it will render the blocks in a different way that will not have AO but may be less buggy and consistent.");
+        enableRecipes = configuration.getBoolean(
+            "enableRecipes",
+            Configuration.CATEGORY_GENERAL,
+            true,
+            "Enable recipes for blocks in the mod, put the false if you want the mod to have no recipes.");
         globeMaxSpeed = configuration.getFloat(
             "globeMaxSpeed",
             Configuration.CATEGORY_GENERAL,

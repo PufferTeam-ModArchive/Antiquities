@@ -58,14 +58,17 @@ public class Antiquities {
     public void postInit(FMLPostInitializationEvent event) {
         proxy.postInit(event);
 
-        new Recipes().run();
-        if (Loader.isModLoaded("BiomesOPlenty")) {
-            new RecipesBOP().run();
+        if (Config.enableRecipes) {
+            new Recipes().run();
+            if (Loader.isModLoaded("BiomesOPlenty")) {
+                new RecipesBOP().run();
+            }
+            if (Loader.isModLoaded("Thaumcraft")) {
+                new RecipesTC().run();
+            }
+            Config.refreshWhitelists();
         }
-        if (Loader.isModLoaded("Thaumcraft")) {
-            new RecipesTC().run();
-        }
-        Config.refreshWhitelists();
+
     }
 
     @Mod.EventHandler
