@@ -14,7 +14,6 @@ import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class BlockPedestalRender implements ISimpleBlockRenderingHandler {
 
-    Tessellator tess = Tessellator.instance;
     ModelPedestal model = new ModelPedestal();
     final int renderID;
 
@@ -40,6 +39,8 @@ public class BlockPedestalRender implements ISimpleBlockRenderingHandler {
         TileEntityPedestal pedestal = (TileEntityPedestal) world.getTileEntity(x, y, z);
         if (pedestal == null) return false;
         int meta = world.getBlockMetadata(x, y, z);
+        Tessellator tess = Tessellator.instance;
+
         model.setFacing(pedestal.facingMeta);
         model.render(renderer, tess, block, meta, x, y, z);
 

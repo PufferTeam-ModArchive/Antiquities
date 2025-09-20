@@ -13,7 +13,6 @@ import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class BlockClockRender implements ISimpleBlockRenderingHandler {
 
-    Tessellator tess = Tessellator.instance;
     ModelClock model = new ModelClock();
     final int renderID;
 
@@ -38,6 +37,7 @@ public class BlockClockRender implements ISimpleBlockRenderingHandler {
         TileEntityClock clock = (TileEntityClock) world.getTileEntity(x, y, z);
         if (clock == null) return false;
         int meta = world.getBlockMetadata(x, y, z);
+        Tessellator tess = Tessellator.instance;
 
         model.setFacing(clock.facingMeta);
 

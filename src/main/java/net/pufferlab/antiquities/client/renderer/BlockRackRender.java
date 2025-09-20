@@ -12,7 +12,6 @@ import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class BlockRackRender implements ISimpleBlockRenderingHandler {
 
-    Tessellator tess = Tessellator.instance;
     ModelRack model = new ModelRack();
     final int renderID;
 
@@ -34,6 +33,8 @@ public class BlockRackRender implements ISimpleBlockRenderingHandler {
         TileEntityRack rack = (TileEntityRack) world.getTileEntity(x, y, z);
         if (rack == null) return false;
         int meta = world.getBlockMetadata(x, y, z);
+        Tessellator tess = Tessellator.instance;
+
         model.setFacing(rack.facingMeta);
         model.render(renderer, tess, block, meta, x, y, z);
 

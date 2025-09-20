@@ -12,7 +12,6 @@ import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class BlockChairRender implements ISimpleBlockRenderingHandler {
 
-    Tessellator tess = Tessellator.instance;
     ModelChair model = new ModelChair();
     final int renderID;
 
@@ -34,6 +33,7 @@ public class BlockChairRender implements ISimpleBlockRenderingHandler {
         TileEntityChair chair = (TileEntityChair) world.getTileEntity(x, y, z);
         if (chair == null) return false;
         int meta = world.getBlockMetadata(x, y, z);
+        Tessellator tess = Tessellator.instance;
 
         model.setFacing(chair.facingMeta);
         model.render(renderer, tess, block, meta, x, y, z);
