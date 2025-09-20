@@ -21,12 +21,13 @@ public class EventHandler {
         if (event.action == RIGHT_CLICK_BLOCK) {
             ItemStack heldItem = event.entityPlayer.inventory.getCurrentItem();
             int[] oreIDS = OreDictionary.getOreIDs(heldItem);
+            Block block = event.world.getBlock(event.x, event.y, event.z);
             boolean canPlace = false;
             boolean canAdd = false;
             for (int oreID : oreIDS) {
                 String oreName = OreDictionary.getOreName(oreID);
                 if (oreName.contains("ingot")) {
-                    if (!(event.world.getBlock(event.x, event.y, event.z) instanceof BlockPile)) {
+                    if (!(block instanceof BlockPile)) {
                         canPlace = true;
                     } else {
                         canAdd = true;
@@ -41,7 +42,6 @@ public class EventHandler {
             }
             if (canAdd) {
                 if (event.entityPlayer.isSneaking()) {
-                    Block block = event.world.getBlock(event.x, event.y, event.z);
                     for (int i = 0; i < heldItem.stackSize; i++) {
                         block.onBlockActivated(
                             event.world,

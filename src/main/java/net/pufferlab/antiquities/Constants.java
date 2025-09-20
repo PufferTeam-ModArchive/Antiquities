@@ -13,7 +13,9 @@ public class Constants {
         "silverwood" };
     public static final String[] metalTypes = new String[] { "iron", "gold", "copper", "tin", "silver", "lead",
         "nickel", "bronze", "electrum", "invar", "constantan" };
-    public static final String[] brickTypes = new String[] { "brick", "bricknether" };
+    public static final String[] metalTypes2 = new String[] { "brick", "bricknether" };
+    public static final String[] metalTypes3 = new String[] { "thaumium", "void", "manasteel", "terrasteel",
+        "elementium" };
     public static final String[] stoneTypes = new String[] { "stone" };
     public static final float ModelConstant = 0.0625f;
 }

@@ -32,9 +32,13 @@ public class ModelPile extends ModelFurniture {
         int i5 = (int) (double) (i / 8);
         int texY = 5 * Utils.getItemFromArray(Constants.metalTypes, metal);
         int texX = 0;
-        if (Utils.containsExactMatch(Constants.brickTypes, metal)) {
+        if (Utils.containsExactMatch(Constants.metalTypes2, metal)) {
             texX = 18;
-            texY = 5 * Utils.getItemFromArray(Constants.brickTypes, metal);
+            texY = 5 * Utils.getItemFromArray(Constants.metalTypes2, metal);
+        }
+        if (Utils.containsExactMatch(Constants.metalTypes3, metal)) {
+            texX = 36;
+            texY = 5 * Utils.getItemFromArray(Constants.metalTypes3, metal);
         }
         float angle = 90;
         if (i5 % 2 == 0) {

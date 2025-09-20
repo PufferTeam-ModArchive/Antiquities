@@ -55,6 +55,7 @@ public class BlockPile extends BlockContainer {
         }
     }
 
+    @Override
     public void addCollisionBoxesToList(World worldIn, int x, int y, int z, AxisAlignedBB mask,
         List<AxisAlignedBB> list, Entity collider) {
         this.setBlockBoundsBasedOnState(worldIn, x, y, z);
@@ -117,24 +118,27 @@ public class BlockPile extends BlockContainer {
                 if (player.isSneaking()) {
                     m = heldItem.stackSize;
                 }
-                playStepSound(world, x, y, z);
+                boolean success = false;
                 for (int i = 0; i < m; i++) {
                     if (!pile.canAddItemInPile()) {
                         int j = getNextPile(world, x, y, z);
                         if (j != 0) {
                             TileEntityPile pile2 = (TileEntityPile) world.getTileEntity(x, y + j, z);
                             if (pile2 != null) {
-                                addItemToPile(heldItem, pile2, player);
+                                success = addItemToPile(world, x, y, z, heldItem, pile2, player);
                             } else {
-                                place(heldItem, world, x, y + j, z, this, 0, player);
+                                success = place(heldItem, world, x, y + j, z, this, 0, player);
                             }
                         }
                     } else {
-                        addItemToPile(heldItem, pile, player);
+                        success = addItemToPile(world, x, y, z, heldItem, pile, player);
                     }
                 }
 
-                return true;
+                if (success) {
+                    playStepSound(world, x, y, z);
+                }
+                return success;
             } else {
                 if (pile.canRemoveItemInPile()) {
                     int j = getPrevPile(world, x, y, z);
@@ -145,6 +149,7 @@ public class BlockPile extends BlockContainer {
                             removeItemToPile(pile2);
                         } else {
                             dropItem(world, x, y + j, z, 0);
+                            pile2.setInventorySlotContentsUpdate(0);
                             world.setBlockToAir(x, y + j, z);
                         }
                     }
@@ -166,17 +171,24 @@ public class BlockPile extends BlockContainer {
             this.stepSound.getPitch() * 0.8F);
     }
 
-    public void addItemToPile(ItemStack heldItem, TileEntityPile pile, EntityPlayer player) {
+    public boolean addItemToPile(World world, int x, int y, int z, ItemStack heldItem, TileEntityPile pile,
+        EntityPlayer player) {
+        boolean success = false;
         if (pile.canAddItemInPile()) {
-            pile.addItemInPile(heldItem);
-            if (heldItem.stackSize > 0) {
-                player.getHeldItem().stackSize--;
-            } else {
-                player.inventory.setInventorySlotContents(
-                    player.inventory.currentItem,
-                    new ItemStack(Item.getItemFromBlock(Blocks.air)));
+            if (world.checkNoEntityCollision(getNextLayerBB(world, x, y, z))) {
+                success = true;
+                pile.addItemInPile(heldItem);
+                if (heldItem.stackSize > 0) {
+                    player.getHeldItem().stackSize--;
+                } else {
+                    player.inventory.setInventorySlotContents(
+                        player.inventory.currentItem,
+                        new ItemStack(Item.getItemFromBlock(Blocks.air)));
+                }
             }
+
         }
+        return success;
     }
 
     public void removeItemToPile(TileEntityPile pile) {
@@ -229,12 +241,14 @@ public class BlockPile extends BlockContainer {
         return 0;
     }
 
-    private void place(ItemStack stack, World world, int x, int y, int z, Block toPlace, int metadata,
+    private boolean place(ItemStack stack, World world, int x, int y, int z, Block toPlace, int metadata,
         EntityPlayer player) {
+        boolean success = false;
         if (world.isAirBlock(x, y, z)) {
             if (world.checkNoEntityCollision(toPlace.getCollisionBoundingBoxFromPool(world, x, y, z))
                 && world.setBlock(x, y, z, toPlace, metadata, 3)) {
                 world.setBlock(x, y, z, toPlace, metadata, 2);
+                success = true;
                 player.getHeldItem().stackSize--;
                 toPlace.onBlockPlacedBy(world, x, y, z, player, stack);
                 world.playSoundEffect(
@@ -246,7 +260,7 @@ public class BlockPile extends BlockContainer {
                     toPlace.stepSound.getPitch() * 0.8F);
             }
         }
-
+        return success;
     }
 
     @Override
@@ -266,7 +280,7 @@ public class BlockPile extends BlockContainer {
         if (!(tileEntity instanceof IInventory)) return false;
         TileEntityPile pile = (TileEntityPile) tileEntity;
         ItemStack item = null;
-        if ((index < pile.getSizeInventory()) && (index > 0)) {
+        if ((index < pile.getSizeInventory()) && (index >= 0)) {
             item = pile.getInventoryStack(index);
         }
         if (item != null && item.stackSize > 0) {
@@ -325,6 +339,20 @@ public class BlockPile extends BlockContainer {
         if (!world.isRemote) {
             world.spawnEntityInWorld((Entity) entityItem);
         }
+    }
+
+    public AxisAlignedBB getNextLayerBB(World world, int x, int y, int z) {
+        if (world.getTileEntity(x, y, z) instanceof TileEntityPile pile) {
+            float size = 0.125F;
+            return AxisAlignedBB.getBoundingBox(
+                (double) x + 0.0F,
+                (double) y + 0.0F,
+                (double) z + 0.0F,
+                (double) x + 1.0F,
+                (double) y + 0.125F + (size * (pile.getLayer() + 1)),
+                (double) z + 1.0F);
+        }
+        return null;
     }
 
     @SideOnly(Side.CLIENT)
