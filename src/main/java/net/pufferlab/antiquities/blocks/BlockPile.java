@@ -135,6 +135,21 @@ public class BlockPile extends BlockContainer {
                 }
 
                 return true;
+            } else {
+                if (pile.canRemoveItemInPile()) {
+                    int j = getPrevPile(world, x, y, z);
+                    TileEntityPile pile2 = (TileEntityPile) world.getTileEntity(x, y + j, z);
+                    if (pile2 != null) {
+                        if (pile2.getNextSlot() != 1) {
+                            dropItem(world, x, y + j, z, pile2.getPrevSlot());
+                            removeItemToPile(pile2);
+                        } else {
+                            dropItem(world, x, y + j, z, 0);
+                            world.setBlockToAir(x, y + j, z);
+                        }
+                    }
+                    return true;
+                }
             }
 
         }
@@ -164,6 +179,12 @@ public class BlockPile extends BlockContainer {
         }
     }
 
+    public void removeItemToPile(TileEntityPile pile) {
+        if (pile.canRemoveItemInPile()) {
+            pile.removeItemInPile();
+        }
+    }
+
     public int getNextPile(World world, int x, int y, int z) {
         for (int j = 0; j < 10; j++) {
             TileEntity te = world.getTileEntity(x, y + j, z);
@@ -177,6 +198,16 @@ public class BlockPile extends BlockContainer {
                 return j;
             }
 
+        }
+        return 0;
+    }
+
+    public int getPrevPile(World world, int x, int y, int z) {
+        for (int j = 0; j < 10; j++) {
+            TileEntity te = world.getTileEntity(x, y + j, z);
+            if (te == null) {
+                return j - 1;
+            }
         }
         return 0;
     }
@@ -228,6 +259,35 @@ public class BlockPile extends BlockContainer {
         super.onBlockPreDestroy(worldIn, x, y, z, meta);
 
         dropItems(worldIn, x, y, z);
+    }
+
+    private boolean dropItem(World world, int x, int y, int z, int index) {
+        TileEntity tileEntity = world.getTileEntity(x, y, z);
+        if (!(tileEntity instanceof IInventory)) return false;
+        TileEntityPile pile = (TileEntityPile) tileEntity;
+        ItemStack item = null;
+        if ((index < pile.getSizeInventory()) && (index > 0)) {
+            item = pile.getInventoryStack(index);
+        }
+        if (item != null && item.stackSize > 0) {
+            EntityItem entityItem = new EntityItem(
+                world,
+                x + 0.5,
+                y + 0.25F + (0.125F * pile.getLayer()),
+                z + 0.5,
+                new ItemStack(item.getItem(), item.stackSize, item.getItemDamage()));
+            if (item.hasTagCompound()) entityItem.getEntityItem()
+                .setTagCompound(
+                    (NBTTagCompound) item.getTagCompound()
+                        .copy());
+            entityItem.motionX = 0.0D;
+            entityItem.motionY = 0.0D;
+            entityItem.motionZ = 0.0D;
+            spawnEntityClientSensitive(world, entityItem);
+            item.stackSize = 0;
+            return true;
+        }
+        return false;
     }
 
     private void dropItems(World world, int i, int j, int k) {

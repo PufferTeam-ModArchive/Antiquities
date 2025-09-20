@@ -191,6 +191,17 @@ public class TileEntityInventory extends TileEntityMetaFacing implements IInvent
             this.zCoord);
     }
 
+    public void setInventorySlotContentsUpdate(int index) {
+        this.inventory[index] = null;
+        this.worldObj.markBlockRangeForRenderUpdate(
+            this.xCoord,
+            this.yCoord,
+            this.zCoord,
+            this.xCoord,
+            this.yCoord,
+            this.zCoord);
+    }
+
     @Override
     public String getInventoryName() {
         return "Shelf";
