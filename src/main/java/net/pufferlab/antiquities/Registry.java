@@ -1,6 +1,8 @@
 package net.pufferlab.antiquities;
 
 import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.pufferlab.antiquities.blocks.*;
 import net.pufferlab.antiquities.entity.EntitySeat;
@@ -50,6 +52,19 @@ public class Registry {
     public static Block globe;
     public static Block clock;
     public static Block pile;
+
+    public static final CreativeTabs creativeTab = new CreativeTabs(Antiquities.MODID + "CreativeTab") {
+
+        @Override
+        public Item getTabIconItem() {
+            return Item.getItemFromBlock(chair);
+        }
+
+        @Override
+        public String getTranslatedTabLabel() {
+            return Antiquities.MODNAME;
+        }
+    };
 
     public void preInit(FMLPreInitializationEvent event) {
         chair = new BlockChair(Constants.woodTypes);

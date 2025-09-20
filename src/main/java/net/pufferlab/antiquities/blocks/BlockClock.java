@@ -5,7 +5,6 @@ import java.util.List;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -16,6 +15,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.pufferlab.antiquities.Antiquities;
+import net.pufferlab.antiquities.Registry;
 import net.pufferlab.antiquities.Utils;
 import net.pufferlab.antiquities.tileentities.TileEntityClock;
 
@@ -33,7 +33,7 @@ public class BlockClock extends BlockContainer {
         this.setResistance(5.0F);
         this.setStepSound(soundTypeWood);
         this.setBlockName(Antiquities.MODID + ".clock");
-        this.setCreativeTab(CreativeTabs.tabBlock);
+        this.setCreativeTab(Registry.creativeTab);
         this.setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
     }
 

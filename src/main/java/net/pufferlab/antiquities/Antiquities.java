@@ -19,10 +19,15 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
-@Mod(modid = Antiquities.MODID, version = Tags.VERSION, name = "Antiquities", acceptedMinecraftVersions = "[1.7.10]")
+@Mod(
+    modid = Antiquities.MODID,
+    version = Tags.VERSION,
+    name = Antiquities.MODNAME,
+    acceptedMinecraftVersions = "[1.7.10]")
 public class Antiquities {
 
     public static final String MODID = "antiquities";
+    public static final String MODNAME = "Antiquities";
     public static final Logger LOG = LogManager.getLogger(MODID);
 
     @SidedProxy(

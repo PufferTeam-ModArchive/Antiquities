@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.pufferlab.antiquities.Antiquities;
 import net.pufferlab.antiquities.Constants;
+import net.pufferlab.antiquities.Registry;
 import net.pufferlab.antiquities.Utils;
 
 import cpw.mods.fml.relauncher.Side;
@@ -34,7 +35,7 @@ public abstract class BlockMetaContainer extends BlockContainer {
             this.setResistance(5.0F);
             this.setStepSound(soundTypeWood);
         }
-        this.setCreativeTab(CreativeTabs.tabBlock);
+        this.setCreativeTab(Registry.creativeTab);
     }
 
     @SideOnly(Side.CLIENT)

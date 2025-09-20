@@ -3,7 +3,6 @@ package net.pufferlab.antiquities.blocks;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -12,6 +11,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.pufferlab.antiquities.Antiquities;
+import net.pufferlab.antiquities.Registry;
 import net.pufferlab.antiquities.Utils;
 import net.pufferlab.antiquities.tileentities.TileEntityGlobe;
 
@@ -28,7 +28,7 @@ public class BlockGlobe extends BlockContainer {
         this.setResistance(5.0F);
         this.setStepSound(soundTypeWood);
         this.setBlockName(Antiquities.MODID + ".globe");
-        this.setCreativeTab(CreativeTabs.tabBlock);
+        this.setCreativeTab(Registry.creativeTab);
         this.setBlockBounds(0.1F, 0F, 0.1F, 0.9F, 1F, 0.9F);
     }
 
