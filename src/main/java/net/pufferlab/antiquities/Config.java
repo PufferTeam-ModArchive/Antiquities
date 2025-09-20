@@ -51,9 +51,7 @@ public class Config {
             0F,
             10F,
             "The speed that the globe decelerate every tick.");
-        toolRackDefaultWhitelist = new String[] { "ForgeMicroblock:sawIron", "ForgeMicroblock:sawDiamond",
-            "ForgeMicroblock:sawGold", "ForgeMicroblock:sawFlint", "ForgeMicroblock:sawBronze",
-            "ForgeMicroblock:sawSteel", "ForgeMicroblock:sawManasteel", "ForgeMicroblock:sawThaumium" };
+        toolRackDefaultWhitelist = new String[] { "minecraft:stick", "minecraft:arrow" };
         toolRackWhitelist = configuration.getStringList(
             "toolRackWhitelist",
             Configuration.CATEGORY_GENERAL,
