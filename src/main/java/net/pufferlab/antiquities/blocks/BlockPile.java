@@ -123,7 +123,11 @@ public class BlockPile extends BlockContainer {
                     if (!pile.canAddItemInPile()) {
                         int j = getNextPile(world, x, y, z);
                         if (j != 0) {
-                            TileEntityPile pile2 = (TileEntityPile) world.getTileEntity(x, y + j, z);
+                            TileEntity te0 = world.getTileEntity(x, y + j, z);
+                            TileEntityPile pile2 = null;
+                            if (te0 instanceof TileEntityPile) {
+                                pile2 = (TileEntityPile) te0;
+                            }
                             if (pile2 != null) {
                                 success = addItemToPile(world, x, y, z, heldItem, pile2, player);
                             } else {
@@ -142,7 +146,11 @@ public class BlockPile extends BlockContainer {
             } else {
                 if (pile.canRemoveItemInPile()) {
                     int j = getPrevPile(world, x, y, z);
-                    TileEntityPile pile2 = (TileEntityPile) world.getTileEntity(x, y + j, z);
+                    TileEntity te0 = world.getTileEntity(x, y + j, z);
+                    TileEntityPile pile2 = null;
+                    if (te0 instanceof TileEntityPile) {
+                        pile2 = (TileEntityPile) te0;
+                    }
                     if (pile2 != null) {
                         if (pile2.getNextSlot() != 1) {
                             dropItem(world, x, y + j, z, pile2.getPrevSlot());
