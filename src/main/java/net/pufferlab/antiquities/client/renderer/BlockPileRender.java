@@ -39,12 +39,18 @@ public class BlockPileRender implements ISimpleBlockRenderingHandler {
             if (item != null) {
                 int[] oreIDS = OreDictionary.getOreIDs(item);
                 String metal = "iron";
+                boolean hasMetal = false;
                 for (int oreID : oreIDS) {
                     String name = OreDictionary.getOreName(oreID);
                     String[] names = name.split("ingot");
-                    metal = names[1].toLowerCase();
+                    if (names.length > 0) {
+                        metal = names[1].toLowerCase();
+                        hasMetal = true;
+                    }
                 }
-                model.renderIngot(i, metal);
+                if (hasMetal) {
+                    model.renderIngot(i, metal);
+                }
             }
         }
         model.render(renderer, tess, block, meta, x, y, z);
