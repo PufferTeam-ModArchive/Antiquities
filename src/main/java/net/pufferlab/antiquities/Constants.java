@@ -13,7 +13,7 @@ public class Constants {
         "silverwood" };
     public static final String[] metalTypes = new String[] { "iron", "gold", "copper", "tin", "silver", "lead",
         "nickel", "bronze", "electrum", "invar", "constantan", "platinum" };
-    public static final String[] metalTypes2 = new String[] { "brick", "bricknether" };
+    public static final String[] metalTypes2 = new String[] { "brick", "bricknether", "steel", "osmium", "aluminum" };
     public static final String[] metalTypes3 = new String[] { "thaumium", "void", "manasteel", "terrasteel",
         "elementium", "signalum", "lumium", "enderium", "mithril" };
     public static final String[] stoneTypes = new String[] { "stone" };
