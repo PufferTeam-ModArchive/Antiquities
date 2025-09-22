@@ -20,7 +20,19 @@ public class TileEntityPedestalRenderer extends TileEntitySpecialRenderer {
     private RenderManager renderManager = RenderManager.instance;
     private RenderItem itemRenderer = new RenderItem() {
 
+        public byte getMiniBlockCount(ItemStack stack, byte original) {
+            return 1;
+        }
+
+        public byte getMiniItemCount(ItemStack stack, byte original) {
+            return 1;
+        }
+
         public boolean shouldBob() {
+            return false;
+        }
+
+        public boolean shouldSpreadItems() {
             return false;
         }
     };
