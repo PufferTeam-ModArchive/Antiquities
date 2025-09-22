@@ -3,11 +3,16 @@ package net.pufferlab.antiquities.client.renderer;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.pufferlab.antiquities.blocks.BlockMetaContainer;
+import net.pufferlab.antiquities.blocks.BlockShelf;
 import net.pufferlab.antiquities.blocks.BlockTable;
 import net.pufferlab.antiquities.client.models.ModelTable;
+import net.pufferlab.antiquities.tileentities.TileEntityShelf;
 import net.pufferlab.antiquities.tileentities.TileEntityTable;
 
 import org.lwjgl.opengl.GL11;
@@ -27,66 +32,51 @@ public class BlockTableRender implements ISimpleBlockRenderingHandler {
     public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
         BlockMetaContainer block2 = (BlockMetaContainer) block;
         String wood = block2.getType(metadata);
-        this.model.top1C.isHidden = true;
-        this.model.top2C.isHidden = true;
-        this.model.top1LB.isHidden = true;
-        this.model.top2LB.isHidden = true;
-        this.model.top3LB.isHidden = true;
-        this.model.top4LB.isHidden = true;
+        model.setFacing(0);
         model.render(wood);
     }
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
         RenderBlocks renderer) {
-        if (world == null || world.getTileEntity(x, y, z) != null) return false;
-        MovingObjectPosition mop = Minecraft.getMinecraft().objectMouseOver;
-        if (mop == null || mop.typeOfHit != MovingObjectPosition.MovingObjectType.BLOCK
-            || !(world.getBlock(mop.blockX, mop.blockY, mop.blockZ) instanceof BlockTable)) return false;
         TileEntityTable table = (TileEntityTable) world.getTileEntity(x, y, z);
-        String wood = "null";
-        if (block instanceof BlockMetaContainer block2) {
-            int metadata = world.getBlockMetadata(table.xCoord, table.yCoord, table.zCoord);
-            wood = block2.getType(metadata);
+        int meta = world.getBlockMetadata(table.xCoord, table.yCoord, table.zCoord);
+        Tessellator tess = Tessellator.instance;
+
+        boolean connectNorth = false;
+        TileEntity teNorth = world.getTileEntity(x, y, z - 1);
+        if(teNorth instanceof TileEntityTable) {
+            connectNorth = true;
+        }
+        boolean connectSouth = false;
+        TileEntity teSouth = world.getTileEntity(x, y, z + 1);
+        if(teSouth instanceof TileEntityTable) {
+            connectSouth = true;
+        }
+        boolean connectWest = false;
+        TileEntity teWest = world.getTileEntity(x - 1, y, z);
+        if(teWest instanceof TileEntityTable) {
+            connectWest = true;
+        }
+        boolean connectEast = false;
+        TileEntity teEast = world.getTileEntity(x + 1, y, z);
+        if(teEast instanceof TileEntityTable) {
+            connectEast = true;
         }
 
-        this.model.leg1.isHidden = table.connectZPos || table.connectXPos;
-        this.model.side1.isHidden = table.connectZPos;
-        this.model.leg2.isHidden = table.connectZPos || table.connectXNeg;
+        model.side_n.isHidden = !connectNorth;
+        model.side_s.isHidden = !connectSouth;
+        model.side_w.isHidden = !connectWest;
+        model.side_e.isHidden = !connectEast;
 
-        this.model.side2.isHidden = table.connectXNeg;
+        model.leg1.isHidden = connectNorth && connectWest;
+        model.leg2.isHidden = connectSouth && connectEast;
+        model.leg3.isHidden = connectSouth && connectEast;
+        model.leg4.isHidden = connectSouth && connectWest;
 
-        this.model.leg3.isHidden = table.connectZNeg || table.connectXNeg;
-        this.model.side3.isHidden = table.connectZNeg;
-        this.model.leg4.isHidden = table.connectZNeg || table.connectXPos;
+        model.setFacing(0);
+        model.render(renderer, tess, block, meta, x, y, z);
 
-        this.model.side4.isHidden = table.connectXPos;
-
-        this.model.top1B.isHidden = !(!(table.connectZNeg) && !(table.connectXNeg));
-        this.model.top1LB.isHidden = !(table.connectZNeg) || table.connectXNeg;
-        this.model.top1.isHidden = table.connectXNeg;
-
-        this.model.top1C.isHidden = !table.connectXNeg;
-        this.model.top1CB.isHidden = !(table.connectXNeg && table.connectZNeg);
-
-        this.model.top3B.isHidden = table.connectXPos || table.connectZPos;
-        this.model.top3LB.isHidden = !(table.connectZPos) || table.connectXPos;
-        this.model.top3.isHidden = table.connectXPos;
-
-        this.model.top2B.isHidden = table.connectZNeg || table.connectXPos;
-        this.model.top2LB.isHidden = !(table.connectXPos) || table.connectZNeg;
-        this.model.top2.isHidden = table.connectZNeg;
-
-        this.model.top2C.isHidden = !table.connectZNeg;
-
-        this.model.top4B.isHidden = table.connectZPos || table.connectXNeg;
-        this.model.top4LB.isHidden = !(table.connectXNeg) || table.connectZPos;
-        this.model.top4.isHidden = table.connectZPos;
-
-        GL11.glPushMatrix();
-        GL11.glTranslatef((float) x + 0.5F, (float) y + 0.5F, (float) z + 0.5F);
-        model.render(wood);
-        GL11.glPopMatrix();
         return true;
     }
 
