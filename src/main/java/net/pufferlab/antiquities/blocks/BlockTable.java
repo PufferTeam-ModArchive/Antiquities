@@ -1,5 +1,6 @@
 package net.pufferlab.antiquities.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
@@ -25,6 +26,16 @@ public class BlockTable extends BlockMetaContainer {
             }
         }
         return false;
+    }
+
+    @Override
+    public void onNeighborBlockChange(World worldIn, int x, int y, int z, Block neighbor) {
+        super.onNeighborBlockChange(worldIn, x, y, z, neighbor);
+
+        TileEntity te = worldIn.getTileEntity(x, y, z);
+        if (te instanceof TileEntityTable table) {
+            table.updateConnections();
+        }
     }
 
     @Override

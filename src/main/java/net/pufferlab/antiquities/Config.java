@@ -8,6 +8,8 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class Config {
 
+    public static final String CATEGORY_CONTENT = "content";
+
     public static String greeting = "Hello World";
     public static boolean renderWithAO;
     public static boolean enableRecipes;

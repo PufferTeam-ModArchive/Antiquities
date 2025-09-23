@@ -38,6 +38,12 @@ public abstract class ModelFurniture extends ModelBase {
         ModelTESS.render(renderblocks, tess, block, bb_main, Constants.ModelConstant, x, y, z, meta);
     }
 
+    public void renderWithoutAO(RenderBlocks renderblocks, Tessellator tess, Block block, int meta, int x, int y,
+        int z) {
+        bb_main.rotateAngleX = (float) Math.toRadians(180);
+        ModelTESS.renderBlock(renderblocks, tess, block, bb_main, Constants.ModelConstant, x, y, z, meta);
+    }
+
     double add = 0;
 
     public void setFacing(int meta) {

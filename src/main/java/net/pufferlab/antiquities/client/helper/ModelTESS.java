@@ -51,7 +51,7 @@ public class ModelTESS {
                     child.rotationPointZ += renderer.rotationPointZ;
 
                     // Recurse
-                    render(renderblocks, tess, block, child, scale, x, y, z, meta);
+                    renderBlock(renderblocks, tess, block, child, scale, x, y, z, meta);
 
                     // Restore child state
                     child.rotateAngleX = oldRotateX;
@@ -200,7 +200,7 @@ public class ModelTESS {
                     child.rotationPointZ += renderer.rotationPointZ;
 
                     // Recurse
-                    render(renderblocks, tess, block, child, scale, x, y, z, meta);
+                    renderBlockAO(renderblocks, tess, block, child, scale, x, y, z, meta);
 
                     // Restore child state
                     child.rotateAngleX = oldRotateX;
