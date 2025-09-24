@@ -53,7 +53,7 @@ public class TileEntityGlobe extends TileEntityMetaFacing {
 
     public void addSpeed() {
         if (this.speed < Config.globeMaxSpeed) {
-            this.speed = this.speed + Config.globeSpeedAddition;
+            this.speed = this.speed + Config.globeSpeedAcceleration;
         }
     }
 

@@ -14,24 +14,21 @@ public class Config {
     public static boolean renderWithAO;
     public static boolean enableRecipes;
     public static float globeMaxSpeed;
-    public static float globeSpeedAddition;
+    public static float globeSpeedAcceleration;
     public static float globeSpeedDeceleration;
-    public static String[] toolRackWhitelist;
-    public static String[] toolRackDefaultWhitelist;
+    public static String[] toolsWhitelist;
+    public static String[] toolsDefaultWhitelist;
 
     public static void synchronizeConfiguration(File configFile) {
         Configuration configuration = new Configuration(configFile);
 
         renderWithAO = configuration.getBoolean(
-            "renderWithAO",
+            "renderWithAmbientOcclusion",
             Configuration.CATEGORY_GENERAL,
             true,
-            "Render most blocks with AO, if you put this to false, it will render the blocks in a different way that will not have AO but may be less buggy and consistent.");
-        enableRecipes = configuration.getBoolean(
-            "enableRecipes",
-            Configuration.CATEGORY_GENERAL,
-            true,
-            "Enable recipes for blocks in the mod, put the false if you want the mod to have no recipes.");
+            "Whether to render blocks with Ambient Occlusion.");
+        enableRecipes = configuration
+            .getBoolean("enableRecipes", Configuration.CATEGORY_GENERAL, true, "Whether to enable recipes in the mod.");
         globeMaxSpeed = configuration.getFloat(
             "globeMaxSpeed",
             Configuration.CATEGORY_GENERAL,
@@ -39,8 +36,8 @@ public class Config {
             0F,
             Float.MAX_VALUE,
             "The maximum speed that the globe can spin.");
-        globeSpeedAddition = configuration.getFloat(
-            "globeSpeedAddition",
+        globeSpeedAcceleration = configuration.getFloat(
+            "globeSpeedAcceleration",
             Configuration.CATEGORY_GENERAL,
             4F,
             0F,
@@ -53,12 +50,12 @@ public class Config {
             0F,
             10F,
             "The speed that the globe decelerate every tick.");
-        toolRackDefaultWhitelist = new String[] { "minecraft:stick", "minecraft:arrow" };
-        toolRackWhitelist = configuration.getStringList(
-            "toolRackWhitelist",
+        toolsDefaultWhitelist = new String[] { "minecraft:stick", "minecraft:arrow" };
+        toolsWhitelist = configuration.getStringList(
+            "toolsWhitelist",
             Configuration.CATEGORY_GENERAL,
-            toolRackDefaultWhitelist,
-            "Add items that the toolrack should treat as tools");
+            toolsDefaultWhitelist,
+            "List of items that should be whitelisted for tools-exclusive blocks (Like the Rack and Pedestal).");
 
         if (configuration.hasChanged()) {
             configuration.save();
@@ -66,7 +63,7 @@ public class Config {
     }
 
     public static void refreshWhitelists() {
-        for (String item : toolRackWhitelist) {
+        for (String item : toolsWhitelist) {
             ItemStack itemstack = Utils.getItem(item + ":*:*");
             if (itemstack != null) {
                 OreDictionary.registerOre("tool", itemstack);
