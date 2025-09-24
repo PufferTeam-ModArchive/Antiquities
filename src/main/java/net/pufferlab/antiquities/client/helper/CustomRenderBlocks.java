@@ -131,6 +131,9 @@ public class CustomRenderBlocks extends RenderBlocks {
             flipUVNeg(U, V);
         }
 
+        U = ModelTESS.addEpsilonOffset(U);
+        V = ModelTESS.addEpsilonOffset(V);
+
         double d11 = x + this.renderMinX;
         double d12 = x + this.renderMaxX;
         double d13 = y + this.renderMinY;
@@ -199,6 +202,9 @@ public class CustomRenderBlocks extends RenderBlocks {
         if (mirrorText) {
             flipUVPos(U, V);
         }
+
+        U = ModelTESS.addEpsilonOffset(U);
+        V = ModelTESS.addEpsilonOffset(V);
 
         double d11 = x + this.renderMinX;
         double d12 = x + this.renderMaxX;
@@ -269,6 +275,9 @@ public class CustomRenderBlocks extends RenderBlocks {
             flipUVNeg(U, V);
         }
 
+        U = ModelTESS.addEpsilonOffset(U);
+        V = ModelTESS.addEpsilonOffset(V);
+
         double d11 = x + this.renderMinX;
         double d12 = x + this.renderMaxX;
         double d13 = y + this.renderMinY;
@@ -337,6 +346,9 @@ public class CustomRenderBlocks extends RenderBlocks {
         if (!mirrorText) {
             flipUVPos(U, V);
         }
+
+        U = ModelTESS.addEpsilonOffset(U);
+        V = ModelTESS.addEpsilonOffset(V);
 
         double d11 = x + this.renderMinX;
         double d12 = x + this.renderMaxX;
@@ -407,6 +419,9 @@ public class CustomRenderBlocks extends RenderBlocks {
             flipUVNeg(U, V);
         }
 
+        U = ModelTESS.addEpsilonOffset(U);
+        V = ModelTESS.addEpsilonOffset(V);
+
         double d11 = x + this.renderMinX;
         double d12 = y + this.renderMinY;
         double d13 = y + this.renderMaxY;
@@ -476,6 +491,9 @@ public class CustomRenderBlocks extends RenderBlocks {
             flipUVPos(U, V);
         }
 
+        U = ModelTESS.addEpsilonOffset(U);
+        V = ModelTESS.addEpsilonOffset(V);
+
         double d11 = x + this.renderMaxX;
         double d12 = y + this.renderMinY;
         double d13 = y + this.renderMaxY;
@@ -508,5 +526,4 @@ public class CustomRenderBlocks extends RenderBlocks {
             tessellator.addVertexWithUV(d11, d13, d15, U[3], V[3]);
         }
     }
-
 }

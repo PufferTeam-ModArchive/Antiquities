@@ -15,6 +15,8 @@ import net.pufferlab.antiquities.tileentities.TileEntityMetaFacing;
 
 public class ModelTESS {
 
+    static double epsilon = 1e-5;
+
     public static void render(RenderBlocks renderblocks, Tessellator tess, Block block, ModelRenderer renderer,
         float scale, int x, int y, int z, int meta) {
         if (Config.renderWithAO) {
@@ -71,9 +73,9 @@ public class ModelTESS {
                         TexturedQuad quad = box.quadList[j];
 
                         // --- Base normal (unrotated) ---
-                        Vec3 v1 = quad.vertexPositions[1].vector3D.subtract(quad.vertexPositions[0].vector3D);
-                        Vec3 v2 = quad.vertexPositions[1].vector3D.subtract(quad.vertexPositions[2].vector3D);
-                        Vec3 normal = v2.crossProduct(v1)
+                        Vec3 v10 = quad.vertexPositions[1].vector3D.subtract(quad.vertexPositions[0].vector3D);
+                        Vec3 v20 = quad.vertexPositions[1].vector3D.subtract(quad.vertexPositions[2].vector3D);
+                        Vec3 normal = v20.crossProduct(v10)
                             .normalize();
 
                         // --- Block brightness + color ---
@@ -130,11 +132,33 @@ public class ModelTESS {
                         // --- Texture ---
                         IIcon icon = block.getIcon(99, meta);
 
+                        PositionTextureVertex pos1 = quad.vertexPositions[0];
+                        double u1 = icon.getMinU() + pos1.texturePositionX * (icon.getMaxU() - icon.getMinU());
+                        double v1 = icon.getMinV() + pos1.texturePositionY * (icon.getMaxV() - icon.getMinV());
+
+                        PositionTextureVertex pos2 = quad.vertexPositions[1];
+                        double u2 = icon.getMinU() + pos2.texturePositionX * (icon.getMaxU() - icon.getMinU());
+                        double v2 = icon.getMinV() + pos2.texturePositionY * (icon.getMaxV() - icon.getMinV());
+
+                        PositionTextureVertex pos3 = quad.vertexPositions[2];
+                        double u3 = icon.getMinU() + pos3.texturePositionX * (icon.getMaxU() - icon.getMinU());
+                        double v3 = icon.getMinV() + pos3.texturePositionY * (icon.getMaxV() - icon.getMinV());
+
+                        PositionTextureVertex pos4 = quad.vertexPositions[3];
+                        double u4 = icon.getMinU() + pos4.texturePositionX * (icon.getMaxU() - icon.getMinU());
+                        double v4 = icon.getMinV() + pos4.texturePositionY * (icon.getMaxV() - icon.getMinV());
+
+                        double[] U = { u1, u2, u3, u4 };
+                        double[] V = { v1, v2, v3, v4 };
+
+                        U = ModelTESS.addEpsilonOffset(U);
+                        V = ModelTESS.addEpsilonOffset(V);
+
                         // --- Add rotated vertices ---
                         for (int p = 0; p < 4; ++p) {
                             PositionTextureVertex pos = quad.vertexPositions[p];
-                            double u = icon.getMinU() + pos.texturePositionX * (icon.getMaxU() - icon.getMinU());
-                            double v = icon.getMinV() + pos.texturePositionY * (icon.getMaxV() - icon.getMinV());
+                            double u = U[p];
+                            double v = V[p];
 
                             double px = pos.vector3D.xCoord * scale;
                             double py = pos.vector3D.yCoord * scale;
@@ -367,5 +391,24 @@ public class ModelTESS {
 
         // Translate back + 0.5 (your offset)
         return new double[] { nx + px + 0.5, ny + py + 0.5, nz + pz + 0.5 };
+    }
+
+    public static double[] addEpsilonOffset(double[] coords) {
+        double min = coords[0];
+        double max = coords[0];
+        for (int i = 1; i < coords.length; i++) {
+            if (coords[i] < min) min = coords[i];
+            if (coords[i] > max) max = coords[i];
+        }
+
+        for (int i = 0; i < coords.length; i++) {
+            if (Math.abs(coords[i] - min) < 1e-9) {
+                coords[i] = min + epsilon;
+            } else if (Math.abs(coords[i] - max) < 1e-9) {
+                coords[i] = max - epsilon;
+            }
+        }
+
+        return coords;
     }
 }
