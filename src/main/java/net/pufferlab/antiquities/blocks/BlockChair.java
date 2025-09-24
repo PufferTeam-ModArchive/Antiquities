@@ -11,6 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.pufferlab.antiquities.Antiquities;
 import net.pufferlab.antiquities.Constants;
 import net.pufferlab.antiquities.Utils;
@@ -30,6 +31,7 @@ public class BlockChair extends BlockMetaContainer {
         if (world.isRemote) return true;
 
         if (player.isSneaking()) return false;
+        if (world.isSideSolid(x, y + 1, z, ForgeDirection.DOWN)) return false;
 
         List<EntitySeat> seats = world
             .getEntitiesWithinAABB(EntitySeat.class, AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1, z + 1));

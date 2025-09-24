@@ -8,7 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityMetaFacing extends TileEntity {
 
-    public int facingMeta;
+    public int facingMeta = 2;
 
     public int getFacingType() {
         return 0;
