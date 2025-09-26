@@ -56,6 +56,7 @@ public class BlockTableRender implements ISimpleBlockRenderingHandler {
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
         RenderBlocks renderer) {
         TileEntityTable table = (TileEntityTable) world.getTileEntity(x, y, z);
+        if (table == null) return false;
         int meta = world.getBlockMetadata(table.xCoord, table.yCoord, table.zCoord);
         Tessellator tess = Tessellator.instance;
 
@@ -105,10 +106,10 @@ public class BlockTableRender implements ISimpleBlockRenderingHandler {
         model.side1.isHidden = connectEast;
         model.side2.isHidden = connectWest;
 
-        model.ext2.isHidden = !connectSouth;
-        model.ext1.isHidden = !connectEast;
-        model.ext4.isHidden = !connectNorth;
-        model.ext3.isHidden = !connectWest;
+        model.ext2.isHidden = !connectSouth || (connectEast && connectNorthEast);
+        model.ext1.isHidden = !connectEast || (connectNorth && connectSouthEast);
+        model.ext4.isHidden = !connectNorth || (connectWest && connectNorthWest);
+        model.ext3.isHidden = !connectWest || (connectSouth && connectSouthWest);
 
         model.leg1.isHidden = connectNorth || connectEast;
         model.leg2.isHidden = connectSouth || connectEast;

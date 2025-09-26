@@ -55,6 +55,7 @@ public class BlockShelfRender implements ISimpleBlockRenderingHandler {
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
         RenderBlocks renderer) {
         TileEntityShelf shelf = (TileEntityShelf) world.getTileEntity(x, y, z);
+        if (shelf == null) return false;
         BlockShelf block2 = (BlockShelf) block;
         int meta = world.getBlockMetadata(shelf.xCoord, shelf.yCoord, shelf.zCoord);
         Tessellator tess = Tessellator.instance;
