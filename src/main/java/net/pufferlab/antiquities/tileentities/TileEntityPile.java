@@ -2,7 +2,6 @@ package net.pufferlab.antiquities.tileentities;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 public class TileEntityPile extends TileEntityInventory {
 
@@ -12,52 +11,6 @@ public class TileEntityPile extends TileEntityInventory {
 
     public int getFacingType() {
         return -1;
-    }
-
-    public boolean addItemInPile(ItemStack ingot) {
-        for (int i = 0; i < getSizeInventory(); i++) {
-            if (getInventoryStack(i) == null) {
-                setInventorySlotContentsUpdate(i, ingot);
-                return true;
-            }
-        }
-        return false;
-
-    }
-
-    public boolean removeItemInPile() {
-        for (int i = 0; i < getSizeInventory(); i++) {
-            if (getInventoryStack(i) == null && i > 0) {
-                setInventorySlotContentsUpdate(i - 1);
-                return true;
-            }
-        }
-        if (getInventoryStack(getSizeInventory() - 1) != null) {
-            setInventorySlotContentsUpdate(getSizeInventory() - 1);
-            return true;
-        }
-        return false;
-
-    }
-
-    public boolean canAddItemInPile() {
-        for (int i = 0; i < getSizeInventory(); i++) {
-            if (getInventoryStack(i) == null) {
-                return true;
-            }
-        }
-        return false;
-
-    }
-
-    public boolean canRemoveItemInPile() {
-        for (int i = 0; i < getSizeInventory(); i++) {
-            if (getInventoryStack(i) != null) {
-                return true;
-            }
-        }
-        return false;
-
     }
 
     public Item getLastItem() {
@@ -91,27 +44,6 @@ public class TileEntityPile extends TileEntityInventory {
             }
         }
         return 7;
-    }
-
-    public int getNextSlot() {
-        for (int i = 0; i < getSizeInventory(); i++) {
-            if (getInventoryStack(i) == null) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    public int getPrevSlot() {
-        for (int i = 0; i < getSizeInventory(); i++) {
-            if (getInventoryStack(i) == null) {
-                return i - 1;
-            }
-        }
-        if (getInventoryStack(getSizeInventory() - 1) != null) {
-            return getSizeInventory() - 1;
-        }
-        return -1;
     }
 
     @Override

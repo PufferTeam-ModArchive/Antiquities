@@ -35,6 +35,7 @@ public abstract class BlockMetaContainer extends BlockContainer {
             this.setResistance(5.0F);
             this.setStepSound(soundTypeWood);
         }
+        this.canBlockGrass = true;
         this.setCreativeTab(Registry.creativeTab);
     }
 
@@ -101,6 +102,10 @@ public abstract class BlockMetaContainer extends BlockContainer {
 
     public String[] getElementsBlacklist() {
         return elementsBlacklist;
+    }
+
+    public int getBlockType() {
+        return 0;
     }
 
     public String getElementName() {

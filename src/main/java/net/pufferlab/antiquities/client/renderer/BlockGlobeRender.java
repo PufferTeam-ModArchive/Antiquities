@@ -7,15 +7,12 @@ import net.pufferlab.antiquities.client.models.ModelGlobe;
 
 import org.lwjgl.opengl.GL11;
 
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-
-public class BlockGlobeRender implements ISimpleBlockRenderingHandler {
+public class BlockGlobeRender extends BlockFurnitureRender {
 
     ModelGlobe model = new ModelGlobe();
-    final int renderID;
 
     public BlockGlobeRender(int blockComplexRenderID) {
-        this.renderID = blockComplexRenderID;
+        super(blockComplexRenderID);
     }
 
     @Override
@@ -46,15 +43,5 @@ public class BlockGlobeRender implements ISimpleBlockRenderingHandler {
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
         RenderBlocks renderer) {
         return false;
-    }
-
-    @Override
-    public boolean shouldRender3DInInventory(int modelId) {
-        return true;
-    }
-
-    @Override
-    public int getRenderId() {
-        return renderID;
     }
 }

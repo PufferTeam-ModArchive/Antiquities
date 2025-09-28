@@ -34,6 +34,7 @@ public class BlockClock extends BlockContainer {
         this.setStepSound(soundTypeWood);
         this.setBlockName(Antiquities.MODID + ".clock");
         this.setCreativeTab(Registry.creativeTab);
+        this.canBlockGrass = true;
         this.setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
     }
 

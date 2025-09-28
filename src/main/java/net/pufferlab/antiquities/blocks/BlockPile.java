@@ -34,11 +34,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockPile extends BlockContainer {
 
     private IIcon[] icons;
-    public ItemStack heldItem;
 
     public BlockPile() {
         super(Material.iron);
         this.setStepSound(soundTypeMetal);
+        this.canBlockGrass = true;
         this.setBlockName(Antiquities.MODID + ".pile");
     }
 

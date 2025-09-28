@@ -24,12 +24,6 @@ public class ModelClock extends ModelFurniture {
         bb_main.cubeList.add(new ModelBox(bb_main, 0, 19, -1.0F, -1F, 5.0F, 2, 2, 1, 0.0F));
     }
 
-    public void render() {
-        bindTex("clock_model");
-        bb_main.rotateAngleX = (float) Math.toRadians(180);
-        bb_main.render(Constants.ModelConstant);
-    }
-
     public void renderClockHand() {
         bindTex("clock_model");
         clock_hand.rotateAngleX = (float) Math.toRadians(180);

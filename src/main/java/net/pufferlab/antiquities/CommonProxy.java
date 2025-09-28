@@ -42,6 +42,10 @@ public class CommonProxy {
         return 0;
     }
 
+    public int getLabelRenderID() {
+        return 0;
+    }
+
     public int getRackRenderID() {
         return 0;
     }

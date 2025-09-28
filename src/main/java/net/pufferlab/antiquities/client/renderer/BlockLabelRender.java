@@ -1,19 +1,19 @@
 package net.pufferlab.antiquities.client.renderer;
 
 import net.pufferlab.antiquities.client.models.ModelFurniture;
-import net.pufferlab.antiquities.client.models.ModelPedestal;
+import net.pufferlab.antiquities.client.models.ModelLabel;
 
-public class BlockPedestalRender extends BlockFurnitureRender {
+public class BlockLabelRender extends BlockFurnitureRender {
 
-    ModelPedestal model = new ModelPedestal();
+    ModelLabel model = new ModelLabel();
 
-    public BlockPedestalRender(int blockComplexRenderID) {
+    public BlockLabelRender(int blockComplexRenderID) {
         super(blockComplexRenderID);
     }
 
     @Override
     public ModelFurniture[] getModelObj() {
-        return new ModelPedestal[] { model };
+        return new ModelLabel[] { model };
     }
 
     @Override
@@ -22,7 +22,13 @@ public class BlockPedestalRender extends BlockFurnitureRender {
     }
 
     @Override
+    public float getOffsetX() {
+        return 0.25F;
+    }
+
+    @Override
     public float getOffsetY() {
         return 0.25F;
     }
+
 }

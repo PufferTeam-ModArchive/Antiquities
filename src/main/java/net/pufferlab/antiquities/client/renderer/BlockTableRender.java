@@ -9,15 +9,12 @@ import net.pufferlab.antiquities.blocks.BlockTable;
 import net.pufferlab.antiquities.client.models.ModelTable;
 import net.pufferlab.antiquities.tileentities.TileEntityTable;
 
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-
-public class BlockTableRender implements ISimpleBlockRenderingHandler {
+public class BlockTableRender extends BlockFurnitureRender {
 
     ModelTable model = new ModelTable();
-    final int renderID;
 
     public BlockTableRender(int blockComplexRenderID) {
-        this.renderID = blockComplexRenderID;
+        super(blockComplexRenderID);
     }
 
     @Override
@@ -170,15 +167,5 @@ public class BlockTableRender implements ISimpleBlockRenderingHandler {
         model.renderWithoutAO(renderer, tess, block, meta, x, y, z);
 
         return true;
-    }
-
-    @Override
-    public boolean shouldRender3DInInventory(int modelId) {
-        return true;
-    }
-
-    @Override
-    public int getRenderId() {
-        return renderID;
     }
 }

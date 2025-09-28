@@ -29,6 +29,7 @@ public class BlockGlobe extends BlockContainer {
         this.setStepSound(soundTypeWood);
         this.setBlockName(Antiquities.MODID + ".globe");
         this.setCreativeTab(Registry.creativeTab);
+        this.canBlockGrass = true;
         this.setBlockBounds(0.1F, 0F, 0.1F, 0.9F, 1F, 0.9F);
     }
 

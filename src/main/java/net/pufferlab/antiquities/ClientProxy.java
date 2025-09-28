@@ -13,6 +13,7 @@ public class ClientProxy extends CommonProxy {
     int shelfRenderID;
     int globeRenderID;
     int jarRenderID;
+    int labelRenderID;
     int rackRenderID;
     int clockRenderID;
     int pedestalRenderID;
@@ -39,6 +40,8 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerBlockHandler(new BlockJarRender(jarRenderID));
         rackRenderID = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(new BlockRackRender(rackRenderID));
+        labelRenderID = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new BlockLabelRender(labelRenderID));
         clockRenderID = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(new BlockClockRender(clockRenderID));
         pedestalRenderID = RenderingRegistry.getNextAvailableRenderId();
@@ -75,6 +78,11 @@ public class ClientProxy extends CommonProxy {
     @Override
     public int getRackRenderID() {
         return rackRenderID;
+    }
+
+    @Override
+    public int getLabelRenderID() {
+        return labelRenderID;
     }
 
     @Override

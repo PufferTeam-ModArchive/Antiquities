@@ -28,7 +28,11 @@ public abstract class ModelFurniture extends ModelBase {
     }
 
     public void render(String type) {
-        bindTex(type + "_" + getName());
+        if (type == null) {
+            bindTex(getName() + "_model");
+        } else {
+            bindTex(type + "_" + getName());
+        }
         bb_main.rotateAngleX = (float) Math.toRadians(180);
         bb_main.render(Constants.ModelConstant);
     }

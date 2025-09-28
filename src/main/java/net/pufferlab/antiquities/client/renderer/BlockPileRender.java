@@ -9,15 +9,12 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.pufferlab.antiquities.client.models.ModelPile;
 import net.pufferlab.antiquities.tileentities.TileEntityPile;
 
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-
-public class BlockPileRender implements ISimpleBlockRenderingHandler {
+public class BlockPileRender extends BlockFurnitureRender {
 
     ModelPile model = new ModelPile();
-    final int renderID;
 
     public BlockPileRender(int blockComplexRenderID) {
-        this.renderID = blockComplexRenderID;
+        super(blockComplexRenderID);
     }
 
     @Override
@@ -52,15 +49,5 @@ public class BlockPileRender implements ISimpleBlockRenderingHandler {
         model.render(renderer, tess, block, meta, x, y, z);
 
         return true;
-    }
-
-    @Override
-    public boolean shouldRender3DInInventory(int modelId) {
-        return true;
-    }
-
-    @Override
-    public int getRenderId() {
-        return renderID;
     }
 }

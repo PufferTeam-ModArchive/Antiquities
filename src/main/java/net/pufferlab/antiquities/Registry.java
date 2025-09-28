@@ -25,6 +25,7 @@ public class Registry {
     public static Block shelf_4;
     public static Block shelf_5;
     public static Block jar;
+    public static Block label;
     public static Block rack;
     public static Block chair_bop;
     public static Block table_bop;
@@ -35,6 +36,7 @@ public class Registry {
     public static Block shelf_4_bop;
     public static Block shelf_5_bop;
     public static Block jar_bop;
+    public static Block label_bop;
     public static Block rack_bop;
 
     public static Block chair_tc;
@@ -46,6 +48,7 @@ public class Registry {
     public static Block shelf_4_tc;
     public static Block shelf_5_tc;
     public static Block jar_tc;
+    public static Block label_tc;
     public static Block rack_tc;
 
     public static Block pedestal;
@@ -76,6 +79,7 @@ public class Registry {
         shelf_4 = new BlockShelf(4, Constants.woodTypes);
         shelf_5 = new BlockShelf(5, Constants.woodTypes);
         jar = new BlockJar(Constants.woodTypes);
+        label = new BlockLabel(Constants.woodTypes);
         rack = new BlockRack(Constants.woodTypes);
 
         if (Loader.isModLoaded("BiomesOPlenty")) {
@@ -88,6 +92,7 @@ public class Registry {
             shelf_4_bop = new BlockShelf(4, Constants.bopWoodTypes);
             shelf_5_bop = new BlockShelf(5, Constants.bopWoodTypes);
             jar_bop = new BlockJar(Constants.bopWoodTypes);
+            label_bop = new BlockLabel(Constants.bopWoodTypes);
             rack_bop = new BlockRack(Constants.bopWoodTypes);
         }
         if (Loader.isModLoaded("Thaumcraft")) {
@@ -100,6 +105,7 @@ public class Registry {
             shelf_4_tc = new BlockShelf(4, Constants.thaumcraftWoodTypes);
             shelf_5_tc = new BlockShelf(5, Constants.thaumcraftWoodTypes);
             jar_tc = new BlockJar(Constants.thaumcraftWoodTypes);
+            label_tc = new BlockLabel(Constants.thaumcraftWoodTypes);
             rack_tc = new BlockRack(Constants.thaumcraftWoodTypes);
         }
         pedestal = new BlockPedestal(Constants.stoneTypes);
@@ -110,6 +116,7 @@ public class Registry {
         register(TileEntityTable.class, "table");
         register(TileEntityShelf.class, "shelf");
         register(TileEntityJar.class, "jar");
+        register(TileEntityLabel.class, "label");
         register(TileEntityRack.class, "rack");
         register(TileEntityPedestal.class, "pedestal");
         register(TileEntityGlobe.class, "globe");
@@ -125,6 +132,7 @@ public class Registry {
         register(shelf_5, "shelf_5");
         register(table, "table");
         register(jar, "jar");
+        register(label, "label");
         register(rack, "rack");
 
         if (Loader.isModLoaded("BiomesOPlenty")) {
@@ -137,6 +145,7 @@ public class Registry {
             register(shelf_5_bop, "shelf_bop_5");
             register(table_bop, "table_bop");
             register(jar_bop, "jar_bop");
+            register(label_bop, "label_bop");
             register(rack_bop, "rack_bop");
         }
 
@@ -150,6 +159,7 @@ public class Registry {
             register(shelf_5_tc, "shelf_tc_5");
             register(table_tc, "table_tc");
             register(jar_tc, "jar_tc");
+            register(label_tc, "label_tc");
             register(rack_tc, "rack_tc");
         }
 

@@ -27,7 +27,7 @@ public class BlockShelf extends BlockMetaContainer {
     private int elementType;
 
     public BlockShelf(int shelfType, String... materials) {
-        super(Material.wood, materials, "shelf" + "_" + shelfType, Constants.none);
+        super(Material.wood, materials, "shelf_" + shelfType, Constants.none);
 
         this.elementType = shelfType;
 
@@ -225,7 +225,8 @@ public class BlockShelf extends BlockMetaContainer {
         }
     }
 
-    public int getShelfType() {
+    @Override
+    public int getBlockType() {
         return this.elementType;
     }
 
