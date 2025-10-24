@@ -1,8 +1,8 @@
 package net.pufferlab.antiquities.tileentities;
 
-import net.minecraft.tileentity.TileEntity;
+import net.pufferlab.antiquities.Config;
 
-public class TileEntityTable extends TileEntity {
+public class TileEntityTable extends TileEntityAntiquities {
 
     public void updateConnections() {
         this.worldObj.markBlockRangeForRenderUpdate(
@@ -12,5 +12,9 @@ public class TileEntityTable extends TileEntity {
             this.xCoord + 1,
             this.yCoord,
             this.zCoord + 1);
+    }
+
+    public boolean canRegister() {
+        return Config.enableTable;
     }
 }

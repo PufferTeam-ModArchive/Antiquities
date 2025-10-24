@@ -2,7 +2,6 @@ package net.pufferlab.antiquities.blocks;
 
 import java.util.List;
 
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
@@ -15,6 +14,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.pufferlab.antiquities.Antiquities;
+import net.pufferlab.antiquities.Config;
 import net.pufferlab.antiquities.Registry;
 import net.pufferlab.antiquities.Utils;
 import net.pufferlab.antiquities.tileentities.TileEntityClock;
@@ -22,7 +22,7 @@ import net.pufferlab.antiquities.tileentities.TileEntityClock;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockClock extends BlockContainer {
+public class BlockClock extends BlockAntiquities {
 
     private IIcon[] icons;
     private IIcon[] icons_model;
@@ -89,6 +89,10 @@ public class BlockClock extends BlockContainer {
             return icons_model[0];
         }
         return icons[0];
+    }
+
+    public boolean canRegister() {
+        return Config.enableClock;
     }
 
     @Override

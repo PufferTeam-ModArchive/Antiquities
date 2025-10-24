@@ -19,6 +19,17 @@ public class Config {
     public static String[] toolsWhitelist;
     public static String[] toolsDefaultWhitelist;
 
+    public static boolean enableChair;
+    public static boolean enableTable;
+    public static boolean enableShelf;
+    public static boolean enableToolRack;
+    public static boolean enablePedestal;
+    public static boolean enableJar;
+    public static boolean enableLabel;
+    public static boolean enableClock;
+    public static boolean enableGlobe;
+    public static boolean enableIngotPile;
+
     public static void synchronizeConfiguration(File configFile) {
         Configuration configuration = new Configuration(configFile);
 
@@ -56,6 +67,26 @@ public class Config {
             Configuration.CATEGORY_GENERAL,
             toolsDefaultWhitelist,
             "List of items that should be whitelisted for tools-exclusive blocks (Like the Rack and Pedestal).");
+
+        enableChair = configuration
+            .getBoolean("enableChair", CATEGORY_CONTENT, true, "Whether to enable the chair block.");
+        enableTable = configuration
+            .getBoolean("enableTable", CATEGORY_CONTENT, true, "Whether to enable the table block.");
+        enableShelf = configuration
+            .getBoolean("enableShelf", CATEGORY_CONTENT, true, "Whether to enable the shelf block.");
+        enableToolRack = configuration
+            .getBoolean("enableToolRack", CATEGORY_CONTENT, true, "Whether to enable the tool rack block.");
+        enablePedestal = configuration
+            .getBoolean("enablePedestal", CATEGORY_CONTENT, true, "Whether to enable the sword pedestal block.");
+        enableJar = configuration.getBoolean("enableJar", CATEGORY_CONTENT, true, "Whether to enable the jar block.");
+        enableClock = configuration
+            .getBoolean("enableClock", CATEGORY_CONTENT, true, "Whether to enable the clock block.");
+        enableGlobe = configuration
+            .getBoolean("enableGlobe", CATEGORY_CONTENT, true, "Whether to enable the globe block.");
+        enableIngotPile = configuration
+            .getBoolean("enableIngotPile", CATEGORY_CONTENT, true, "Whether to enable the ingot pile block.");
+        enableLabel = configuration
+            .getBoolean("enableLabel", CATEGORY_CONTENT, false, "Whether to enable the label block.");
 
         if (configuration.hasChanged()) {
             configuration.save();

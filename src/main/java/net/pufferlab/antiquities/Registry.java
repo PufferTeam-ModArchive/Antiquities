@@ -3,7 +3,6 @@ package net.pufferlab.antiquities;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.tileentity.TileEntity;
 import net.pufferlab.antiquities.blocks.*;
 import net.pufferlab.antiquities.entity.EntitySeat;
 import net.pufferlab.antiquities.itemblocks.ItemBlockMeta;
@@ -175,19 +174,29 @@ public class Registry {
             .registerModEntity(EntitySeat.class, "EntitySeatAntiquities", id++, Antiquities.instance, 64, 20, true);
     }
 
-    public void register(Class<? extends TileEntity> tileEntityClass, String id) {
-        GameRegistry.registerTileEntity(tileEntityClass, Antiquities.MODID + "_" + id);
+    public void register(Class<? extends TileEntityAntiquities> tileEntityClass, String id) {
+        try {
+            TileEntityAntiquities instance = tileEntityClass.getDeclaredConstructor()
+                .newInstance();
+            if (instance.canRegister()) {
+                GameRegistry.registerTileEntity(tileEntityClass, Antiquities.MODID + "_" + id);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void register(Block block, String name) {
-
-        if (block instanceof BlockMetaContainer) {
-            GameRegistry.registerBlock(block, ItemBlockMeta.class, name);
-        } else {
-            if (block instanceof BlockPile) {
-                GameRegistry.registerBlock(block, null, name);
+        BlockAntiquities instance = (BlockAntiquities) block;
+        if (instance.canRegister()) {
+            if (block instanceof BlockMetaContainer) {
+                GameRegistry.registerBlock(block, ItemBlockMeta.class, name);
             } else {
-                GameRegistry.registerBlock(block, name);
+                if (block instanceof BlockPile) {
+                    GameRegistry.registerBlock(block, null, name);
+                } else {
+                    GameRegistry.registerBlock(block, name);
+                }
             }
         }
     }

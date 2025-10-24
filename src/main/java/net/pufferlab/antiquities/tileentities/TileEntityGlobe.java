@@ -11,6 +11,10 @@ public class TileEntityGlobe extends TileEntityMetaFacing {
     public float rotation;
     public float speed;
 
+    public boolean canRegister() {
+        return Config.enableGlobe;
+    }
+
     @Override
     public void readFromNBT(NBTTagCompound tag) {
         super.readFromNBT(tag);

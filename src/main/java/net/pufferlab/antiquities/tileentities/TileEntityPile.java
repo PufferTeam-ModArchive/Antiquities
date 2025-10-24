@@ -2,11 +2,16 @@ package net.pufferlab.antiquities.tileentities;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.pufferlab.antiquities.Config;
 
 public class TileEntityPile extends TileEntityInventory {
 
     public TileEntityPile() {
         super(64);
+    }
+
+    public boolean canRegister() {
+        return Config.enableIngotPile;
     }
 
     public int getFacingType() {

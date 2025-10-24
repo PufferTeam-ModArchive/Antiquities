@@ -1,6 +1,5 @@
 package net.pufferlab.antiquities.blocks;
 
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -11,6 +10,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.pufferlab.antiquities.Antiquities;
+import net.pufferlab.antiquities.Config;
 import net.pufferlab.antiquities.Registry;
 import net.pufferlab.antiquities.Utils;
 import net.pufferlab.antiquities.tileentities.TileEntityGlobe;
@@ -18,7 +18,7 @@ import net.pufferlab.antiquities.tileentities.TileEntityGlobe;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockGlobe extends BlockContainer {
+public class BlockGlobe extends BlockAntiquities {
 
     private IIcon[] icons;
 
@@ -66,6 +66,10 @@ public class BlockGlobe extends BlockContainer {
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
         return icons[0];
+    }
+
+    public boolean canRegister() {
+        return Config.enableGlobe;
     }
 
     @Override

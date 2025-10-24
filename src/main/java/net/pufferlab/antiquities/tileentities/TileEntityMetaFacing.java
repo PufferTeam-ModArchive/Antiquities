@@ -4,11 +4,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityMetaFacing extends TileEntity {
+public class TileEntityMetaFacing extends TileEntityAntiquities {
 
     public int facingMeta = 2;
+
+    public boolean canRegister() {
+        return false;
+    }
 
     public int getFacingType() {
         return 0;

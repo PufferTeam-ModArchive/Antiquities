@@ -3,7 +3,7 @@ package net.pufferlab.antiquities;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.pufferlab.antiquities.client.compat.NEIConfig;
-import net.pufferlab.antiquities.events.EventHandler;
+import net.pufferlab.antiquities.events.PileHandler;
 import net.pufferlab.antiquities.recipes.Recipes;
 import net.pufferlab.antiquities.recipes.RecipesBOP;
 import net.pufferlab.antiquities.recipes.RecipesTC;
@@ -34,7 +34,7 @@ public class Antiquities {
         clientSide = "net.pufferlab.antiquities.ClientProxy",
         serverSide = "net.pufferlab.antiquities.CommonProxy")
     public static CommonProxy proxy;
-    public static EventHandler eventHandler = new EventHandler();
+    public static PileHandler pileHandler = new PileHandler();
 
     public static Registry registry = new Registry();
 
@@ -55,7 +55,9 @@ public class Antiquities {
         if (Loader.isModLoaded("NotEnoughItems")) {
             new NEIConfig().loadConfig();
         }
-        MinecraftForge.EVENT_BUS.register(eventHandler);
+        if (Config.enableIngotPile) {
+            MinecraftForge.EVENT_BUS.register(pileHandler);
+        }
         proxy.registerRenders();
     }
 

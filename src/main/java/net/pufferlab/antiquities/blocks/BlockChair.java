@@ -13,6 +13,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.pufferlab.antiquities.Antiquities;
+import net.pufferlab.antiquities.Config;
 import net.pufferlab.antiquities.Constants;
 import net.pufferlab.antiquities.Utils;
 import net.pufferlab.antiquities.entity.EntitySeat;
@@ -73,6 +74,10 @@ public class BlockChair extends BlockMetaContainer {
         if (chair != null) {
             chair.setFacingMeta(metayaw);
         }
+    }
+
+    public boolean canRegister() {
+        return Config.enableChair;
     }
 
     @Override

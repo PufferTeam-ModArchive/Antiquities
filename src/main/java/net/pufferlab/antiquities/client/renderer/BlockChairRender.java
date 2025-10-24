@@ -1,12 +1,7 @@
 package net.pufferlab.antiquities.client.renderer;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.world.IBlockAccess;
-import net.pufferlab.antiquities.blocks.BlockMetaContainer;
 import net.pufferlab.antiquities.client.models.ModelChair;
-import net.pufferlab.antiquities.tileentities.TileEntityChair;
+import net.pufferlab.antiquities.client.models.ModelFurniture;
 
 public class BlockChairRender extends BlockFurnitureRender {
 
@@ -17,24 +12,7 @@ public class BlockChairRender extends BlockFurnitureRender {
     }
 
     @Override
-    public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
-        BlockMetaContainer block2 = (BlockMetaContainer) block;
-        String wood = block2.getType(metadata);
-        model.setFacing(0);
-        model.render(wood);
-    }
-
-    @Override
-    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
-        RenderBlocks renderer) {
-        TileEntityChair chair = (TileEntityChair) world.getTileEntity(x, y, z);
-        if (chair == null) return false;
-        int meta = world.getBlockMetadata(x, y, z);
-        Tessellator tess = Tessellator.instance;
-
-        model.setFacing(chair.facingMeta);
-        model.render(renderer, tess, block, meta, x, y, z);
-
-        return true;
+    public ModelFurniture[] getModelObj() {
+        return new ModelChair[] { model };
     }
 }

@@ -7,6 +7,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.pufferlab.antiquities.Antiquities;
+import net.pufferlab.antiquities.Config;
 import net.pufferlab.antiquities.Constants;
 import net.pufferlab.antiquities.tileentities.TileEntityTable;
 
@@ -36,6 +37,10 @@ public class BlockTable extends BlockMetaContainer {
         if (te instanceof TileEntityTable table) {
             table.updateConnections();
         }
+    }
+
+    public boolean canRegister() {
+        return Config.enableTable;
     }
 
     @Override

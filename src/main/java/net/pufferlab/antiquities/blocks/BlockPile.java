@@ -1,10 +1,8 @@
 package net.pufferlab.antiquities.blocks;
 
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
@@ -25,13 +23,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.oredict.OreDictionary;
 import net.pufferlab.antiquities.Antiquities;
+import net.pufferlab.antiquities.Config;
 import net.pufferlab.antiquities.Utils;
 import net.pufferlab.antiquities.tileentities.TileEntityPile;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockPile extends BlockContainer {
+public class BlockPile extends BlockAntiquities {
 
     private IIcon[] icons;
 
@@ -317,30 +316,45 @@ public class BlockPile extends BlockContainer {
         TileEntity tileEntity = world.getTileEntity(i, j, k);
         if (!(tileEntity instanceof IInventory)) return;
         IInventory inventory = (IInventory) tileEntity;
+        Map<String, ItemStack> map = new HashMap<>();
         for (int x = 0; x < inventory.getSizeInventory(); x++) {
             ItemStack item = inventory.getStackInSlot(x);
             if (item != null && item.stackSize > 0) {
-                float ri = rando.nextFloat() * 0.8F + 0.1F;
-                float rj = rando.nextFloat() * 0.8F + 0.1F;
-                float rk = rando.nextFloat() * 0.8F + 0.1F;
-                EntityItem entityItem = new EntityItem(
-                    world,
-                    (i + ri),
-                    (j + rj),
-                    (k + rk),
-                    new ItemStack(item.getItem(), item.stackSize, item.getItemDamage()));
-                if (item.hasTagCompound()) entityItem.getEntityItem()
-                    .setTagCompound(
-                        (NBTTagCompound) item.getTagCompound()
-                            .copy());
-                float factor = 0.05F;
-                entityItem.motionX = rando.nextGaussian() * factor;
-                entityItem.motionY = rando.nextGaussian() * factor + 0.20000000298023224D;
-                entityItem.motionZ = rando.nextGaussian() * factor;
-                spawnEntityClientSensitive(world, entityItem);
-                item.stackSize = 0;
+                Item itemO = item.getItem();
+                int itemM = item.getItemDamage();
+                String key = getKey(itemO, itemM);
+                if (map.containsKey(key)) {
+                    ItemStack itemS = map.get(key);
+                    itemS.stackSize++;
+                } else {
+                    map.put(key, item.copy());
+                }
             }
         }
+        for (ItemStack item : map.values()) {
+            EntityItem entityItem = new EntityItem(
+                world,
+                (i + 0.5),
+                (j + 0.5),
+                (k + 0.5),
+                new ItemStack(item.getItem(), item.stackSize, item.getItemDamage()));
+            if (item.hasTagCompound()) entityItem.getEntityItem()
+                .setTagCompound(
+                    (NBTTagCompound) item.getTagCompound()
+                        .copy());
+            entityItem.motionX = 0.0D;
+            entityItem.motionY = 0.0D;
+            entityItem.motionZ = 0.0D;
+            spawnEntityClientSensitive(world, entityItem);
+            item.stackSize = 0;
+        }
+    }
+
+    public String getKey(Item item, int meta) {
+        if (item != null) {
+            return item.toString() + meta;
+        }
+        return null;
     }
 
     public void spawnEntityClientSensitive(World world, Entity entityItem) {
@@ -376,6 +390,10 @@ public class BlockPile extends BlockContainer {
             return icons[0];
         }
         return icons[1];
+    }
+
+    public boolean canRegister() {
+        return Config.enableIngotPile;
     }
 
     @Override

@@ -21,6 +21,10 @@ public class TileEntityInventory extends TileEntityMetaFacing implements IInvent
         this.maxSize = slots;
     }
 
+    public boolean canRegister() {
+        return false;
+    }
+
     public int getSize() {
         return this.inventory.length;
     }

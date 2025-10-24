@@ -12,16 +12,20 @@ import net.pufferlab.antiquities.Registry;
 import net.pufferlab.antiquities.Utils;
 import net.pufferlab.antiquities.blocks.BlockPile;
 
+import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class EventHandler {
+public class PileHandler {
 
     @SubscribeEvent
     public void playerInteractEventHandler(PlayerInteractEvent event) {
-        if (event.action == RIGHT_CLICK_BLOCK) {
-            ItemStack heldItem = event.entityPlayer.inventory.getCurrentItem();
-            int[] oreIDS = OreDictionary.getOreIDs(heldItem);
+        if (event.action == RIGHT_CLICK_BLOCK && event.useItem != Event.Result.DENY) {
             Block block = event.world.getBlock(event.x, event.y, event.z);
+            int meta = event.world.getBlockMetadata(event.x, event.y, event.z);
+            ItemStack heldItem = event.entityPlayer.inventory.getCurrentItem();
+            if (heldItem == null || block == null) return;
+            if (heldItem.getItem() == null) return;
+            int[] oreIDS = OreDictionary.getOreIDs(heldItem);
             boolean canPlace = false;
             boolean canAdd = false;
             for (int oreID : oreIDS) {
@@ -34,12 +38,15 @@ public class EventHandler {
                     }
                 }
             }
-            if (canPlace) {
-                int x2 = Utils.getBlockX(event.face, event.x);
-                int y2 = Utils.getBlockY(event.face, event.y);
-                int z2 = Utils.getBlockZ(event.face, event.z);
-                place(heldItem, event.world, x2, y2, z2, Registry.pile, 0, event);
+            if (!block.hasTileEntity(meta) && event.face == ForgeDirection.UP.ordinal()) {
+                if (canPlace) {
+                    int x2 = Utils.getBlockX(event.face, event.x);
+                    int y2 = Utils.getBlockY(event.face, event.y);
+                    int z2 = Utils.getBlockZ(event.face, event.z);
+                    place(heldItem, event.world, x2, y2, z2, Registry.pile, 0, event);
+                }
             }
+
             if (canAdd) {
                 if (event.entityPlayer.isSneaking()) {
                     for (int i = 0; i < heldItem.stackSize; i++) {

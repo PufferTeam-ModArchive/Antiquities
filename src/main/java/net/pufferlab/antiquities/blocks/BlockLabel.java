@@ -17,6 +17,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.pufferlab.antiquities.Antiquities;
+import net.pufferlab.antiquities.Config;
 import net.pufferlab.antiquities.Constants;
 import net.pufferlab.antiquities.Utils;
 import net.pufferlab.antiquities.tileentities.TileEntityLabel;
@@ -160,6 +161,10 @@ public class BlockLabel extends BlockMetaContainer {
         if (!world.isRemote) {
             world.spawnEntityInWorld((Entity) entityItem);
         }
+    }
+
+    public boolean canRegister() {
+        return Config.enableLabel;
     }
 
     @Override
