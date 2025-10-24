@@ -1,6 +1,10 @@
 package net.pufferlab.antiquities;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -162,5 +166,44 @@ public class Utils {
             }
         }
         return false;
+    }
+
+    public static Map<String, String> metalTypes = new HashMap<>();
+
+    public static String getMetalType(ItemStack item) {
+        if (item == null) return null;
+        Item itemObj = item.getItem();
+        int itemMeta = item.getItemDamage();
+        String key = getItemKey(itemObj, itemMeta);
+        if (metalTypes.containsKey(key)) {
+            return metalTypes.get(key);
+        }
+        int[] oreIDS = OreDictionary.getOreIDs(item);
+        for (int oreID : oreIDS) {
+            String name = OreDictionary.getOreName(oreID);
+            if (name.contains("ingot")) {
+                String[] names = name.split("ingot");
+                if (names.length > 0) {
+                    String metalName = names[1].toLowerCase();
+                    metalTypes.put(key, metalName);
+                    return metalName;
+                }
+            }
+        }
+        return null;
+    }
+
+    public static boolean isValidMetal(ItemStack item) {
+        String metal = getMetalType(item);
+        if (metal == null) return false;
+        if (Config.onlyAllowSupportedIngots && !Constants.metals.contains(metal)) return false;
+        return true;
+    }
+
+    public static String getItemKey(Item item, int meta) {
+        if (item != null) {
+            return Item.getIdFromItem(item) + ":" + meta;
+        }
+        return null;
     }
 }

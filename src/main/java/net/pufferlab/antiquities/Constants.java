@@ -1,7 +1,11 @@
 package net.pufferlab.antiquities;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Constants {
 
+    public static final ArrayList<String> metals = new ArrayList<>();
     public static final String[] none = new String[] {};
     public static final String[] woodTypes = new String[] { "oak", "spruce", "birch", "jungle", "acacia", "dark_oak" };
     public static final String[] bopWoodTypes = new String[] { "sacredoak", "cherry", "dark", "fir", "ethereal",
@@ -18,4 +22,10 @@ public class Constants {
         "elementium", "signalum", "lumium", "enderium", "mithril" };
     public static final String[] stoneTypes = new String[] { "stone" };
     public static final float ModelConstant = 0.0625f;
+
+    static {
+        metals.addAll(Arrays.asList(metalTypes));
+        metals.addAll(Arrays.asList(metalTypes2));
+        metals.addAll(Arrays.asList(metalTypes3));
+    }
 }

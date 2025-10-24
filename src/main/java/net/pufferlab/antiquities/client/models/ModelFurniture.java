@@ -13,8 +13,11 @@ import net.pufferlab.antiquities.client.helper.ModelTESS;
 public abstract class ModelFurniture extends ModelBase {
 
     public ModelRenderer bb_main;
+    public ModelTESS modelTESS;
 
     public ModelFurniture(int width, int height) {
+        modelTESS = new ModelTESS();
+
         textureWidth = width;
         textureHeight = height;
 
@@ -39,13 +42,13 @@ public abstract class ModelFurniture extends ModelBase {
 
     public void render(RenderBlocks renderblocks, Tessellator tess, Block block, int meta, int x, int y, int z) {
         bb_main.rotateAngleX = (float) Math.toRadians(180);
-        ModelTESS.render(renderblocks, tess, block, bb_main, Constants.ModelConstant, x, y, z, meta);
+        modelTESS.render(renderblocks, tess, block, bb_main, Constants.ModelConstant, x, y, z, meta);
     }
 
     public void renderWithoutAO(RenderBlocks renderblocks, Tessellator tess, Block block, int meta, int x, int y,
         int z) {
         bb_main.rotateAngleX = (float) Math.toRadians(180);
-        ModelTESS.renderBlock(renderblocks, tess, block, bb_main, Constants.ModelConstant, x, y, z, meta);
+        modelTESS.renderBlock(renderblocks, tess, block, bb_main, Constants.ModelConstant, x, y, z, meta);
     }
 
     double add = 0;

@@ -21,7 +21,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.oredict.OreDictionary;
 import net.pufferlab.antiquities.Antiquities;
 import net.pufferlab.antiquities.Config;
 import net.pufferlab.antiquities.Utils;
@@ -104,14 +103,7 @@ public class BlockPile extends BlockAntiquities {
 
         if (world.getTileEntity(x, y, z) instanceof TileEntityPile pile) {
             ItemStack heldItem = player.getHeldItem();
-            int[] oreIDS = OreDictionary.getOreIDs(heldItem);
-            boolean canPlace = false;
-            for (int oreID : oreIDS) {
-                String oreName = OreDictionary.getOreName(oreID);
-                if (oreName.contains("ingot")) {
-                    canPlace = true;
-                }
-            }
+            boolean canPlace = Utils.isValidMetal(heldItem);
             if (canPlace) {
                 int m = 1;
                 if (player.isSneaking()) {
@@ -312,7 +304,6 @@ public class BlockPile extends BlockAntiquities {
     }
 
     private void dropItems(World world, int i, int j, int k) {
-        Random rando = new Random();
         TileEntity tileEntity = world.getTileEntity(i, j, k);
         if (!(tileEntity instanceof IInventory)) return;
         IInventory inventory = (IInventory) tileEntity;
@@ -322,7 +313,7 @@ public class BlockPile extends BlockAntiquities {
             if (item != null && item.stackSize > 0) {
                 Item itemO = item.getItem();
                 int itemM = item.getItemDamage();
-                String key = getKey(itemO, itemM);
+                String key = Utils.getItemKey(itemO, itemM);
                 if (map.containsKey(key)) {
                     ItemStack itemS = map.get(key);
                     itemS.stackSize++;
@@ -348,13 +339,6 @@ public class BlockPile extends BlockAntiquities {
             spawnEntityClientSensitive(world, entityItem);
             item.stackSize = 0;
         }
-    }
-
-    public String getKey(Item item, int meta) {
-        if (item != null) {
-            return item.toString() + meta;
-        }
-        return null;
     }
 
     public void spawnEntityClientSensitive(World world, Entity entityItem) {

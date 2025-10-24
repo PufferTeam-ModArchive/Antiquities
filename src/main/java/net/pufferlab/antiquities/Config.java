@@ -9,6 +9,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class Config {
 
     public static final String CATEGORY_CONTENT = "content";
+    public static final String CATEGORY_RENDERING = "rendering";
 
     public static String greeting = "Hello World";
     public static boolean renderWithAO;
@@ -18,6 +19,7 @@ public class Config {
     public static float globeSpeedDeceleration;
     public static String[] toolsWhitelist;
     public static String[] toolsDefaultWhitelist;
+    public static boolean onlyAllowSupportedIngots;
 
     public static boolean enableChair;
     public static boolean enableTable;
@@ -35,7 +37,7 @@ public class Config {
 
         renderWithAO = configuration.getBoolean(
             "renderWithAmbientOcclusion",
-            Configuration.CATEGORY_GENERAL,
+            CATEGORY_RENDERING,
             true,
             "Whether to render blocks with Ambient Occlusion.");
         enableRecipes = configuration
@@ -67,6 +69,11 @@ public class Config {
             Configuration.CATEGORY_GENERAL,
             toolsDefaultWhitelist,
             "List of items that should be whitelisted for tools-exclusive blocks (Like the Rack and Pedestal).");
+        onlyAllowSupportedIngots = configuration.getBoolean(
+            "onlyAllowSupportedIngots",
+            Configuration.CATEGORY_GENERAL,
+            false,
+            "Whether if you need to have a ingot with texture support to place it in a pile.");
 
         enableChair = configuration
             .getBoolean("enableChair", CATEGORY_CONTENT, true, "Whether to enable the chair block.");

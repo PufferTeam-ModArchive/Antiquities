@@ -7,7 +7,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.oredict.OreDictionary;
 import net.pufferlab.antiquities.Registry;
 import net.pufferlab.antiquities.Utils;
 import net.pufferlab.antiquities.blocks.BlockPile;
@@ -25,44 +24,29 @@ public class PileHandler {
             ItemStack heldItem = event.entityPlayer.inventory.getCurrentItem();
             if (heldItem == null || block == null) return;
             if (heldItem.getItem() == null) return;
-            int[] oreIDS = OreDictionary.getOreIDs(heldItem);
-            boolean canPlace = false;
-            boolean canAdd = false;
-            for (int oreID : oreIDS) {
-                String oreName = OreDictionary.getOreName(oreID);
-                if (oreName.contains("ingot")) {
-                    if (!(block instanceof BlockPile)) {
-                        canPlace = true;
-                    } else {
-                        canAdd = true;
-                    }
-                }
-            }
-            if (!block.hasTileEntity(meta) && event.face == ForgeDirection.UP.ordinal()) {
-                if (canPlace) {
+            if (!Utils.isValidMetal(heldItem)) return;
+            if (!(block instanceof BlockPile)) {
+                if (!block.hasTileEntity(meta) && event.face == ForgeDirection.UP.ordinal()) {
                     int x2 = Utils.getBlockX(event.face, event.x);
                     int y2 = Utils.getBlockY(event.face, event.y);
                     int z2 = Utils.getBlockZ(event.face, event.z);
                     place(heldItem, event.world, x2, y2, z2, Registry.pile, 0, event);
                 }
-            }
-
-            if (canAdd) {
+            } else {
                 if (event.entityPlayer.isSneaking()) {
-                    for (int i = 0; i < heldItem.stackSize; i++) {
-                        block.onBlockActivated(
-                            event.world,
-                            event.x,
-                            event.y,
-                            event.z,
-                            event.entityPlayer,
-                            event.face,
-                            0.5F,
-                            0.5F,
-                            0.5F);
-                    }
+                    block.onBlockActivated(
+                        event.world,
+                        event.x,
+                        event.y,
+                        event.z,
+                        event.entityPlayer,
+                        event.face,
+                        0.5F,
+                        0.5F,
+                        0.5F);
                 }
             }
+
         }
     }
 

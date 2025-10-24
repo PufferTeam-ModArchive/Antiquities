@@ -11,6 +11,12 @@ import net.minecraft.util.IIcon;
 
 public class CustomRenderBlocks extends RenderBlocks {
 
+    public ModelTESS modelTESS;
+
+    public CustomRenderBlocks(ModelTESS modelTESS) {
+        this.modelTESS = modelTESS;
+    }
+
     public ModelRenderer modelrenderer;
     public ModelBox modelbox;
 
@@ -131,8 +137,8 @@ public class CustomRenderBlocks extends RenderBlocks {
             flipUVNeg(U, V);
         }
 
-        U = ModelTESS.addEpsilonOffset(U);
-        V = ModelTESS.addEpsilonOffset(V);
+        U = modelTESS.addEpsilonOffset(U);
+        V = modelTESS.addEpsilonOffset(V);
 
         double d11 = x + this.renderMinX;
         double d12 = x + this.renderMaxX;
@@ -203,8 +209,8 @@ public class CustomRenderBlocks extends RenderBlocks {
             flipUVPos(U, V);
         }
 
-        U = ModelTESS.addEpsilonOffset(U);
-        V = ModelTESS.addEpsilonOffset(V);
+        U = modelTESS.addEpsilonOffset(U);
+        V = modelTESS.addEpsilonOffset(V);
 
         double d11 = x + this.renderMinX;
         double d12 = x + this.renderMaxX;
@@ -275,8 +281,8 @@ public class CustomRenderBlocks extends RenderBlocks {
             flipUVNeg(U, V);
         }
 
-        U = ModelTESS.addEpsilonOffset(U);
-        V = ModelTESS.addEpsilonOffset(V);
+        U = modelTESS.addEpsilonOffset(U);
+        V = modelTESS.addEpsilonOffset(V);
 
         double d11 = x + this.renderMinX;
         double d12 = x + this.renderMaxX;
@@ -347,8 +353,8 @@ public class CustomRenderBlocks extends RenderBlocks {
             flipUVPos(U, V);
         }
 
-        U = ModelTESS.addEpsilonOffset(U);
-        V = ModelTESS.addEpsilonOffset(V);
+        U = modelTESS.addEpsilonOffset(U);
+        V = modelTESS.addEpsilonOffset(V);
 
         double d11 = x + this.renderMinX;
         double d12 = x + this.renderMaxX;
@@ -419,8 +425,8 @@ public class CustomRenderBlocks extends RenderBlocks {
             flipUVNeg(U, V);
         }
 
-        U = ModelTESS.addEpsilonOffset(U);
-        V = ModelTESS.addEpsilonOffset(V);
+        U = modelTESS.addEpsilonOffset(U);
+        V = modelTESS.addEpsilonOffset(V);
 
         double d11 = x + this.renderMinX;
         double d12 = y + this.renderMinY;
@@ -491,8 +497,8 @@ public class CustomRenderBlocks extends RenderBlocks {
             flipUVPos(U, V);
         }
 
-        U = ModelTESS.addEpsilonOffset(U);
-        V = ModelTESS.addEpsilonOffset(V);
+        U = modelTESS.addEpsilonOffset(U);
+        V = modelTESS.addEpsilonOffset(V);
 
         double d11 = x + this.renderMaxX;
         double d12 = y + this.renderMinY;

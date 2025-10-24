@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
-import net.minecraftforge.oredict.OreDictionary;
+import net.pufferlab.antiquities.Utils;
 import net.pufferlab.antiquities.client.models.ModelPile;
 import net.pufferlab.antiquities.tileentities.TileEntityPile;
 
@@ -34,14 +34,9 @@ public class BlockPileRender extends BlockFurnitureRender {
         for (int i = 0; i < pile.getSizeInventory(); i++) {
             ItemStack item = pile.getInventoryStack(i);
             if (item != null) {
-                int[] oreIDS = OreDictionary.getOreIDs(item);
-                String metal = "iron";
-                for (int oreID : oreIDS) {
-                    String name = OreDictionary.getOreName(oreID);
-                    String[] names = name.split("ingot");
-                    if (names.length > 0) {
-                        metal = names[1].toLowerCase();
-                    }
+                String metal = Utils.getMetalType(item);
+                if (metal == null) {
+                    metal = "iron";
                 }
                 model.renderIngot(i, metal);
             }

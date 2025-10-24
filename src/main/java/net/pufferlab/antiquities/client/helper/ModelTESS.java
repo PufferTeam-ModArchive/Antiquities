@@ -15,18 +15,19 @@ import net.pufferlab.antiquities.tileentities.TileEntityMetaFacing;
 
 public class ModelTESS {
 
-    static double epsilon = 1e-5;
+    static double epsilon = 2e-5;
 
-    public static void render(RenderBlocks renderblocks, Tessellator tess, Block block, ModelRenderer renderer,
-        float scale, int x, int y, int z, int meta) {
+    public void render(RenderBlocks renderblocks, Tessellator tess, Block block, ModelRenderer renderer, float scale,
+        int x, int y, int z, int meta) {
         if (Config.renderWithAO) {
-            renderBlockAO(renderblocks, tess, block, renderer, scale, x, y, z, meta);
+            CustomRenderBlocks renderblocks2 = new CustomRenderBlocks(this);
+            renderBlockAO(renderblocks, renderblocks2, block, renderer, scale, x, y, z, meta);
         } else {
             renderBlock(renderblocks, tess, block, renderer, scale, x, y, z, meta);
         }
     }
 
-    public static void renderBlock(RenderBlocks renderblocks, Tessellator tess, Block block, ModelRenderer renderer,
+    public void renderBlock(RenderBlocks renderblocks, Tessellator tess, Block block, ModelRenderer renderer,
         float scale, int x, int y, int z, int meta) {
         if (!renderer.isHidden && renderer.showModel) {
 
@@ -151,8 +152,8 @@ public class ModelTESS {
                         double[] U = { u1, u2, u3, u4 };
                         double[] V = { v1, v2, v3, v4 };
 
-                        U = ModelTESS.addEpsilonOffset(U);
-                        V = ModelTESS.addEpsilonOffset(V);
+                        U = addEpsilonOffset(U);
+                        V = addEpsilonOffset(V);
 
                         // --- Add rotated vertices ---
                         for (int p = 0; p < 4; ++p) {
@@ -197,8 +198,8 @@ public class ModelTESS {
         }
     }
 
-    public static void renderBlockAO(RenderBlocks renderblocks, Tessellator tess, Block block, ModelRenderer renderer,
-        float scale, int x, int y, int z, int meta) {
+    public void renderBlockAO(RenderBlocks renderblocks, CustomRenderBlocks renderblocks2, Block block,
+        ModelRenderer renderer, float scale, int x, int y, int z, int meta) {
         if (!renderer.isHidden && renderer.showModel) {
 
             // Render children first
@@ -224,7 +225,7 @@ public class ModelTESS {
                     child.rotationPointZ += renderer.rotationPointZ;
 
                     // Recurse
-                    renderBlockAO(renderblocks, tess, block, child, scale, x, y, z, meta);
+                    renderBlockAO(renderblocks, renderblocks2, block, child, scale, x, y, z, meta);
 
                     // Restore child state
                     child.rotateAngleX = oldRotateX;
@@ -275,7 +276,6 @@ public class ModelTESS {
                         if (r[2] > maxZ) maxZ = r[2];
                     }
 
-                    CustomRenderBlocks renderblocks2 = new CustomRenderBlocks();
                     TileEntityMetaFacing facing = (TileEntityMetaFacing) renderblocks.blockAccess
                         .getTileEntity(x, y, z);
                     int facingMeta = facing.facingMeta;
@@ -369,7 +369,7 @@ public class ModelTESS {
         }
     }
 
-    private static double[][] getRotationMatrix(ModelRenderer renderer) {
+    private double[][] getRotationMatrix(ModelRenderer renderer) {
         double cosX = Math.cos(renderer.rotateAngleX), sinX = Math.sin(renderer.rotateAngleX);
         double cosY = Math.cos(renderer.rotateAngleY), sinY = Math.sin(renderer.rotateAngleY);
         double cosZ = Math.cos(renderer.rotateAngleZ), sinZ = Math.sin(renderer.rotateAngleZ);
@@ -380,7 +380,7 @@ public class ModelTESS {
             { -sinY, cosY * sinX, cosX * cosY } };
     }
 
-    private static double[] rotate(double[][] R, double px, double py, double pz, double x, double y, double z) {
+    private double[] rotate(double[][] R, double px, double py, double pz, double x, double y, double z) {
         // Translate relative to pivot
         double dx = x - px, dy = y - py, dz = z - pz;
 
@@ -393,7 +393,7 @@ public class ModelTESS {
         return new double[] { nx + px + 0.5, ny + py + 0.5, nz + pz + 0.5 };
     }
 
-    public static double[] addEpsilonOffset(double[] coords) {
+    public double[] addEpsilonOffset(double[] coords) {
         double min = coords[0];
         double max = coords[0];
         for (int i = 1; i < coords.length; i++) {
