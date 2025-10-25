@@ -36,6 +36,7 @@ public class BlockPile extends BlockAntiquities {
     public BlockPile() {
         super(Material.iron);
         this.setStepSound(soundTypeMetal);
+        this.setHardness(0.5F);
         this.canBlockGrass = true;
         this.setBlockName(Antiquities.MODID + ".pile");
     }
