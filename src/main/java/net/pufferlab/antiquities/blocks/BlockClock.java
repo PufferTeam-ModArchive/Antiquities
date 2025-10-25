@@ -116,6 +116,11 @@ public class BlockClock extends BlockAntiquities {
     }
 
     @Override
+    public boolean shouldSideBeRendered(IBlockAccess worldIn, int x, int y, int z, int side) {
+        return true;
+    }
+
+    @Override
     public int getRenderType() {
         return Antiquities.proxy.getClockRenderID();
     }

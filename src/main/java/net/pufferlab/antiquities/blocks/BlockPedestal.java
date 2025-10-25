@@ -16,6 +16,7 @@ import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.pufferlab.antiquities.Antiquities;
 import net.pufferlab.antiquities.Config;
@@ -174,6 +175,11 @@ public class BlockPedestal extends BlockMetaContainer {
     @Override
     public boolean renderAsNormalBlock() {
         return false;
+    }
+
+    @Override
+    public boolean shouldSideBeRendered(IBlockAccess worldIn, int x, int y, int z, int side) {
+        return true;
     }
 
     @Override

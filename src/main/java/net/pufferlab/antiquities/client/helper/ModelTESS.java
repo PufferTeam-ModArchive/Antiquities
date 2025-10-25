@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.Vec3;
 import net.pufferlab.antiquities.Config;
+import net.pufferlab.antiquities.blocks.BlockTable;
 import net.pufferlab.antiquities.tileentities.TileEntityMetaFacing;
 
 public class ModelTESS {
@@ -29,6 +30,14 @@ public class ModelTESS {
 
     public void renderBlock(RenderBlocks renderblocks, Tessellator tess, Block block, ModelRenderer renderer,
         float scale, int x, int y, int z, int meta) {
+        if (block instanceof BlockTable) {
+            if (renderblocks.hasOverrideBlockTexture() && Config.renderBreakingTexture) {
+                renderblocks.setRenderBounds(0.0F, 0.875F, 0.0F, 1.0F, 1.0F, 1.0F);
+                renderblocks.renderStandardBlock(block, x, y, z);
+                return;
+            }
+        }
+
         if (!renderer.isHidden && renderer.showModel) {
 
             // Render children first
@@ -354,9 +363,17 @@ public class ModelTESS {
                     }
 
                     renderblocks2.renderAllFaces = true;
+                    renderblocks2.overrideBlockTexture = null;
                     renderblocks2.overrideBlockTexture = block.getIcon(99, meta);
-                    renderblocks2.setRenderBounds(minX, minY, minZ, maxX, maxY, maxZ);
-                    renderblocks2.renderStandardBlock(block, x, y, z);
+                    if (renderblocks.hasOverrideBlockTexture() && Config.renderBreakingTexture) {
+                        renderblocks.field_152631_f = true;
+                        renderblocks.setRenderBounds(minX, minY, minZ, maxX, maxY, maxZ);
+                        renderblocks.renderStandardBlock(block, x, y, z);
+                        renderblocks.field_152631_f = false;
+                    } else {
+                        renderblocks2.setRenderBounds(minX, minY, minZ, maxX, maxY, maxZ);
+                        renderblocks2.renderStandardBlock(block, x, y, z);
+                    }
                     renderblocks2.uvRotateEast = 0;
                     renderblocks2.uvRotateWest = 0;
                     renderblocks2.uvRotateSouth = 0;

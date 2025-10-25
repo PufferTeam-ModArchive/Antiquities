@@ -13,6 +13,7 @@ public class Config {
 
     public static String greeting = "Hello World";
     public static boolean renderWithAO;
+    public static boolean renderBreakingTexture;
     public static boolean enableRecipes;
     public static float globeMaxSpeed;
     public static float globeSpeedAcceleration;
@@ -40,6 +41,12 @@ public class Config {
             CATEGORY_RENDERING,
             true,
             "Whether to render blocks with Ambient Occlusion.");
+        renderBreakingTexture = configuration.getBoolean(
+            "renderBreakingTexture",
+            CATEGORY_RENDERING,
+            true,
+            "Whether to render blocks with breaking textures.");
+
         enableRecipes = configuration
             .getBoolean("enableRecipes", Configuration.CATEGORY_GENERAL, true, "Whether to enable recipes in the mod.");
         globeMaxSpeed = configuration.getFloat(
