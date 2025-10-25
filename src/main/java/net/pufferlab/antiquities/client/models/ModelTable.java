@@ -2,6 +2,7 @@ package net.pufferlab.antiquities.client.models;
 
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
+import net.pufferlab.antiquities.Config;
 
 public class ModelTable extends ModelFurniture {
 
@@ -30,6 +31,7 @@ public class ModelTable extends ModelFurniture {
     public int offset2Y = 0;
     public int offset3Y = 0;
     public int offset4Y = 0;
+    public boolean ignore = false;
 
     public ModelTable() {
         super(128, 128);
@@ -76,6 +78,11 @@ public class ModelTable extends ModelFurniture {
 
         tops = new ModelRenderer(this);
         tops.setRotationPoint(0.0F, 0, 0.0F);
+        if (!ignore) {
+            if (Config.legacyTextures) {
+                tops.cubeList.add(new ModelBox(tops, 0, 0, -8.0F, -8.0F, -8.0F, 16, 2, 16, 0.0F));
+            }
+        }
         bb_main.addChild(tops);
 
         ext1 = new ModelRenderer(this);
@@ -104,6 +111,11 @@ public class ModelTable extends ModelFurniture {
         if (tops.childModels != null) {
             if (!tops.childModels.isEmpty()) {
                 tops.childModels.clear();
+            }
+        }
+        if (!ignore) {
+            if (Config.legacyTextures) {
+                return;
             }
         }
 

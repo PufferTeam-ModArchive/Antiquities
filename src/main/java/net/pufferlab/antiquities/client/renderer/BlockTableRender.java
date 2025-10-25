@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
+import net.pufferlab.antiquities.Config;
 import net.pufferlab.antiquities.blocks.BlockMetaContainer;
 import net.pufferlab.antiquities.blocks.BlockTable;
 import net.pufferlab.antiquities.client.models.ModelTable;
@@ -45,8 +46,10 @@ public class BlockTableRender extends BlockFurnitureRender {
         model.offset2Y = 0;
         model.offset3Y = 0;
         model.offset4Y = 0;
+        model.ignore = true;
         model.updateCTM();
         model.render(wood);
+        model.ignore = false;
     }
 
     @Override
@@ -164,7 +167,11 @@ public class BlockTableRender extends BlockFurnitureRender {
         model.updateCTM();
 
         model.setFacing(0);
-        model.renderWithoutAO(renderer, tess, block, meta, x, y, z);
+        if (Config.legacyTextures) {
+            model.render(renderer, tess, block, meta, x, y, z);
+        } else {
+            model.renderWithoutAO(renderer, tess, block, meta, x, y, z);
+        }
 
         return true;
     }

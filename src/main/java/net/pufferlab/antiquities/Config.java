@@ -14,6 +14,7 @@ public class Config {
     public static String greeting = "Hello World";
     public static boolean renderWithAO;
     public static boolean renderBreakingTexture;
+    public static boolean legacyTextures;
     public static boolean enableRecipes;
     public static float globeMaxSpeed;
     public static float globeSpeedAcceleration;
@@ -46,6 +47,11 @@ public class Config {
             CATEGORY_RENDERING,
             true,
             "Whether to render blocks with breaking textures.");
+        legacyTextures = configuration.getBoolean(
+            "legacyTextures",
+            CATEGORY_RENDERING,
+            false,
+            "Whether to render blocks with simple planks texture or to use customized textures.");
 
         enableRecipes = configuration
             .getBoolean("enableRecipes", Configuration.CATEGORY_GENERAL, true, "Whether to enable recipes in the mod.");
