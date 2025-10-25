@@ -1,8 +1,9 @@
 package net.pufferlab.antiquities.client.models;
 
-import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.pufferlab.antiquities.Config;
+import net.pufferlab.antiquities.Utils;
+import net.pufferlab.antiquities.client.helper.ModelBoxSpecial;
 
 public class ModelPile extends ModelFurniture {
 
@@ -10,7 +11,7 @@ public class ModelPile extends ModelFurniture {
     private ModelRenderer layer1;
 
     public ModelPile() {
-        super(128, 128);
+        super(32, 32);
 
         layer0 = new ModelRenderer(this);
         layer0.setRotationPoint(0.0F, 0.0F, 0.0F);
@@ -31,15 +32,7 @@ public class ModelPile extends ModelFurniture {
         int i5 = (int) (double) (i / 8);
         int texX = 0;
         int texY = 0;
-        for (int j = 0; j < Config.ingotPileMetals.length; j++) {
-            for (int p = 0; p < Config.ingotPileMetals[j].length; p++) {
-                String o = Config.ingotPileMetals[j][p];
-                if (o.equals(metal)) {
-                    texX = 18 * j;
-                    texY = 5 * p;
-                }
-            }
-        }
+        int index = Utils.getItemFromArray(Config.ingotPileMetals, metal) + 100;
         float angle = 90;
         if (i5 % 2 == 0) {
             layer = layer1;
@@ -53,7 +46,8 @@ public class ModelPile extends ModelFurniture {
             posX = posX + 7;
         }
         posZ = posZ - (4 * i2);
-        layer.cubeList.add(new ModelBox(bb_main, texX, texY, (float) posX, (float) posY, (float) posZ, 6, 2, 3, 0.0F));
+        layer.cubeList.add(
+            new ModelBoxSpecial(bb_main, texX, texY, (float) posX, (float) posY, (float) posZ, 6, 2, 3, 0.0F, index));
     }
 
     public void resetFacing() {

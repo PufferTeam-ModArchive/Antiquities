@@ -2,6 +2,7 @@ package net.pufferlab.antiquities;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
@@ -37,14 +38,8 @@ public class Config {
     public static boolean enableIngotPile;
 
     public static boolean enableIngotPileModification;
-    public static String[] ingotPileType1;
-    public static String[] ingotPileType2;
-    public static String[] ingotPileType3;
-    public static String[] ingotPileType4;
-    public static String[] ingotPileType5;
-    public static String[] ingotPileType6;
-    public static String[] ingotPileType7;
-    public static String[][] ingotPileMetals;
+    public static String[] ingotPileMetals;
+
     public static ArrayList<String> ingotPileMetalsList = new ArrayList<>();
 
     public static void synchronizeConfiguration(File configFile) {
@@ -125,23 +120,17 @@ public class Config {
             "enableIngotPileModification",
             CATEGORY_TECHNICAL,
             false,
-            "Whether you want to enable modification of ingot pile metal types. Enable this option and restart your game to see the new options that can help you customize the metals in pile.png (antiquities:textures/blocks/pile.png).");
+            "Whether you want to enable modification of ingot pile metal types. By default it's off so metals are always synchronized to the default values.");
 
         if (enableIngotPileModification) {
-            ingotPileType1 = configuration
-                .getStringList("ingotPileMetalType1", CATEGORY_TECHNICAL, Constants.metalTypes, "Row 1 of pile.png");
-            ingotPileType2 = configuration
-                .getStringList("ingotPileMetalType2", CATEGORY_TECHNICAL, Constants.metalTypes2, "Row 2 of pile.png");
-            ingotPileType3 = configuration
-                .getStringList("ingotPileMetalType3", CATEGORY_TECHNICAL, Constants.metalTypes3, "Row 3 of pile.png");
-            ingotPileType4 = configuration
-                .getStringList("ingotPileMetalType4", CATEGORY_TECHNICAL, new String[] {}, "Row 4 of pile.png");
-            ingotPileType5 = configuration
-                .getStringList("ingotPileMetalType5", CATEGORY_TECHNICAL, new String[] {}, "Row 5 of pile.png");
-            ingotPileType6 = configuration
-                .getStringList("ingotPileMetalType6", CATEGORY_TECHNICAL, new String[] {}, "Row 6 of pile.png");
-            ingotPileType7 = configuration
-                .getStringList("ingotPileMetalType7", CATEGORY_TECHNICAL, new String[] {}, "Row 7 of pile.png");
+            ingotPileMetals = configuration.getStringList(
+                "ingotPileMetals",
+                CATEGORY_TECHNICAL,
+                Constants.metalTypes,
+                "The list of all the metal types that the ingot pile will support. Every metal has a texture associated that will be rendered in the ingot pile situated at (antiquities:textures/blocks/[metal name]_ingot.png). Example: Iron has iron_ingot.png as texture. You need to add your own textures with this naming scheme or else its going to show up as missing texture.");
+        }
+        if (ingotPileMetals == null) {
+            ingotPileMetals = Constants.metalTypes;
         }
 
         if (configuration.hasChanged()) {
@@ -150,17 +139,7 @@ public class Config {
     }
 
     public static void refreshWhitelists() {
-        if (enableIngotPileModification) {
-            ingotPileMetals = new String[][] { ingotPileType1, ingotPileType2, ingotPileType3, ingotPileType4,
-                ingotPileType5, ingotPileType6, ingotPileType7 };
-        } else {
-            ingotPileMetals = new String[][] { Constants.metalTypes, Constants.metalTypes2, Constants.metalTypes3 };
-        }
-        for (int i = 0; i < ingotPileMetals.length; i++) {
-            for (int j = 0; j < ingotPileMetals[i].length; j++) {
-                ingotPileMetalsList.add(ingotPileMetals[i][j]);
-            }
-        }
+        ingotPileMetalsList.addAll(Arrays.asList(ingotPileMetals));
 
         for (String item : toolsWhitelist) {
             ItemStack itemstack = Utils.getItem(item + ":*:*");

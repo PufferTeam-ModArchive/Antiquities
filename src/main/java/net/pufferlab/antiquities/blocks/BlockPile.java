@@ -32,6 +32,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockPile extends BlockAntiquities {
 
     private IIcon[] icons;
+    private IIcon[] metalIcons;
 
     public BlockPile() {
         super(Material.iron);
@@ -365,16 +366,20 @@ public class BlockPile extends BlockAntiquities {
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister register) {
         icons = new IIcon[2];
+        metalIcons = new IIcon[Config.ingotPileMetals.length];
         icons[0] = register.registerIcon(Antiquities.MODID + ":pile");
-        icons[1] = register.registerIcon(Antiquities.MODID + ":null_pile");
+        for (int i = 0; i < Config.ingotPileMetals.length; i++) {
+            metalIcons[i] = register.registerIcon(Antiquities.MODID + ":" + Config.ingotPileMetals[i] + "_ingot");
+        }
     }
 
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-        if (side == 99) {
-            return icons[0];
+        if (side > 99) {
+            int actualI = side - 100;
+            return metalIcons[actualI];
         }
-        return icons[1];
+        return icons[0];
     }
 
     public boolean canRegister() {

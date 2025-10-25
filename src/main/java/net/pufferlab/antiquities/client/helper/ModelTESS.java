@@ -82,6 +82,12 @@ public class ModelTESS {
                 for (int i = 0; i < renderer.cubeList.size(); ++i) {
                     ModelBox box = renderer.cubeList.get(i);
 
+                    int index = 99;
+                    if (box instanceof ModelBoxSpecial) {
+                        index = ((ModelBoxSpecial) box).iconIndex;
+                    }
+                    IIcon icon = block.getIcon(index, meta);
+
                     for (int j = 0; j < box.quadList.length; ++j) {
                         TexturedQuad quad = box.quadList[j];
 
@@ -141,9 +147,6 @@ public class ModelTESS {
                         else if (nz2 > 0.5F || nz2 < -0.5F) shade = 0.8F; // north/south
 
                         tess.setColorOpaque_F(f * shade, f1 * shade, f2 * shade);
-
-                        // --- Texture ---
-                        IIcon icon = block.getIcon(99, meta);
 
                         PositionTextureVertex pos1 = quad.vertexPositions[0];
                         double u1 = icon.getMinU() + pos1.texturePositionX * (icon.getMaxU() - icon.getMinU());
@@ -368,8 +371,11 @@ public class ModelTESS {
                     }
 
                     renderblocks2.renderAllFaces = true;
-                    renderblocks2.overrideBlockTexture = null;
-                    renderblocks2.overrideBlockTexture = block.getIcon(99, meta);
+                    int index = 99;
+                    if (box instanceof ModelBoxSpecial) {
+                        index = ((ModelBoxSpecial) box).iconIndex;
+                    }
+                    renderblocks2.overrideBlockTexture = block.getIcon(index, meta);
                     if (renderblocks.hasOverrideBlockTexture() && Config.renderBreakingTexture) {
                         renderblocks.field_152631_f = true;
                         renderblocks.setRenderBounds(minX, minY, minZ, maxX, maxY, maxZ);
