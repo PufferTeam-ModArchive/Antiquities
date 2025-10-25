@@ -196,7 +196,7 @@ public class Utils {
     public static boolean isValidMetal(ItemStack item) {
         String metal = getMetalType(item);
         if (metal == null) return false;
-        if (Config.onlyAllowSupportedIngots && !Constants.metals.contains(metal)) return false;
+        if (Config.onlyAllowSupportedIngots && !Config.ingotPileMetalsList.contains(metal)) return false;
         return true;
     }
 

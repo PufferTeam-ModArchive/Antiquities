@@ -2,6 +2,7 @@ package net.pufferlab.antiquities.client.models;
 
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
+import net.pufferlab.antiquities.Config;
 import net.pufferlab.antiquities.Constants;
 import net.pufferlab.antiquities.Utils;
 
@@ -11,7 +12,7 @@ public class ModelPile extends ModelFurniture {
     private ModelRenderer layer1;
 
     public ModelPile() {
-        super(64, 64);
+        super(128, 128);
 
         layer0 = new ModelRenderer(this);
         layer0.setRotationPoint(0.0F, 0.0F, 0.0F);
@@ -30,15 +31,16 @@ public class ModelPile extends ModelFurniture {
         int i2 = i % 4;
         int i3 = i % 8;
         int i5 = (int) (double) (i / 8);
-        int texY = 5 * Utils.getItemFromArray(Constants.metalTypes, metal);
         int texX = 0;
-        if (Utils.containsExactMatch(Constants.metalTypes2, metal)) {
-            texX = 18;
-            texY = 5 * Utils.getItemFromArray(Constants.metalTypes2, metal);
-        }
-        if (Utils.containsExactMatch(Constants.metalTypes3, metal)) {
-            texX = 36;
-            texY = 5 * Utils.getItemFromArray(Constants.metalTypes3, metal);
+        int texY = 0;
+        for(int j = 0; j < Config.ingotPileMetals.length; j++) {
+            for(int p = 0; p < Config.ingotPileMetals[j].length; p++) {
+                String o = Config.ingotPileMetals[j][p];
+                if(o.equals(metal)) {
+                    texX = 18 * j;
+                    texY = 5 * p;
+                }
+            }
         }
         float angle = 90;
         if (i5 % 2 == 0) {
