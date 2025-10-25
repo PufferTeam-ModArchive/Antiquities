@@ -1,8 +1,5 @@
 package net.pufferlab.antiquities;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class Constants {
 
     public static final String[] none = new String[] {};

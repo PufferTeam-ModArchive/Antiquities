@@ -3,8 +3,6 @@ package net.pufferlab.antiquities.client.models;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.pufferlab.antiquities.Config;
-import net.pufferlab.antiquities.Constants;
-import net.pufferlab.antiquities.Utils;
 
 public class ModelPile extends ModelFurniture {
 
@@ -33,10 +31,10 @@ public class ModelPile extends ModelFurniture {
         int i5 = (int) (double) (i / 8);
         int texX = 0;
         int texY = 0;
-        for(int j = 0; j < Config.ingotPileMetals.length; j++) {
-            for(int p = 0; p < Config.ingotPileMetals[j].length; p++) {
+        for (int j = 0; j < Config.ingotPileMetals.length; j++) {
+            for (int p = 0; p < Config.ingotPileMetals[j].length; p++) {
                 String o = Config.ingotPileMetals[j][p];
-                if(o.equals(metal)) {
+                if (o.equals(metal)) {
                     texX = 18 * j;
                     texY = 5 * p;
                 }

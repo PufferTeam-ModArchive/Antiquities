@@ -121,16 +121,27 @@ public class Config {
         enableLabel = configuration
             .getBoolean("enableLabel", CATEGORY_CONTENT, false, "Whether to enable the label block.");
 
-        enableIngotPileModification = configuration.getBoolean("enableIngotPileModification", CATEGORY_TECHNICAL, false, "Whether you want to enable modification of ingot pile metal types. Enable this option and restart your game to see the new options that can help you customize the metals in pile.png (antiquities:textures/blocks/pile.png).");
+        enableIngotPileModification = configuration.getBoolean(
+            "enableIngotPileModification",
+            CATEGORY_TECHNICAL,
+            false,
+            "Whether you want to enable modification of ingot pile metal types. Enable this option and restart your game to see the new options that can help you customize the metals in pile.png (antiquities:textures/blocks/pile.png).");
 
-        if(enableIngotPileModification) {
-            ingotPileType1 = configuration.getStringList("ingotPileMetalType1", CATEGORY_TECHNICAL, Constants.metalTypes, "Row 1 of pile.png");
-            ingotPileType2 = configuration.getStringList("ingotPileMetalType2", CATEGORY_TECHNICAL, Constants.metalTypes2, "Row 2 of pile.png");
-            ingotPileType3 = configuration.getStringList("ingotPileMetalType3", CATEGORY_TECHNICAL, Constants.metalTypes3, "Row 3 of pile.png");
-            ingotPileType4 = configuration.getStringList("ingotPileMetalType4", CATEGORY_TECHNICAL, new String[] {}, "Row 4 of pile.png");
-            ingotPileType5 = configuration.getStringList("ingotPileMetalType5", CATEGORY_TECHNICAL, new String[] {}, "Row 5 of pile.png");
-            ingotPileType6 = configuration.getStringList("ingotPileMetalType6", CATEGORY_TECHNICAL, new String[] {}, "Row 6 of pile.png");
-            ingotPileType7 = configuration.getStringList("ingotPileMetalType7", CATEGORY_TECHNICAL, new String[] {}, "Row 7 of pile.png");
+        if (enableIngotPileModification) {
+            ingotPileType1 = configuration
+                .getStringList("ingotPileMetalType1", CATEGORY_TECHNICAL, Constants.metalTypes, "Row 1 of pile.png");
+            ingotPileType2 = configuration
+                .getStringList("ingotPileMetalType2", CATEGORY_TECHNICAL, Constants.metalTypes2, "Row 2 of pile.png");
+            ingotPileType3 = configuration
+                .getStringList("ingotPileMetalType3", CATEGORY_TECHNICAL, Constants.metalTypes3, "Row 3 of pile.png");
+            ingotPileType4 = configuration
+                .getStringList("ingotPileMetalType4", CATEGORY_TECHNICAL, new String[] {}, "Row 4 of pile.png");
+            ingotPileType5 = configuration
+                .getStringList("ingotPileMetalType5", CATEGORY_TECHNICAL, new String[] {}, "Row 5 of pile.png");
+            ingotPileType6 = configuration
+                .getStringList("ingotPileMetalType6", CATEGORY_TECHNICAL, new String[] {}, "Row 6 of pile.png");
+            ingotPileType7 = configuration
+                .getStringList("ingotPileMetalType7", CATEGORY_TECHNICAL, new String[] {}, "Row 7 of pile.png");
         }
 
         if (configuration.hasChanged()) {
@@ -139,13 +150,14 @@ public class Config {
     }
 
     public static void refreshWhitelists() {
-        if(enableIngotPileModification) {
-            ingotPileMetals = new String[][]{ingotPileType1, ingotPileType2, ingotPileType3, ingotPileType4, ingotPileType5, ingotPileType6, ingotPileType7};
+        if (enableIngotPileModification) {
+            ingotPileMetals = new String[][] { ingotPileType1, ingotPileType2, ingotPileType3, ingotPileType4,
+                ingotPileType5, ingotPileType6, ingotPileType7 };
         } else {
-            ingotPileMetals = new String[][]{Constants.metalTypes, Constants.metalTypes2, Constants.metalTypes3};
+            ingotPileMetals = new String[][] { Constants.metalTypes, Constants.metalTypes2, Constants.metalTypes3 };
         }
-        for(int i = 0; i < ingotPileMetals.length; i++) {
-            for(int j = 0; j < ingotPileMetals[i].length; j++) {
+        for (int i = 0; i < ingotPileMetals.length; i++) {
+            for (int j = 0; j < ingotPileMetals[i].length; j++) {
                 ingotPileMetalsList.add(ingotPileMetals[i][j]);
             }
         }
