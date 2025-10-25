@@ -25,6 +25,10 @@ tile.antiquities.mahogany_chair.name=Mahogany Chair
 tile.antiquities.greatwood_chair.name=Greatwood Chair
 tile.antiquities.silverwood_chair.name=Silverwood Chair
 
+tile.antiquities.rowan_chair.name=Rowan Chair
+tile.antiquities.alder_chair.name=Alder Chair
+tile.antiquities.hawthorn_chair.name=Hawthorn Chair
+
 tile.antiquities.oak_table.name=Oak Table
 tile.antiquities.spruce_table.name=Spruce Table
 tile.antiquities.birch_table.name=Birch Table
@@ -49,6 +53,10 @@ tile.antiquities.mahogany_table.name=Mahogany Table
 
 tile.antiquities.greatwood_table.name=Greatwood Table
 tile.antiquities.silverwood_table.name=Silverwood Table
+
+tile.antiquities.rowan_table.name=Rowan Table
+tile.antiquities.alder_table.name=Alder Table
+tile.antiquities.hawthorn_table.name=Hawthorn Table
 
 tile.antiquities.oak_shelf_0.name=Oak Shelf
 tile.antiquities.spruce_shelf_0.name=Spruce Shelf
@@ -75,6 +83,10 @@ tile.antiquities.mahogany_shelf_0.name=Mahogany Shelf
 tile.antiquities.greatwood_shelf_0.name=Greatwood Shelf
 tile.antiquities.silverwood_shelf_0.name=Silverwood Shelf
 
+tile.antiquities.rowan_shelf_0.name=Rowan Shelf
+tile.antiquities.alder_shelf_0.name=Alder Shelf
+tile.antiquities.hawthorn_shelf_0.name=Hawthorn Shelf
+
 tile.antiquities.oak_shelf_1.name=Oak Cross Shelf
 tile.antiquities.spruce_shelf_1.name=Spruce Cross Shelf
 tile.antiquities.birch_shelf_1.name=Birch Cross Shelf
@@ -99,6 +111,10 @@ tile.antiquities.mahogany_shelf_1.name=Mahogany Cross Shelf
 
 tile.antiquities.greatwood_shelf_1.name=Greatwood Cross Shelf
 tile.antiquities.silverwood_shelf_1.name=Silverwood Cross Shelf
+
+tile.antiquities.rowan_shelf_1.name=Rowan Cross Shelf
+tile.antiquities.alder_shelf_1.name=Alder Cross Shelf
+tile.antiquities.hawthorn_shelf_1.name=Hawthorn Cross Shelf
 
 tile.antiquities.oak_shelf_2.name=Oak Long Shelf
 tile.antiquities.spruce_shelf_2.name=Spruce Long Shelf
@@ -125,6 +141,10 @@ tile.antiquities.mahogany_shelf_2.name=Mahogany Long Shelf
 tile.antiquities.greatwood_shelf_2.name=Greatwood Long Shelf
 tile.antiquities.silverwood_shelf_2.name=Silverwood Long Shelf
 
+tile.antiquities.rowan_shelf_2.name=Rowan Cross Long Shelf
+tile.antiquities.alder_shelf_2.name=Alder Cross Long Shelf
+tile.antiquities.hawthorn_shelf_2.name=Hawthorn Cross Long Shelf
+
 tile.antiquities.oak_shelf_3.name=Oak Shelf Case
 tile.antiquities.spruce_shelf_3.name=Spruce Shelf Case
 tile.antiquities.birch_shelf_3.name=Birch Shelf Case
@@ -149,6 +169,10 @@ tile.antiquities.mahogany_shelf_3.name=Mahogany Shelf Case
 
 tile.antiquities.greatwood_shelf_3.name=Greatwood Shelf Case
 tile.antiquities.silverwood_shelf_3.name=Silverwood Shelf Case
+
+tile.antiquities.rowan_shelf_3.name=Rowan Shelf Case
+tile.antiquities.alder_shelf_3.name=Alder Shelf Case
+tile.antiquities.hawthorn_shelf_3.name=Hawthorn Shelf Case
 
 tile.antiquities.oak_shelf_4.name=Oak Cross Shelf Case
 tile.antiquities.spruce_shelf_4.name=Spruce Cross Shelf Case
@@ -175,6 +199,10 @@ tile.antiquities.mahogany_shelf_4.name=Mahogany Cross Shelf Case
 tile.antiquities.greatwood_shelf_4.name=Greatwood Cross Shelf Case
 tile.antiquities.silverwood_shelf_4.name=Silverwood Cross Shelf Case
 
+tile.antiquities.rowan_shelf_4.name=Rowan Cross Shelf Case
+tile.antiquities.alder_shelf_4.name=Alder Cross Shelf Case
+tile.antiquities.hawthorn_shelf_4.name=Hawthorn Cross Shelf Case
+
 tile.antiquities.oak_shelf_5.name=Oak Long Shelf Case
 tile.antiquities.spruce_shelf_5.name=Spruce Long Shelf Case
 tile.antiquities.birch_shelf_5.name=Birch Long Shelf Case
@@ -199,6 +227,10 @@ tile.antiquities.mahogany_shelf_5.name=Mahogany Long Shelf Case
 
 tile.antiquities.greatwood_shelf_5.name=Greatwood Long Shelf Case
 tile.antiquities.silverwood_shelf_5.name=Silverwood Long Shelf Case
+
+tile.antiquities.rowan_shelf_5.name=Rowan Long Shelf Case
+tile.antiquities.alder_shelf_5.name=Alder Long Shelf Case
+tile.antiquities.hawthorn_shelf_5.name=Hawthorn Long Shelf Case
 
 tile.antiquities.oak_jar.name=Oak Jar
 tile.antiquities.spruce_jar.name=Spruce Jar
@@ -225,6 +257,10 @@ tile.antiquities.mahogany_jar.name=Mahogany Jar
 tile.antiquities.greatwood_jar.name=Greatwood Jar
 tile.antiquities.silverwood_jar.name=Silverwood Jar
 
+tile.antiquities.rowan_jar.name=Rowan Jar
+tile.antiquities.alder_jar.name=Alder Jar
+tile.antiquities.hawthorn_jar.name=Hawthorn Jar
+
 tile.antiquities.oak_rack.name=Oak Tool Rack
 tile.antiquities.spruce_rack.name=Spruce Tool Rack
 tile.antiquities.birch_rack.name=Birch Tool Rack
@@ -249,6 +285,10 @@ tile.antiquities.mahogany_rack.name=Mahogany Rack
 
 tile.antiquities.greatwood_rack.name=Greatwood Rack
 tile.antiquities.silverwood_rack.name=Silverwood Rack
+
+tile.antiquities.rowan_rack.name=Rowan Rack
+tile.antiquities.alder_rack.name=Alder Rack
+tile.antiquities.hawthorn_rack.name=Hawthorn Rack
 
 tile.antiquities.clock.name=Clock
 

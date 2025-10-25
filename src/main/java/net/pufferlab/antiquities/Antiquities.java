@@ -7,6 +7,7 @@ import net.pufferlab.antiquities.events.PileHandler;
 import net.pufferlab.antiquities.recipes.Recipes;
 import net.pufferlab.antiquities.recipes.RecipesBOP;
 import net.pufferlab.antiquities.recipes.RecipesTC;
+import net.pufferlab.antiquities.recipes.RecipesWT;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -73,8 +74,11 @@ public class Antiquities {
             if (Loader.isModLoaded("Thaumcraft")) {
                 new RecipesTC().run();
             }
-            Config.refreshWhitelists();
+            if (Loader.isModLoaded("witchery")) {
+                new RecipesWT().run();
+            }
         }
+        Config.refreshWhitelists();
 
     }
 

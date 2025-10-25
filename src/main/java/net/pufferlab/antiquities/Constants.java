@@ -11,6 +11,7 @@ public class Constants {
         "magic", "mangrove", "palm", "redwood", "willow", "bamboo", "pine", "hellbark", "jacaranda", "mahogany" };
     public static final String[] thaumcraftPlankTypes = new String[] { "", "", "", "", "", "", "greatwood",
         "silverwood" };
+    public static final String[] witcheryWoodTypes = new String[] { "rowan", "alder", "hawthorn" };
     public static final String[] metalTypes = new String[] { "iron", "gold", "copper", "tin", "silver", "lead",
         "nickel", "bronze", "electrum", "invar", "constantan", "platinum" };
     public static final String[] metalTypes2 = new String[] { "brick", "bricknether", "steel", "osmium", "aluminum" };

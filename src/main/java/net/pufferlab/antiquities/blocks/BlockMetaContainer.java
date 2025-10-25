@@ -59,6 +59,8 @@ public abstract class BlockMetaContainer extends BlockAntiquities {
                     icons[i] = register.registerIcon("minecraft:planks_" + wood);
                 } else if (Utils.containsExactMatch(Constants.thaumcraftWoodTypes, wood)) {
                     icons[i] = register.registerIcon("thaumcraft:planks_" + wood);
+                } else if (Utils.containsExactMatch(Constants.witcheryWoodTypes, wood)) {
+                    icons[i] = register.registerIcon("witchery:planks_" + wood);
                 } else {
                     icons[i] = register.registerIcon(Antiquities.MODID + ":" + elements[i]);
                 }

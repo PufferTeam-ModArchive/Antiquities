@@ -50,6 +50,18 @@ public class Registry {
     public static Block label_tc;
     public static Block rack_tc;
 
+    public static Block chair_wt;
+    public static Block table_wt;
+    public static Block shelf_0_wt;
+    public static Block shelf_1_wt;
+    public static Block shelf_2_wt;
+    public static Block shelf_3_wt;
+    public static Block shelf_4_wt;
+    public static Block shelf_5_wt;
+    public static Block jar_wt;
+    public static Block label_wt;
+    public static Block rack_wt;
+
     public static Block pedestal;
     public static Block globe;
     public static Block clock;
@@ -107,6 +119,19 @@ public class Registry {
             label_tc = new BlockLabel(Constants.thaumcraftWoodTypes);
             rack_tc = new BlockRack(Constants.thaumcraftWoodTypes);
         }
+        if (Loader.isModLoaded("witchery")) {
+            chair_wt = new BlockChair(Constants.witcheryWoodTypes);
+            table_wt = new BlockTable(Constants.witcheryWoodTypes);
+            shelf_0_wt = new BlockShelf(0, Constants.witcheryWoodTypes);
+            shelf_1_wt = new BlockShelf(1, Constants.witcheryWoodTypes);
+            shelf_2_wt = new BlockShelf(2, Constants.witcheryWoodTypes);
+            shelf_3_wt = new BlockShelf(3, Constants.witcheryWoodTypes);
+            shelf_4_wt = new BlockShelf(4, Constants.witcheryWoodTypes);
+            shelf_5_wt = new BlockShelf(5, Constants.witcheryWoodTypes);
+            jar_wt = new BlockJar(Constants.witcheryWoodTypes);
+            label_wt = new BlockLabel(Constants.witcheryWoodTypes);
+            rack_wt = new BlockRack(Constants.witcheryWoodTypes);
+        }
         pedestal = new BlockPedestal(Constants.stoneTypes);
         globe = new BlockGlobe();
         clock = new BlockClock();
@@ -147,7 +172,6 @@ public class Registry {
             register(label_bop, "label_bop");
             register(rack_bop, "rack_bop");
         }
-
         if (Loader.isModLoaded("Thaumcraft")) {
             register(chair_tc, "chair_tc");
             register(shelf_0_tc, "shelf_tc");
@@ -160,6 +184,19 @@ public class Registry {
             register(jar_tc, "jar_tc");
             register(label_tc, "label_tc");
             register(rack_tc, "rack_tc");
+        }
+        if (Loader.isModLoaded("witchery")) {
+            register(chair_wt, "chair_wt");
+            register(shelf_0_wt, "shelf_wt");
+            register(shelf_1_wt, "shelf_wt_1");
+            register(shelf_2_wt, "shelf_wt_2");
+            register(shelf_3_wt, "shelf_wt_3");
+            register(shelf_4_wt, "shelf_wt_4");
+            register(shelf_5_wt, "shelf_wt_5");
+            register(table_wt, "table_wt");
+            register(jar_wt, "jar_wt");
+            register(label_wt, "label_wt");
+            register(rack_wt, "rack_wt");
         }
 
         register(pedestal, "pedestal");
