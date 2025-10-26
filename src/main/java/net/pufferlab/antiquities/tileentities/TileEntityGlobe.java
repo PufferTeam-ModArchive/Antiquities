@@ -54,10 +54,10 @@ public class TileEntityGlobe extends TileEntityMetaFacing {
         if (!worldObj.isRemote) {
             if (this.speed > 0) {
                 this.speed = this.speed - Config.globeSpeedDeceleration;
-                sendUpdate();
             } else {
                 this.speed = 0;
             }
+            sendUpdate();
         }
         if (worldObj.isRemote) {
             this.rotation = (this.rotation + this.speed) % 360.0F;
