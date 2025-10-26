@@ -3,6 +3,7 @@ package net.pufferlab.antiquities.client.renderer;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.world.IBlockAccess;
+import net.pufferlab.antiquities.blocks.BlockMetaContainer;
 import net.pufferlab.antiquities.client.models.ModelGlobe;
 
 import org.lwjgl.opengl.GL11;
@@ -19,9 +20,12 @@ public class BlockGlobeRender extends BlockFurnitureRender {
     public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
         int facingMeta = 0;
         model.setFacing(facingMeta);
-
+        String type = "earth";
+        if (block instanceof BlockMetaContainer blockmeta) {
+            type = blockmeta.getType(metadata);
+        }
         GL11.glPushMatrix();
-        model.render();
+        model.render(type);
 
         if (facingMeta == 2) {
             GL11.glRotatef(-22.5F, 0, 0.0F, 1.0F);
@@ -34,7 +38,7 @@ public class BlockGlobeRender extends BlockFurnitureRender {
         }
         GL11.glRotatef(0F, 0.0F, 1.0F, 0.0F);
 
-        model.renderGlobe();
+        model.render(model.earth_r1, type);
 
         GL11.glPopMatrix();
     }

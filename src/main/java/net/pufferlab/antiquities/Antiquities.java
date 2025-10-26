@@ -4,10 +4,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.pufferlab.antiquities.client.compat.NEIConfig;
 import net.pufferlab.antiquities.events.PileHandler;
-import net.pufferlab.antiquities.recipes.Recipes;
-import net.pufferlab.antiquities.recipes.RecipesBOP;
-import net.pufferlab.antiquities.recipes.RecipesTC;
-import net.pufferlab.antiquities.recipes.RecipesWT;
+import net.pufferlab.antiquities.recipes.*;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -77,6 +74,9 @@ public class Antiquities {
             if (Loader.isModLoaded("witchery")) {
                 new RecipesWT().run();
             }
+        }
+        if (Config.enableOreDictCompat) {
+            new OreDictCompat().run();
         }
         Config.refreshWhitelists();
 

@@ -2,7 +2,6 @@ package net.pufferlab.antiquities.client.models;
 
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
-import net.pufferlab.antiquities.Constants;
 
 public class ModelGlobe extends ModelFurniture {
 
@@ -27,18 +26,6 @@ public class ModelGlobe extends ModelFurniture {
         group.addChild(cube_r1);
         setRotationAngle(cube_r1, -0.3927F, 0.0F, 0.0F);
         cube_r1.cubeList.add(new ModelBox(cube_r1, 0, 8, 0.0F, -20.0F, -5.5F, 0, 10, 7, 0.0F));
-    }
-
-    public void render() {
-        bindTex("globe_model");
-        bb_main.rotateAngleX = (float) Math.toRadians(180);
-        bb_main.render(Constants.ModelConstant);
-    }
-
-    public void renderGlobe() {
-        bindTex("globe_model");
-        earth_r1.rotateAngleX = (float) Math.toRadians(180);
-        earth_r1.render(Constants.ModelConstant);
     }
 
     public String getName() {

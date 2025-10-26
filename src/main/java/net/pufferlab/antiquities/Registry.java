@@ -133,7 +133,7 @@ public class Registry {
             rack_wt = new BlockRack(Constants.witcheryWoodTypes);
         }
         pedestal = new BlockPedestal(Constants.stoneTypes);
-        globe = new BlockGlobe();
+        globe = new BlockGlobe(Constants.globeTypes);
         clock = new BlockClock();
         pile = new BlockPile();
         register(TileEntityChair.class, "chair");

@@ -1,36 +1,20 @@
 package net.pufferlab.antiquities.blocks;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.pufferlab.antiquities.Antiquities;
-import net.pufferlab.antiquities.Config;
-import net.pufferlab.antiquities.Registry;
-import net.pufferlab.antiquities.Utils;
+import net.pufferlab.antiquities.*;
 import net.pufferlab.antiquities.tileentities.TileEntityGlobe;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+public class BlockGlobe extends BlockMetaContainer {
 
-public class BlockGlobe extends BlockAntiquities {
-
-    private IIcon[] icons;
-
-    public BlockGlobe() {
-        super(Material.wood);
-        this.setHardness(2.0F);
-        this.setResistance(5.0F);
-        this.setStepSound(soundTypeWood);
-        this.setBlockName(Antiquities.MODID + ".globe");
-        this.setCreativeTab(Registry.creativeTab);
-        this.canBlockGrass = true;
+    public BlockGlobe(String... materials) {
+        super(Material.wood, materials, "globe", Constants.none);
         this.setBlockBounds(0.1F, 0F, 0.1F, 0.9F, 1F, 0.9F);
     }
 
@@ -56,17 +40,6 @@ public class BlockGlobe extends BlockAntiquities {
         if (globe != null) {
             globe.setFacingMeta(metayaw);
         }
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister register) {
-        icons = new IIcon[1];
-        icons[0] = register.registerIcon(Antiquities.MODID + ":globe");
-    }
-
-    @SideOnly(Side.CLIENT)
-    public IIcon getIcon(int side, int meta) {
-        return icons[0];
     }
 
     public boolean canRegister() {

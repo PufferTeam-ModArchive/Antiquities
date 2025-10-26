@@ -13,12 +13,14 @@ public class Config {
     public static final String CATEGORY_CONTENT = "content";
     public static final String CATEGORY_RENDERING = "rendering";
     public static final String CATEGORY_TECHNICAL = "technical";
+    public static final String CATEGORY_COMPAT = "compat";
 
     public static String greeting = "Hello World";
     public static boolean renderWithAO;
     public static boolean renderBreakingTexture;
     public static boolean legacyTextures;
     public static boolean enableRecipes;
+    public static boolean enableOreDictCompat;
     public static float globeMaxSpeed;
     public static float globeSpeedAcceleration;
     public static float globeSpeedDeceleration;
@@ -115,6 +117,12 @@ public class Config {
             .getBoolean("enableIngotPile", CATEGORY_CONTENT, true, "Whether to enable the ingot pile block.");
         enableLabel = configuration
             .getBoolean("enableLabel", CATEGORY_CONTENT, false, "Whether to enable the label block.");
+
+        enableOreDictCompat = configuration.getBoolean(
+            "enableOreDictCompat",
+            CATEGORY_COMPAT,
+            true,
+            "Whether to assign new oredictionary to some mod materials that are by default missing of any.");
 
         enableIngotPileModification = configuration.getBoolean(
             "enableIngotPileModification",

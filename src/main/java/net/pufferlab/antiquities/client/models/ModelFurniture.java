@@ -40,6 +40,16 @@ public abstract class ModelFurniture extends ModelBase {
         bb_main.render(Constants.ModelConstant);
     }
 
+    public void render(ModelRenderer bb_second, String type) {
+        if (type == null) {
+            bindTex(getName() + "_model");
+        } else {
+            bindTex(type + "_" + getName());
+        }
+        bb_second.rotateAngleX = (float) Math.toRadians(180);
+        bb_second.render(Constants.ModelConstant);
+    }
+
     public void render(RenderBlocks renderblocks, Tessellator tess, Block block, int meta, int x, int y, int z) {
         bb_main.rotateAngleX = (float) Math.toRadians(180);
         modelTESS.render(renderblocks, tess, block, bb_main, Constants.ModelConstant, x, y, z, meta);

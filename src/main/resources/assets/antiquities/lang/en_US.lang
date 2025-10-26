@@ -1,4 +1,6 @@
-tile.antiquities.globe.name=Globe
+tile.antiquities.earth_globe.name=Earth Globe
+tile.antiquities.sepia_globe.name=Sepia Globe
+tile.antiquities.moon_globe.name=Moon Globe
 
 tile.antiquities.oak_chair.name=Oak Chair
 tile.antiquities.spruce_chair.name=Spruce Chair

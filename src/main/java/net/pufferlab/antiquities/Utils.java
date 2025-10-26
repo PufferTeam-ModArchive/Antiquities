@@ -185,6 +185,7 @@ public class Utils {
                 String[] names = name.split("ingot");
                 if (names.length > 0) {
                     String metalName = names[1].toLowerCase();
+                    if (!Config.ingotPileMetalsList.contains(metalName)) continue;
                     metalTypes.put(key, metalName);
                     return metalName;
                 }
