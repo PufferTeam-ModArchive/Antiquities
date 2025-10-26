@@ -16,6 +16,8 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 
 @Mod(
     modid = Antiquities.MODID,
@@ -27,6 +29,7 @@ public class Antiquities {
     public static final String MODID = "antiquities";
     public static final String MODNAME = "Antiquities";
     public static final Logger LOG = LogManager.getLogger(MODID);
+    public static final SimpleNetworkWrapper NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel(Antiquities.MODID);
 
     @SidedProxy(
         clientSide = "net.pufferlab.antiquities.ClientProxy",
@@ -57,6 +60,7 @@ public class Antiquities {
             MinecraftForge.EVENT_BUS.register(pileHandler);
         }
         proxy.registerRenders();
+        proxy.registerMessages();
     }
 
     @Mod.EventHandler
