@@ -18,6 +18,7 @@ public class ClientProxy extends CommonProxy {
     int clockRenderID;
     int pedestalRenderID;
     int pileRenderID;
+    int couchRenderID;
 
     @Override
     public void registerRenders() {
@@ -48,6 +49,8 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerBlockHandler(new BlockPedestalRender(pedestalRenderID));
         pileRenderID = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(new BlockPileRender(pileRenderID));
+        couchRenderID = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new BlockCouchRender(couchRenderID));
     }
 
     @Override
@@ -98,5 +101,10 @@ public class ClientProxy extends CommonProxy {
     @Override
     public int getPileRenderID() {
         return pileRenderID;
+    }
+
+    @Override
+    public int getCouchRenderID() {
+        return couchRenderID;
     }
 }

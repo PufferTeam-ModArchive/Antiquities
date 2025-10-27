@@ -5,7 +5,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.pufferlab.antiquities.*;
@@ -34,8 +33,7 @@ public class BlockGlobe extends BlockMetaContainer {
     public void onBlockPlacedBy(World worldIn, int x, int y, int z, EntityLivingBase placer, ItemStack itemIn) {
         super.onBlockPlacedBy(worldIn, x, y, z, placer, itemIn);
 
-        int yaw = MathHelper.floor_double((double) (placer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-        int metayaw = Utils.getDirectionXZYaw(yaw);
+        int metayaw = Utils.getMetaYaw(placer.rotationYaw);
         TileEntityGlobe globe = (TileEntityGlobe) worldIn.getTileEntity(x, y, z);
         if (globe != null) {
             globe.setFacingMeta(metayaw);

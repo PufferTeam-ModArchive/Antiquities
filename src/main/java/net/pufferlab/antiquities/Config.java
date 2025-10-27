@@ -40,6 +40,7 @@ public class Config {
     public static boolean enableClock;
     public static boolean enableGlobe;
     public static boolean enableIngotPile;
+    public static boolean enableCouch;
 
     public static boolean enableIngotPileModification;
     public static String[] ingotPileMetals;
@@ -120,6 +121,8 @@ public class Config {
             .getBoolean("enableIngotPile", CATEGORY_CONTENT, true, "Whether to enable the ingot pile block.");
         enableLabel = configuration
             .getBoolean("enableLabel", CATEGORY_CONTENT, false, "Whether to enable the label block.");
+        enableCouch = configuration
+            .getBoolean("enableCouch", CATEGORY_CONTENT, true, "Whether to enable the couch block.");
 
         enableOreDictCompat = configuration.getBoolean(
             "enableOreDictCompat",

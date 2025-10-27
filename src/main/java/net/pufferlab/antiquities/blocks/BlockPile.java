@@ -17,7 +17,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -66,8 +65,7 @@ public class BlockPile extends BlockAntiquities {
     public void onBlockPlacedBy(World worldIn, int x, int y, int z, EntityLivingBase placer, ItemStack itemIn) {
         super.onBlockPlacedBy(worldIn, x, y, z, placer, itemIn);
 
-        int yaw = MathHelper.floor_double((double) (placer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-        int metayaw = Utils.getDirectionXZYaw(yaw);
+        int metayaw = Utils.getMetaYaw(placer.rotationYaw);
         TileEntityPile pile = (TileEntityPile) worldIn.getTileEntity(x, y, z);
         pile.setInventorySlotContentsUpdate(0, placer.getHeldItem());
         if (pile != null) {

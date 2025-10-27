@@ -6,6 +6,7 @@ import java.util.Map;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 import net.minecraftforge.oredict.OreDictionary;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -78,6 +79,11 @@ public class Utils {
         }
 
         return 0;
+    }
+
+    public static int getMetaYaw(float rotationYaw) {
+        int yaw = MathHelper.floor_double((double) (rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+        return getDirectionXZYaw(yaw);
     }
 
     public static int getBlockX(int side, int x) {

@@ -377,10 +377,8 @@ public class ModelTESS {
                     }
                     renderblocks2.overrideBlockTexture = block.getIcon(index, meta);
                     if (renderblocks.hasOverrideBlockTexture() && Config.renderBreakingTexture) {
-                        renderblocks.field_152631_f = true;
                         renderblocks.setRenderBounds(minX, minY, minZ, maxX, maxY, maxZ);
                         renderblocks.renderStandardBlock(block, x, y, z);
-                        renderblocks.field_152631_f = false;
                     } else if (Config.legacyTextures && (block instanceof BlockTable || block instanceof BlockShelf
                         || block instanceof BlockChair
                         || block instanceof BlockRack)) {

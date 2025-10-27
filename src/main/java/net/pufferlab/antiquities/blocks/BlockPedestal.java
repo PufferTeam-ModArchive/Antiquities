@@ -15,7 +15,6 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.pufferlab.antiquities.Antiquities;
@@ -40,8 +39,7 @@ public class BlockPedestal extends BlockMetaContainer {
     public void onBlockPlacedBy(World worldIn, int x, int y, int z, EntityLivingBase placer, ItemStack itemIn) {
         super.onBlockPlacedBy(worldIn, x, y, z, placer, itemIn);
 
-        int yaw = MathHelper.floor_double((double) (placer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-        int metayaw = Utils.getDirectionXZYaw(yaw);
+        int metayaw = Utils.getMetaYaw(placer.rotationYaw);
         TileEntityPedestal pedestal = (TileEntityPedestal) worldIn.getTileEntity(x, y, z);
         if (pedestal != null) {
             pedestal.setFacingMeta(metayaw);

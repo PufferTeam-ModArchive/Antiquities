@@ -66,6 +66,7 @@ public class Registry {
     public static Block globe;
     public static Block clock;
     public static Block pile;
+    public static Block couch;
 
     public static final CreativeTabs creativeTab = new CreativeTabs(Antiquities.MODID + "CreativeTab") {
 
@@ -136,6 +137,7 @@ public class Registry {
         globe = new BlockGlobe(Constants.globeTypes);
         clock = new BlockClock();
         pile = new BlockPile();
+        couch = new BlockCouch(Constants.colorTypes);
         register(TileEntityChair.class, "chair");
         register(TileEntityTable.class, "table");
         register(TileEntityShelf.class, "shelf");
@@ -146,6 +148,7 @@ public class Registry {
         register(TileEntityGlobe.class, "globe");
         register(TileEntityClock.class, "clock");
         register(TileEntityPile.class, "pile");
+        register(TileEntityCouch.class, "couch");
 
         register(chair, "chair");
         register(shelf_0, "shelf");
@@ -203,6 +206,7 @@ public class Registry {
         register(globe, "globe");
         register(clock, "clock");
         register(pile, "pile");
+        register(couch, "couch");
     }
 
     public void init() {

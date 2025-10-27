@@ -69,4 +69,9 @@ public class CommonProxy {
     public int getPileRenderID() {
         return 0;
     }
+
+    public int getCouchRenderID() {
+        return 0;
+    }
+
 }

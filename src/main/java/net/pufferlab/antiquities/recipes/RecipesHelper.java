@@ -72,6 +72,17 @@ public class RecipesHelper {
         addShapedRecipe(new ItemStack(Registry.pedestal, 1, 0), " S ", "SSS", 'S', stone_slab);
         addShapedRecipe(new ItemStack(Registry.clock, 1, 0), " W ", "WCW", " W ", 'W', "plankWood", 'C', clock);
 
+        for (int i = 0; i < Constants.colorTypes.length; i++) {
+            addShapedRecipe(
+                new ItemStack(Registry.couch, 1, i),
+                "S  ",
+                "SSS",
+                "LLL",
+                'S',
+                new ItemStack(Blocks.wool, 1, i),
+                'L',
+                "plankWood");
+        }
     }
 
     public ItemStack getModItem(String name, String wood, int number) {

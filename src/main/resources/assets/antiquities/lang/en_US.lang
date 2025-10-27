@@ -2,6 +2,23 @@ tile.antiquities.earth_globe.name=Earth Globe
 tile.antiquities.sepia_globe.name=Sepia Globe
 tile.antiquities.moon_globe.name=Moon Globe
 
+tile.antiquities.white_couch.name=White Couch
+tile.antiquities.orange_couch.name=Orange Couch
+tile.antiquities.magenta_couch.name=Magenta Couch
+tile.antiquities.light_blue_couch.name=Light Blue Couch
+tile.antiquities.yellow_couch.name=Yellow Couch
+tile.antiquities.lime_couch.name=Lime Couch
+tile.antiquities.pink_couch.name=Pink Couch
+tile.antiquities.gray_couch.name=Gray Couch
+tile.antiquities.light_gray_couch.name=Light Gray Couch
+tile.antiquities.cyan_couch.name=Cyan Couch
+tile.antiquities.purple_couch.name=Purple Couch
+tile.antiquities.blue_couch.name=Blue Couch
+tile.antiquities.brown_couch.name=Brown Couch
+tile.antiquities.green_couch.name=Green Couch
+tile.antiquities.red_couch.name=Red Couch
+tile.antiquities.black_couch.name=Black Couch
+
 tile.antiquities.oak_chair.name=Oak Chair
 tile.antiquities.spruce_chair.name=Spruce Chair
 tile.antiquities.birch_chair.name=Birch Chair

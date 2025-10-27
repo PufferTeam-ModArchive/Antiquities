@@ -17,13 +17,12 @@ import net.pufferlab.antiquities.Config;
 import net.pufferlab.antiquities.Constants;
 import net.pufferlab.antiquities.Utils;
 import net.pufferlab.antiquities.entity.EntitySeat;
-import net.pufferlab.antiquities.tileentities.TileEntityChair;
+import net.pufferlab.antiquities.tileentities.TileEntityCouch;
 
-public class BlockChair extends BlockMetaContainer {
+public class BlockCouch extends BlockMetaContainer {
 
-    public BlockChair(String... materials) {
-        super(Material.wood, materials, "chair", Constants.none);
-        this.setBlockBounds(0.1F, 0F, 0.1F, 0.9F, 1F, 0.9F);
+    public BlockCouch(String... materials) {
+        super(Material.wood, materials, "couch", Constants.none);
     }
 
     @Override
@@ -69,19 +68,19 @@ public class BlockChair extends BlockMetaContainer {
         super.onBlockPlacedBy(worldIn, x, y, z, placer, itemIn);
 
         int metayaw = Utils.getMetaYaw(placer.rotationYaw);
-        TileEntityChair chair = (TileEntityChair) worldIn.getTileEntity(x, y, z);
-        if (chair != null) {
-            chair.setFacingMeta(metayaw);
+        TileEntityCouch couch = (TileEntityCouch) worldIn.getTileEntity(x, y, z);
+        if (couch != null) {
+            couch.setFacingMeta(metayaw);
         }
     }
 
     public boolean canRegister() {
-        return Config.enableChair;
+        return Config.enableCouch;
     }
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileEntityChair();
+        return new TileEntityCouch();
     }
 
     @Override
@@ -106,6 +105,6 @@ public class BlockChair extends BlockMetaContainer {
 
     @Override
     public int getRenderType() {
-        return Antiquities.proxy.getChairRenderID();
+        return Antiquities.proxy.getCouchRenderID();
     }
 }

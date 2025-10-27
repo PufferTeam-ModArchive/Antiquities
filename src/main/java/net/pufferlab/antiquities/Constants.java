@@ -24,6 +24,9 @@ public class Constants {
         "abyssalnite", "liquifiedcoralium", "dreadium", "ethaxium", "arkenium", "valkyrie", "divineral", "elvorium",
         "mauftrium", "muspelheimpower", "niflheimpower", "netherite", "starsteel", "tritanium", "efrine", "koboldite",
         "brickseared", "bricksearednether", "coraliumbrick", "ethaxiumbrick" };
+
+    public static final String[] colorTypes = new String[] { "white", "orange", "magenta", "light_blue", "yellow",
+        "lime", "pink", "gray", "light_gray", "cyan", "purple", "blue", "brown", "green", "red", "black" };
     public static final String[] stoneTypes = new String[] { "stone" };
     public static final float ModelConstant = 0.0625f;
 }
