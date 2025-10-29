@@ -1,10 +1,12 @@
 package net.pufferlab.antiquities;
 
 import net.pufferlab.antiquities.client.renderer.*;
+import net.pufferlab.antiquities.events.PacketGlobeUpdate;
 import net.pufferlab.antiquities.tileentities.*;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 public class ClientProxy extends CommonProxy {
 
@@ -51,6 +53,12 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerBlockHandler(new BlockPileRender(pileRenderID));
         couchRenderID = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(new BlockCouchRender(couchRenderID));
+    }
+
+    @Override
+    public void registerMessages() {
+        int id = 0;
+        Antiquities.NETWORK.registerMessage(PacketGlobeUpdate.class, PacketGlobeUpdate.class, id++, Side.CLIENT);
     }
 
     @Override

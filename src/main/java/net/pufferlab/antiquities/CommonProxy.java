@@ -1,12 +1,9 @@
 package net.pufferlab.antiquities;
 
-import net.pufferlab.antiquities.events.PacketGlobeUpdate;
-
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.relauncher.Side;
 
 public class CommonProxy {
 
@@ -19,10 +16,7 @@ public class CommonProxy {
 
     public void registerRenders() {}
 
-    public void registerMessages() {
-        int id = 0;
-        Antiquities.NETWORK.registerMessage(PacketGlobeUpdate.class, PacketGlobeUpdate.class, id++, Side.CLIENT);
-    }
+    public void registerMessages() {}
 
     public void init(FMLInitializationEvent event) {}
 
