@@ -189,7 +189,7 @@ public class Utils {
             String name = OreDictionary.getOreName(oreID);
             if (name.contains("ingot")) {
                 String[] names = name.split("ingot");
-                if (names.length > 0) {
+                if (names.length > 1) {
                     String metalName = names[1].toLowerCase();
                     if (!Config.ingotPileMetalsList.contains(metalName)) continue;
                     metalTypes.put(key, metalName);
