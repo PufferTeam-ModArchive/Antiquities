@@ -26,6 +26,11 @@ public class BlockCouchRender extends BlockFurnitureRender {
         model.setFacing(0);
         model.side1.isHidden = false;
         model.side2.isHidden = false;
+        model.corners.isHidden = true;
+        model.leg1.isHidden = false;
+        model.leg2.isHidden = false;
+        model.leg3.isHidden = false;
+        model.leg4.isHidden = false;
         model.render(wood);
     }
 
@@ -63,37 +68,92 @@ public class BlockCouchRender extends BlockFurnitureRender {
         model.side1.isHidden = false;
         model.side2.isHidden = false;
 
+        model.corners.isHidden = false;
+        model.corner1.isHidden = true;
+        model.corner2.isHidden = true;
+
+        model.leg1.isHidden = false;
+        model.leg2.isHidden = false;
+        model.leg3.isHidden = false;
+        model.leg4.isHidden = false;
+
         if (facing == 1) {
             if (connectEast) {
                 model.side2.isHidden = true;
+                model.leg2.isHidden = true;
+                model.leg4.isHidden = true;
             }
             if (connectWest) {
                 model.side1.isHidden = true;
+                model.leg1.isHidden = true;
+                model.leg3.isHidden = true;
+            }
+            if (connectEast && connectNorth) {
+                model.corner2.isHidden = false;
+            }
+            if (connectWest && connectNorth) {
+                model.corner1.isHidden = false;
             }
         }
         if (facing == 2) {
             if (connectNorth) {
                 model.side2.isHidden = true;
+                model.leg2.isHidden = true;
+                model.leg4.isHidden = true;
             }
             if (connectSouth) {
                 model.side1.isHidden = true;
+                model.leg1.isHidden = true;
+                model.leg3.isHidden = true;
+            }
+            if (connectNorth && connectWest) {
+                model.corner2.isHidden = false;
+            }
+            if (connectSouth && connectWest) {
+                model.corner1.isHidden = false;
             }
         }
         if (facing == 3) {
             if (connectEast) {
                 model.side1.isHidden = true;
+                model.leg1.isHidden = true;
+                model.leg3.isHidden = true;
             }
             if (connectWest) {
                 model.side2.isHidden = true;
+                model.leg2.isHidden = true;
+                model.leg4.isHidden = true;
+            }
+            if (connectSouth && connectWest) {
+                model.corner2.isHidden = false;
+            }
+            if (connectSouth && connectEast) {
+                model.corner1.isHidden = false;
             }
         }
         if (facing == 4) {
             if (connectNorth) {
                 model.side1.isHidden = true;
+                model.leg1.isHidden = true;
+                model.leg3.isHidden = true;
             }
             if (connectSouth) {
                 model.side2.isHidden = true;
+                model.leg2.isHidden = true;
+                model.leg4.isHidden = true;
             }
+            if (connectSouth && connectEast) {
+                model.corner2.isHidden = false;
+            }
+            if (connectSouth && connectWest) {
+                model.corner1.isHidden = false;
+            }
+        }
+        if (!model.corner2.isHidden) {
+            model.side1.isHidden = true;
+        }
+        if (!model.corner1.isHidden) {
+            model.side2.isHidden = true;
         }
         model.render(renderer, tess, block, meta, x, y, z);
 

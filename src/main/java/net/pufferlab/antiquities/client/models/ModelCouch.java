@@ -11,6 +11,9 @@ public class ModelCouch extends ModelFurniture {
     public ModelRenderer leg4;
     public ModelRenderer side1;
     public ModelRenderer side2;
+    public ModelRenderer corners;
+    public ModelRenderer corner1;
+    public ModelRenderer corner2;
 
     public ModelCouch() {
         super(64, 64);
@@ -46,6 +49,20 @@ public class ModelCouch extends ModelFurniture {
         side2.setRotationPoint(0.0F, 0.0F, 0.0F);
         side2.cubeList.add(new ModelBox(side2, 0, 39, -11.0F, -14.0F + 8F, -7.5F, 4, 7, 15, 0.0F));
         bb_main.addChild(side2);
+
+        corners = new ModelRenderer(this);
+        corners.setRotationPoint(0.0F, 0.0F, 0.0F);
+        bb_main.addChild(corners);
+
+        corner1 = new ModelRenderer(this);
+        corner1.setRotationPoint(0.0F, 0.0F, 0.0F);
+        corner1.cubeList.add(new ModelBox(corner1, 16, 17, -8.0F, -20.0F + 8F, -8.0F, 5, 11, 11, 0.0F));
+        corners.addChild(corner1);
+
+        corner2 = new ModelRenderer(this);
+        corner2.setRotationPoint(0.0F, 0.0F, 0.0F);
+        corner2.cubeList.add(new ModelBox(corner2, 16, 17, 3.0F, -20.0F + 8F, -8.0F, 5, 11, 11, 0.0F));
+        corners.addChild(corner2);
     }
 
     public String getName() {
