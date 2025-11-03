@@ -45,9 +45,6 @@ public class Config {
     public static boolean enableIngotPileModification;
     public static String[] ingotPileMetals;
 
-    public static ArrayList<String> ingotPileMetalsList = new ArrayList<>();
-    public static Map<String, Integer> ingotPileMetalsMap = new HashMap<>();
-
     public static void synchronizeConfiguration(File configFile) {
         Configuration configuration = new Configuration(configFile);
 
@@ -153,11 +150,6 @@ public class Config {
     }
 
     public static void refreshWhitelists() {
-        ingotPileMetalsList.addAll(Arrays.asList(ingotPileMetals));
-
-        for (int i = 0; i < ingotPileMetals.length; i++) {
-            ingotPileMetalsMap.put(ingotPileMetals[i], i);
-        }
 
         for (String item : toolsWhitelist) {
             ItemStack itemstack = Utils.getItem(item + ":*:*");

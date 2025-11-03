@@ -145,7 +145,7 @@ public class BlockCouchRender extends BlockFurnitureRender {
             if (connectSouth && connectEast) {
                 model.corner2.isHidden = false;
             }
-            if (connectSouth && connectWest) {
+            if (connectNorth && connectEast) {
                 model.corner1.isHidden = false;
             }
         }

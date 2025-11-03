@@ -191,7 +191,7 @@ public class Utils {
                 String[] names = name.split("ingot");
                 if (names.length > 1) {
                     String metalName = names[1].toLowerCase();
-                    if (!Config.ingotPileMetalsList.contains(metalName)) continue;
+                    if (!Utils.containsExactMatch(Config.ingotPileMetals, metalName)) continue;
                     metalTypes.put(key, metalName);
                     return metalName;
                 }
@@ -203,7 +203,7 @@ public class Utils {
     public static boolean isValidMetal(ItemStack item) {
         String metal = getMetalType(item);
         if (metal == null) return false;
-        if (Config.onlyAllowSupportedIngots && !Config.ingotPileMetalsList.contains(metal)) return false;
+        if (Config.onlyAllowSupportedIngots && !Utils.containsExactMatch(Config.ingotPileMetals, metal)) return false;
         return true;
     }
 
