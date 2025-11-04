@@ -44,8 +44,8 @@ public class ModelPile extends ModelFurniture {
             posX = posX + 7;
         }
         posZ = posZ - (4 * i2);
-        layer.cubeList.add(
-            new ModelBoxSpecial(bb_main, 0, 0, (float) posX, (float) posY, (float) posZ, 6, 2, 3, 0.0F, index));
+        layer.cubeList
+            .add(new ModelBoxSpecial(bb_main, 0, 0, (float) posX, (float) posY, (float) posZ, 6, 2, 3, 0.0F, index));
     }
 
     public void resetFacing() {

@@ -4,9 +4,10 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.pufferlab.antiquities.Config;
 import net.pufferlab.antiquities.blocks.BlockMetaContainer;
-import net.pufferlab.antiquities.blocks.BlockTable;
+import net.pufferlab.antiquities.client.helper.DirectionHelper;
 import net.pufferlab.antiquities.client.models.ModelTable;
 import net.pufferlab.antiquities.tileentities.TileEntityTable;
 
@@ -60,54 +61,26 @@ public class BlockTableRender extends BlockFurnitureRender {
         int meta = world.getBlockMetadata(table.xCoord, table.yCoord, table.zCoord);
         Tessellator tess = Tessellator.instance;
 
-        boolean connectNorth = false;
-        Block blockNorth = world.getBlock(x, y, z - 1);
-        if (blockNorth instanceof BlockTable) {
-            connectNorth = true;
-        }
-        Block blockNorthWest = world.getBlock(x - 1, y, z - 1);
-        boolean connectNorthWest = false;
-        if (blockNorthWest instanceof BlockTable) {
-            connectNorthWest = true;
-        }
-        boolean connectSouth = false;
-        Block blockSouth = world.getBlock(x, y, z + 1);
-        if (blockSouth instanceof BlockTable) {
-            connectSouth = true;
-        }
-        Block blockSouthWest = world.getBlock(x - 1, y, z + 1);
-        boolean connectSouthWest = false;
-        if (blockSouthWest instanceof BlockTable) {
-            connectSouthWest = true;
-        }
-        boolean connectWest = false;
-        Block blockWest = world.getBlock(x - 1, y, z);
-        if (blockWest instanceof BlockTable) {
-            connectWest = true;
-        }
-        Block blockNorthEast = world.getBlock(x + 1, y, z + 1);
-        boolean connectNorthEast = false;
-        if (blockNorthEast instanceof BlockTable) {
-            connectNorthEast = true;
-        }
-        boolean connectEast = false;
-        Block blockEast = world.getBlock(x + 1, y, z);
-        if (blockEast instanceof BlockTable) {
-            connectEast = true;
-        }
-        Block blockSouthEast = world.getBlock(x + 1, y, z - 1);
-        boolean connectSouthEast = false;
-        if (blockSouthEast instanceof BlockTable) {
-            connectSouthEast = true;
-        }
+        boolean connectNorth = DirectionHelper.isConnected(world, x, y, z, ForgeDirection.NORTH);
+        boolean connectNorthWest = DirectionHelper
+            .isConnected(world, x, y, z, ForgeDirection.NORTH, ForgeDirection.WEST);
+        boolean connectSouth = DirectionHelper.isConnected(world, x, y, z, ForgeDirection.SOUTH);
+        boolean connectSouthWest = DirectionHelper
+            .isConnected(world, x, y, z, ForgeDirection.SOUTH, ForgeDirection.WEST);
+        boolean connectWest = DirectionHelper.isConnected(world, x, y, z, ForgeDirection.WEST);
+        boolean connectNorthEast = DirectionHelper
+            .isConnected(world, x, y, z, ForgeDirection.NORTH, ForgeDirection.EAST);
+        boolean connectEast = DirectionHelper.isConnected(world, x, y, z, ForgeDirection.EAST);
+        boolean connectSouthEast = DirectionHelper
+            .isConnected(world, x, y, z, ForgeDirection.SOUTH, ForgeDirection.EAST);
 
         model.side3.isHidden = connectNorth;
         model.side4.isHidden = connectSouth;
         model.side1.isHidden = connectEast;
         model.side2.isHidden = connectWest;
 
-        model.ext2.isHidden = !connectSouth || (connectEast && connectNorthEast);
-        model.ext1.isHidden = !connectEast || (connectNorth && connectSouthEast);
+        model.ext2.isHidden = !connectSouth || (connectEast && connectSouthEast);
+        model.ext1.isHidden = !connectEast || (connectNorth && connectNorthEast);
         model.ext4.isHidden = !connectNorth || (connectWest && connectNorthWest);
         model.ext3.isHidden = !connectWest || (connectSouth && connectSouthWest);
 
@@ -142,7 +115,7 @@ public class BlockTableRender extends BlockFurnitureRender {
 
         model.offset4 = 0;
         model.offset4Y = 0;
-        if (connectNorth && connectEast && !connectSouthEast) {
+        if (connectNorth && connectEast && !connectNorthEast) {
             model.offset4 = 3;
         } else if (connectNorth && connectEast) {
             model.offset4Y = 1;
@@ -154,7 +127,7 @@ public class BlockTableRender extends BlockFurnitureRender {
 
         model.offset3 = 0;
         model.offset3Y = 0;
-        if (connectSouth && connectEast && !connectNorthEast) {
+        if (connectSouth && connectEast && !connectSouthEast) {
             model.offset3 = 3;
         } else if (connectSouth && connectEast) {
             model.offset3Y = 1;
