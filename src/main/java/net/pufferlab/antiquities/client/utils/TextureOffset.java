@@ -6,7 +6,6 @@ public class TextureOffset {
     public final int textureOffsetX;
     /** The y coordinate offset of the texture */
     public final int textureOffsetY;
-    private static final String __OBFID = "CL_00000875";
 
     public TextureOffset(int p_i1175_1_, int p_i1175_2_) {
         this.textureOffsetX = p_i1175_1_;

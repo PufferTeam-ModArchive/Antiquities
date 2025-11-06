@@ -41,7 +41,6 @@ public class ModelRenderer {
     public float offsetX;
     public float offsetY;
     public float offsetZ;
-    private static final String __OBFID = "CL_00000874";
 
     public ModelRenderer(ModelBase p_i1172_1_, String p_i1172_2_) {
         this.textureWidth = 64.0F;
