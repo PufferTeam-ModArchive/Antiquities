@@ -21,6 +21,7 @@ import net.pufferlab.antiquities.Antiquities;
 import net.pufferlab.antiquities.Config;
 import net.pufferlab.antiquities.Constants;
 import net.pufferlab.antiquities.Utils;
+import net.pufferlab.antiquities.client.renderer.BlockFurnitureRender;
 import net.pufferlab.antiquities.tileentities.TileEntityPedestal;
 
 public class BlockPedestal extends BlockMetaContainer {
@@ -183,5 +184,10 @@ public class BlockPedestal extends BlockMetaContainer {
     @Override
     public int getRenderType() {
         return Antiquities.proxy.getPedestalRenderID();
+    }
+
+    @Override
+    public BlockFurnitureRender getRenderBlock() {
+        return Antiquities.proxy.getPedestalRenderBlock();
     }
 }

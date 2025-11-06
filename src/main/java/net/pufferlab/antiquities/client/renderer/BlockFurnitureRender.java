@@ -1,9 +1,12 @@
 package net.pufferlab.antiquities.client.renderer;
 
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.pufferlab.antiquities.blocks.BlockMetaContainer;
 import net.pufferlab.antiquities.client.models.ModelFurniture;
@@ -86,6 +89,28 @@ public abstract class BlockFurnitureRender implements ISimpleBlockRenderingHandl
         }
 
         return false;
+    }
+
+    public List<AxisAlignedBB> buildBlockBounds(IBlockAccess world, int x, int y, int z, Block block) {
+        TileEntity te = world.getTileEntity(x, y, z);
+        if (model == null) {
+            model = this.getModelObj();
+        }
+        if (te == null) return null;
+        int num = 0;
+        if (block instanceof BlockMetaContainer blockmeta) {
+            num = blockmeta.getBlockType();
+        }
+        if (model != null) {
+            if (model[num] != null) {
+                if (te instanceof TileEntityMetaFacing tef) {
+                    model[num].setFacing(tef.facingMeta);
+                }
+                return model[num].buildBounds();
+            }
+        }
+
+        return null;
     }
 
     public boolean useAORender() {

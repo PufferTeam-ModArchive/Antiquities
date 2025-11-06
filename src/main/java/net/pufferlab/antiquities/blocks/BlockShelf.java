@@ -20,6 +20,7 @@ import net.pufferlab.antiquities.Antiquities;
 import net.pufferlab.antiquities.Config;
 import net.pufferlab.antiquities.Constants;
 import net.pufferlab.antiquities.Utils;
+import net.pufferlab.antiquities.client.renderer.BlockFurnitureRender;
 import net.pufferlab.antiquities.tileentities.TileEntityShelf;
 
 public class BlockShelf extends BlockMetaContainer {
@@ -261,5 +262,10 @@ public class BlockShelf extends BlockMetaContainer {
     @Override
     public int getRenderType() {
         return Antiquities.proxy.getShelfRenderID();
+    }
+
+    @Override
+    public BlockFurnitureRender getRenderBlock() {
+        return Antiquities.proxy.getShelfRenderBlock();
     }
 }

@@ -16,6 +16,7 @@ import net.pufferlab.antiquities.Antiquities;
 import net.pufferlab.antiquities.Config;
 import net.pufferlab.antiquities.Constants;
 import net.pufferlab.antiquities.Utils;
+import net.pufferlab.antiquities.client.renderer.BlockFurnitureRender;
 import net.pufferlab.antiquities.entity.EntitySeat;
 import net.pufferlab.antiquities.tileentities.TileEntityChair;
 
@@ -107,5 +108,10 @@ public class BlockChair extends BlockMetaContainer {
     @Override
     public int getRenderType() {
         return Antiquities.proxy.getChairRenderID();
+    }
+
+    @Override
+    public BlockFurnitureRender getRenderBlock() {
+        return Antiquities.proxy.getChairRenderBlock();
     }
 }

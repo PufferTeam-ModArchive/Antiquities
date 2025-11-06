@@ -1,7 +1,7 @@
 package net.pufferlab.antiquities.client.models;
 
-import net.minecraft.client.model.ModelBox;
-import net.minecraft.client.model.ModelRenderer;
+import net.pufferlab.antiquities.client.utils.ModelBox;
+import net.pufferlab.antiquities.client.utils.ModelRenderer;
 
 public class ModelCouch extends ModelFurniture {
 

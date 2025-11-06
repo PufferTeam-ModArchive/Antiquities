@@ -1,7 +1,4 @@
-package net.pufferlab.antiquities.client.helper;
-
-import net.minecraft.client.model.ModelBox;
-import net.minecraft.client.model.ModelRenderer;
+package net.pufferlab.antiquities.client.utils;
 
 public class ModelBoxSpecial extends ModelBox {
 

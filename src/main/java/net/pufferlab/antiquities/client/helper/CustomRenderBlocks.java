@@ -1,13 +1,13 @@
 package net.pufferlab.antiquities.client.helper;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.model.ModelBox;
-import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.client.model.PositionTextureVertex;
-import net.minecraft.client.model.TexturedQuad;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
+import net.pufferlab.antiquities.client.utils.ModelBox;
+import net.pufferlab.antiquities.client.utils.ModelRenderer;
+import net.pufferlab.antiquities.client.utils.PositionTextureVertex;
+import net.pufferlab.antiquities.client.utils.TexturedQuad;
 
 public class CustomRenderBlocks extends RenderBlocks {
 

@@ -1,22 +1,28 @@
 package net.pufferlab.antiquities.client.models;
 
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.util.AxisAlignedBB;
 import net.pufferlab.antiquities.Antiquities;
 import net.pufferlab.antiquities.Constants;
+import net.pufferlab.antiquities.client.helper.BBoxBuilder;
 import net.pufferlab.antiquities.client.helper.ModelTESS;
+import net.pufferlab.antiquities.client.utils.ModelBase;
+import net.pufferlab.antiquities.client.utils.ModelRenderer;
 
 public abstract class ModelFurniture extends ModelBase {
 
     public ModelRenderer bb_main;
     public ModelTESS modelTESS;
+    public BBoxBuilder bbBuilder;
 
     public ModelFurniture(int width, int height) {
         modelTESS = new ModelTESS();
+        bbBuilder = new BBoxBuilder();
 
         textureWidth = width;
         textureHeight = height;
@@ -59,6 +65,11 @@ public abstract class ModelFurniture extends ModelBase {
         int z) {
         bb_main.rotateAngleX = (float) Math.toRadians(180);
         modelTESS.renderBlock(renderblocks, tess, block, bb_main, Constants.ModelConstant, x, y, z, meta);
+    }
+
+    public List<AxisAlignedBB> buildBounds() {
+        bb_main.rotateAngleX = (float) Math.toRadians(180);
+        return bbBuilder.buildBB(bb_main, Constants.ModelConstant);
     }
 
     double add = 0;

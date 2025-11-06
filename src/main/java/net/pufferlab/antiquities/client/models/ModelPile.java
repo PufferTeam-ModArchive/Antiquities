@@ -1,9 +1,9 @@
 package net.pufferlab.antiquities.client.models;
 
-import net.minecraft.client.model.ModelRenderer;
 import net.pufferlab.antiquities.Config;
 import net.pufferlab.antiquities.Utils;
-import net.pufferlab.antiquities.client.helper.ModelBoxSpecial;
+import net.pufferlab.antiquities.client.utils.ModelBoxSpecial;
+import net.pufferlab.antiquities.client.utils.ModelRenderer;
 
 public class ModelPile extends ModelFurniture {
 

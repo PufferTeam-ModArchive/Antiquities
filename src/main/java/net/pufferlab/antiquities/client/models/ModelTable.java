@@ -1,8 +1,8 @@
 package net.pufferlab.antiquities.client.models;
 
-import net.minecraft.client.model.ModelBox;
-import net.minecraft.client.model.ModelRenderer;
 import net.pufferlab.antiquities.Config;
+import net.pufferlab.antiquities.client.utils.ModelBox;
+import net.pufferlab.antiquities.client.utils.ModelRenderer;
 
 public class ModelTable extends ModelFurniture {
 

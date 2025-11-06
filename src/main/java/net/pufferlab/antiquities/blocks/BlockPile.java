@@ -23,6 +23,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.pufferlab.antiquities.Antiquities;
 import net.pufferlab.antiquities.Config;
 import net.pufferlab.antiquities.Utils;
+import net.pufferlab.antiquities.client.renderer.BlockFurnitureRender;
 import net.pufferlab.antiquities.tileentities.TileEntityPile;
 
 import cpw.mods.fml.relauncher.Side;
@@ -407,5 +408,10 @@ public class BlockPile extends BlockAntiquities {
     @Override
     public int getRenderType() {
         return Antiquities.proxy.getPileRenderID();
+    }
+
+    @Override
+    public BlockFurnitureRender getRenderBlock() {
+        return Antiquities.proxy.getPileRenderBlock();
     }
 }

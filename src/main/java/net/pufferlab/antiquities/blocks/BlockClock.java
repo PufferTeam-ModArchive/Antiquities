@@ -16,6 +16,7 @@ import net.pufferlab.antiquities.Antiquities;
 import net.pufferlab.antiquities.Config;
 import net.pufferlab.antiquities.Registry;
 import net.pufferlab.antiquities.Utils;
+import net.pufferlab.antiquities.client.renderer.BlockFurnitureRender;
 import net.pufferlab.antiquities.tileentities.TileEntityClock;
 
 import cpw.mods.fml.relauncher.Side;
@@ -123,4 +124,8 @@ public class BlockClock extends BlockAntiquities {
         return Antiquities.proxy.getClockRenderID();
     }
 
+    @Override
+    public BlockFurnitureRender getRenderBlock() {
+        return Antiquities.proxy.getClockRenderBlock();
+    }
 }

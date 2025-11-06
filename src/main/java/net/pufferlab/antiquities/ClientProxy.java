@@ -57,8 +57,7 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void registerMessages() {
-        int id = 0;
-        Antiquities.NETWORK.registerMessage(PacketGlobeUpdate.class, PacketGlobeUpdate.class, id++, Side.CLIENT);
+        Antiquities.NETWORK.registerMessage(PacketGlobeUpdate.class, PacketGlobeUpdate.class, 0, Side.CLIENT);
     }
 
     @Override

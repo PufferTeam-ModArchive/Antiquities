@@ -8,6 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.pufferlab.antiquities.*;
+import net.pufferlab.antiquities.client.renderer.BlockFurnitureRender;
 import net.pufferlab.antiquities.tileentities.TileEntityGlobe;
 
 public class BlockGlobe extends BlockMetaContainer {
@@ -74,4 +75,8 @@ public class BlockGlobe extends BlockMetaContainer {
         return Antiquities.proxy.getGlobeRenderID();
     }
 
+    @Override
+    public BlockFurnitureRender getRenderBlock() {
+        return Antiquities.proxy.getGlobeRenderBlock();
+    }
 }

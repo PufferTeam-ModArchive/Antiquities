@@ -18,6 +18,7 @@ import net.pufferlab.antiquities.Antiquities;
 import net.pufferlab.antiquities.Config;
 import net.pufferlab.antiquities.Constants;
 import net.pufferlab.antiquities.Utils;
+import net.pufferlab.antiquities.client.renderer.BlockFurnitureRender;
 import net.pufferlab.antiquities.tileentities.TileEntityJar;
 
 public class BlockJar extends BlockMetaContainer {
@@ -171,5 +172,10 @@ public class BlockJar extends BlockMetaContainer {
     @Override
     public int getRenderType() {
         return Antiquities.proxy.getJarRenderID();
+    }
+
+    @Override
+    public BlockFurnitureRender getRenderBlock() {
+        return Antiquities.proxy.getJarRenderBlock();
     }
 }

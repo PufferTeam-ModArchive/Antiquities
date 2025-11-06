@@ -1,11 +1,25 @@
 package net.pufferlab.antiquities;
 
+import net.pufferlab.antiquities.client.renderer.*;
+
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
 public class CommonProxy {
+
+    BlockChairRender chairRender = new BlockChairRender(0);
+    BlockTableRender tableRender = new BlockTableRender(0);
+    BlockShelfRender shelfRender = new BlockShelfRender(0);
+    BlockGlobeRender globeRender = new BlockGlobeRender(0);
+    BlockJarRender jarRender = new BlockJarRender(0);
+    BlockRackRender rackRender = new BlockRackRender(0);
+    BlockLabelRender labelRender = new BlockLabelRender(0);
+    BlockClockRender clockRender = new BlockClockRender(0);
+    BlockPedestalRender pedestalRender = new BlockPedestalRender(0);
+    BlockPileRender pileRender = new BlockPileRender(0);
+    BlockCouchRender couchRender = new BlockCouchRender(0);
 
     public void preInit(FMLPreInitializationEvent event) {
         Config.synchronizeConfiguration(event.getSuggestedConfigurationFile());
@@ -66,6 +80,50 @@ public class CommonProxy {
 
     public int getCouchRenderID() {
         return 0;
+    }
+
+    public BlockFurnitureRender getChairRenderBlock() {
+        return chairRender;
+    }
+
+    public BlockFurnitureRender getTableRenderBlock() {
+        return tableRender;
+    }
+
+    public BlockFurnitureRender getShelfRenderBlock() {
+        return shelfRender;
+    }
+
+    public BlockFurnitureRender getGlobeRenderBlock() {
+        return globeRender;
+    }
+
+    public BlockFurnitureRender getJarRenderBlock() {
+        return jarRender;
+    }
+
+    public BlockFurnitureRender getLabelRenderBlock() {
+        return labelRender;
+    }
+
+    public BlockFurnitureRender getRackRenderBlock() {
+        return rackRender;
+    }
+
+    public BlockFurnitureRender getClockRenderBlock() {
+        return clockRender;
+    }
+
+    public BlockFurnitureRender getPedestalRenderBlock() {
+        return pedestalRender;
+    }
+
+    public BlockFurnitureRender getPileRenderBlock() {
+        return pileRender;
+    }
+
+    public BlockFurnitureRender getCouchRenderBlock() {
+        return couchRender;
     }
 
 }

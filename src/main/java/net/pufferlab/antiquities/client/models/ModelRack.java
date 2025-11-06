@@ -1,6 +1,6 @@
 package net.pufferlab.antiquities.client.models;
 
-import net.minecraft.client.model.ModelBox;
+import net.pufferlab.antiquities.client.utils.ModelBox;
 
 public class ModelRack extends ModelFurniture {
 
