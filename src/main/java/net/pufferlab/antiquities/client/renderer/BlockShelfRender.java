@@ -1,5 +1,6 @@
 package net.pufferlab.antiquities.client.renderer;
 
+import net.pufferlab.antiquities.Antiquities;
 import net.pufferlab.antiquities.client.models.*;
 
 public class BlockShelfRender extends BlockFurnitureRender {
@@ -11,8 +12,9 @@ public class BlockShelfRender extends BlockFurnitureRender {
     ModelShelfCase model4 = new ModelShelfCase();
     ModelShelfLongCase model5 = new ModelShelfLongCase();
 
-    public BlockShelfRender(int blockComplexRenderID) {
-        super(blockComplexRenderID);
+    @Override
+    public int getRenderId() {
+        return Antiquities.proxy.getShelfRenderID();
     }
 
     @Override

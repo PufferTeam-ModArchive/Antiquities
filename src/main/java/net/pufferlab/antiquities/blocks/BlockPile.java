@@ -406,11 +406,6 @@ public class BlockPile extends BlockAntiquities {
     }
 
     @Override
-    public int getRenderType() {
-        return Antiquities.proxy.getPileRenderID();
-    }
-
-    @Override
     public BlockFurnitureRender getRenderBlock() {
         return Antiquities.proxy.getPileRenderBlock();
     }

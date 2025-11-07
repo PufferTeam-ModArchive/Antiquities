@@ -70,11 +70,6 @@ public class BlockTable extends BlockMetaContainer {
     }
 
     @Override
-    public int getRenderType() {
-        return Antiquities.proxy.getTableRenderID();
-    }
-
-    @Override
     public BlockFurnitureRender getRenderBlock() {
         return Antiquities.proxy.getTableRenderBlock();
     }

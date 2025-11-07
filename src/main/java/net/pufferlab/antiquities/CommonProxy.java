@@ -9,17 +9,17 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
 public class CommonProxy {
 
-    BlockChairRender chairRender = new BlockChairRender(0);
-    BlockTableRender tableRender = new BlockTableRender(0);
-    BlockShelfRender shelfRender = new BlockShelfRender(0);
-    BlockGlobeRender globeRender = new BlockGlobeRender(0);
-    BlockJarRender jarRender = new BlockJarRender(0);
-    BlockRackRender rackRender = new BlockRackRender(0);
-    BlockLabelRender labelRender = new BlockLabelRender(0);
-    BlockClockRender clockRender = new BlockClockRender(0);
-    BlockPedestalRender pedestalRender = new BlockPedestalRender(0);
-    BlockPileRender pileRender = new BlockPileRender(0);
-    BlockCouchRender couchRender = new BlockCouchRender(0);
+    BlockChairRender chairRender = new BlockChairRender();
+    BlockTableRender tableRender = new BlockTableRender();
+    BlockShelfRender shelfRender = new BlockShelfRender();
+    BlockGlobeRender globeRender = new BlockGlobeRender();
+    BlockJarRender jarRender = new BlockJarRender();
+    BlockRackRender rackRender = new BlockRackRender();
+    BlockLabelRender labelRender = new BlockLabelRender();
+    BlockClockRender clockRender = new BlockClockRender();
+    BlockPedestalRender pedestalRender = new BlockPedestalRender();
+    BlockPileRender pileRender = new BlockPileRender();
+    BlockCouchRender couchRender = new BlockCouchRender();
 
     public void preInit(FMLPreInitializationEvent event) {
         Config.synchronizeConfiguration(event.getSuggestedConfigurationFile());

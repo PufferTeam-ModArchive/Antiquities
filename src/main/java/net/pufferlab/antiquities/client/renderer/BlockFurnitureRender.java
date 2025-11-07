@@ -18,12 +18,7 @@ import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public abstract class BlockFurnitureRender implements ISimpleBlockRenderingHandler {
 
-    final int renderID;
     ModelFurniture[] model;
-
-    public BlockFurnitureRender(int blockComplexRenderID) {
-        this.renderID = blockComplexRenderID;
-    }
 
     @Override
     public boolean shouldRender3DInInventory(int modelId) {
@@ -32,7 +27,7 @@ public abstract class BlockFurnitureRender implements ISimpleBlockRenderingHandl
 
     @Override
     public int getRenderId() {
-        return renderID;
+        return 0;
     }
 
     @Override

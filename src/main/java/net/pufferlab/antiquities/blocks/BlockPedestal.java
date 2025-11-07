@@ -182,11 +182,6 @@ public class BlockPedestal extends BlockMetaContainer {
     }
 
     @Override
-    public int getRenderType() {
-        return Antiquities.proxy.getPedestalRenderID();
-    }
-
-    @Override
     public BlockFurnitureRender getRenderBlock() {
         return Antiquities.proxy.getPedestalRenderBlock();
     }

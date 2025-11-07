@@ -244,11 +244,6 @@ public class BlockRack extends BlockMetaContainer {
     }
 
     @Override
-    public int getRenderType() {
-        return Antiquities.proxy.getRackRenderID();
-    }
-
-    @Override
     public BlockFurnitureRender getRenderBlock() {
         return Antiquities.proxy.getRackRenderBlock();
     }

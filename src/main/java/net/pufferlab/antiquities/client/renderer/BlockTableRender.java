@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.util.ForgeDirection;
+import net.pufferlab.antiquities.Antiquities;
 import net.pufferlab.antiquities.Config;
 import net.pufferlab.antiquities.blocks.BlockMetaContainer;
 import net.pufferlab.antiquities.client.helper.DirectionHelper;
@@ -14,10 +15,6 @@ import net.pufferlab.antiquities.tileentities.TileEntityTable;
 public class BlockTableRender extends BlockFurnitureRender {
 
     ModelTable model = new ModelTable();
-
-    public BlockTableRender(int blockComplexRenderID) {
-        super(blockComplexRenderID);
-    }
 
     @Override
     public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
@@ -147,5 +144,10 @@ public class BlockTableRender extends BlockFurnitureRender {
         }
 
         return true;
+    }
+
+    @Override
+    public int getRenderId() {
+        return Antiquities.proxy.getTableRenderID();
     }
 }

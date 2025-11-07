@@ -71,11 +71,6 @@ public class BlockGlobe extends BlockMetaContainer {
     }
 
     @Override
-    public int getRenderType() {
-        return Antiquities.proxy.getGlobeRenderID();
-    }
-
-    @Override
     public BlockFurnitureRender getRenderBlock() {
         return Antiquities.proxy.getGlobeRenderBlock();
     }

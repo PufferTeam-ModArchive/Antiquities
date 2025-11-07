@@ -105,11 +105,6 @@ public class BlockCouch extends BlockMetaContainer {
     }
 
     @Override
-    public int getRenderType() {
-        return Antiquities.proxy.getCouchRenderID();
-    }
-
-    @Override
     public BlockFurnitureRender getRenderBlock() {
         return Antiquities.proxy.getCouchRenderBlock();
     }

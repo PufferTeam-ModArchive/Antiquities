@@ -1,5 +1,6 @@
 package net.pufferlab.antiquities.client.renderer;
 
+import net.pufferlab.antiquities.Antiquities;
 import net.pufferlab.antiquities.client.models.ModelFurniture;
 import net.pufferlab.antiquities.client.models.ModelLabel;
 
@@ -7,8 +8,9 @@ public class BlockLabelRender extends BlockFurnitureRender {
 
     ModelLabel model = new ModelLabel();
 
-    public BlockLabelRender(int blockComplexRenderID) {
-        super(blockComplexRenderID);
+    @Override
+    public int getRenderId() {
+        return Antiquities.proxy.getLabelRenderID();
     }
 
     @Override

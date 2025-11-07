@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.util.ForgeDirection;
+import net.pufferlab.antiquities.Antiquities;
 import net.pufferlab.antiquities.blocks.BlockMetaContainer;
 import net.pufferlab.antiquities.client.helper.DirectionHelper;
 import net.pufferlab.antiquities.client.models.ModelCouch;
@@ -14,10 +15,6 @@ import net.pufferlab.antiquities.tileentities.TileEntityCouch;
 public class BlockCouchRender extends BlockFurnitureRender {
 
     ModelCouch model = new ModelCouch();
-
-    public BlockCouchRender(int blockComplexRenderID) {
-        super(blockComplexRenderID);
-    }
 
     @Override
     public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
@@ -144,6 +141,11 @@ public class BlockCouchRender extends BlockFurnitureRender {
         model.render(renderer, tess, block, meta, x, y, z);
 
         return false;
+    }
+
+    @Override
+    public int getRenderId() {
+        return Antiquities.proxy.getCouchRenderID();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package net.pufferlab.antiquities.blocks;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.BlockContainer;
@@ -29,7 +30,8 @@ public abstract class BlockAntiquities extends BlockContainer {
         if (te instanceof TileEntityAntiquities) {
             List<AxisAlignedBB> list2 = renderer.buildBlockBounds(world, x, y, z, te.getBlockType());
             if (list2 != null) {
-                for (AxisAlignedBB bb : list2) {
+                List<AxisAlignedBB> safeList = new ArrayList<>(list2);
+                for (AxisAlignedBB bb : safeList) {
                     AxisAlignedBB shifted = bb.copy()
                         .offset(x, y, z);
                     if (mask.intersectsWith(shifted)) {
@@ -41,6 +43,13 @@ public abstract class BlockAntiquities extends BlockContainer {
                 super.addCollisionBoxesToList(world, x, y, z, mask, list, entity);
             }
         }
+    }
+
+    @Override
+    public int getRenderType() {
+        BlockFurnitureRender renderer = getRenderBlock();
+        if (renderer == null) return 0;
+        return renderer.getRenderId();
     }
 
     public BlockFurnitureRender getRenderBlock() {

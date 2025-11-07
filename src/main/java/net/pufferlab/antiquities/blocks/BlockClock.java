@@ -120,11 +120,6 @@ public class BlockClock extends BlockAntiquities {
     }
 
     @Override
-    public int getRenderType() {
-        return Antiquities.proxy.getClockRenderID();
-    }
-
-    @Override
     public BlockFurnitureRender getRenderBlock() {
         return Antiquities.proxy.getClockRenderBlock();
     }

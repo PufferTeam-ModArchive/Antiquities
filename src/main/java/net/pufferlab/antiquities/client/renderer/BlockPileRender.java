@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
+import net.pufferlab.antiquities.Antiquities;
 import net.pufferlab.antiquities.Utils;
 import net.pufferlab.antiquities.client.models.ModelPile;
 import net.pufferlab.antiquities.tileentities.TileEntityPile;
@@ -12,10 +13,6 @@ import net.pufferlab.antiquities.tileentities.TileEntityPile;
 public class BlockPileRender extends BlockFurnitureRender {
 
     ModelPile model = new ModelPile();
-
-    public BlockPileRender(int blockComplexRenderID) {
-        super(blockComplexRenderID);
-    }
 
     @Override
     public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {}
@@ -44,5 +41,10 @@ public class BlockPileRender extends BlockFurnitureRender {
         model.render(renderer, tess, block, meta, x, y, z);
 
         return true;
+    }
+
+    @Override
+    public int getRenderId() {
+        return Antiquities.proxy.getPileRenderID();
     }
 }
