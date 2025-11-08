@@ -6,7 +6,6 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -19,7 +18,6 @@ import net.minecraft.world.World;
 import net.pufferlab.antiquities.Antiquities;
 import net.pufferlab.antiquities.Config;
 import net.pufferlab.antiquities.Constants;
-import net.pufferlab.antiquities.Utils;
 import net.pufferlab.antiquities.client.renderer.BlockFurnitureRender;
 import net.pufferlab.antiquities.tileentities.TileEntityShelf;
 
@@ -165,7 +163,7 @@ public class BlockShelf extends BlockMetaContainer {
                 entityItem.motionX = rando.nextGaussian() * factor;
                 entityItem.motionY = rando.nextGaussian() * factor + 0.20000000298023224D;
                 entityItem.motionZ = rando.nextGaussian() * factor;
-                spawnEntityClientSensitive(world, entityItem);
+                spawnEntity(world, entityItem);
                 item.stackSize = 0;
             }
         }
@@ -201,28 +199,11 @@ public class BlockShelf extends BlockMetaContainer {
             entityItem.motionX = 0.0D;
             entityItem.motionY = 0.0D;
             entityItem.motionZ = 0.0D;
-            spawnEntityClientSensitive(world, entityItem);
+            spawnEntity(world, entityItem);
             item.stackSize = 0;
             return true;
         }
         return false;
-    }
-
-    @Override
-    public void onBlockPlacedBy(World worldIn, int x, int y, int z, EntityLivingBase placer, ItemStack itemIn) {
-        super.onBlockPlacedBy(worldIn, x, y, z, placer, itemIn);
-
-        int metayaw = Utils.getMetaYaw(placer.rotationYaw);
-        TileEntityShelf shelf = (TileEntityShelf) worldIn.getTileEntity(x, y, z);
-        if (shelf != null) {
-            shelf.setFacingMeta(metayaw);
-        }
-    }
-
-    public void spawnEntityClientSensitive(World world, Entity entityItem) {
-        if (!world.isRemote) {
-            world.spawnEntityInWorld((Entity) entityItem);
-        }
     }
 
     @Override

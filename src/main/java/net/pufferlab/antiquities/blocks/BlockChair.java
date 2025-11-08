@@ -4,9 +4,7 @@ import java.util.List;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
@@ -15,7 +13,6 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.pufferlab.antiquities.Antiquities;
 import net.pufferlab.antiquities.Config;
 import net.pufferlab.antiquities.Constants;
-import net.pufferlab.antiquities.Utils;
 import net.pufferlab.antiquities.client.renderer.BlockFurnitureRender;
 import net.pufferlab.antiquities.entity.EntitySeat;
 import net.pufferlab.antiquities.tileentities.TileEntityChair;
@@ -62,17 +59,6 @@ public class BlockChair extends BlockMetaContainer {
                     player.setSneaking(true);
                 }
             }
-        }
-    }
-
-    @Override
-    public void onBlockPlacedBy(World worldIn, int x, int y, int z, EntityLivingBase placer, ItemStack itemIn) {
-        super.onBlockPlacedBy(worldIn, x, y, z, placer, itemIn);
-
-        int metayaw = Utils.getMetaYaw(placer.rotationYaw);
-        TileEntityChair chair = (TileEntityChair) worldIn.getTileEntity(x, y, z);
-        if (chair != null) {
-            chair.setFacingMeta(metayaw);
         }
     }
 

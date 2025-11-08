@@ -1,9 +1,7 @@
 package net.pufferlab.antiquities.blocks;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -28,17 +26,6 @@ public class BlockGlobe extends BlockMetaContainer {
             return true;
         }
         return false;
-    }
-
-    @Override
-    public void onBlockPlacedBy(World worldIn, int x, int y, int z, EntityLivingBase placer, ItemStack itemIn) {
-        super.onBlockPlacedBy(worldIn, x, y, z, placer, itemIn);
-
-        int metayaw = Utils.getMetaYaw(placer.rotationYaw);
-        TileEntityGlobe globe = (TileEntityGlobe) worldIn.getTileEntity(x, y, z);
-        if (globe != null) {
-            globe.setFacingMeta(metayaw);
-        }
     }
 
     public boolean canRegister() {

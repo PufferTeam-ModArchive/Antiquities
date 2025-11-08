@@ -64,14 +64,8 @@ public class BlockPile extends BlockAntiquities {
 
     @Override
     public void onBlockPlacedBy(World worldIn, int x, int y, int z, EntityLivingBase placer, ItemStack itemIn) {
-        super.onBlockPlacedBy(worldIn, x, y, z, placer, itemIn);
-
-        int metayaw = Utils.getMetaYaw(placer.rotationYaw);
         TileEntityPile pile = (TileEntityPile) worldIn.getTileEntity(x, y, z);
         pile.setInventorySlotContentsUpdate(0, placer.getHeldItem());
-        if (pile != null) {
-            pile.setFacingMeta(metayaw);
-        }
     }
 
     @Override
@@ -297,7 +291,7 @@ public class BlockPile extends BlockAntiquities {
             entityItem.motionX = 0.0D;
             entityItem.motionY = 0.0D;
             entityItem.motionZ = 0.0D;
-            spawnEntityClientSensitive(world, entityItem);
+            spawnEntity(world, entityItem);
             item.stackSize = 0;
             return true;
         }
@@ -337,14 +331,8 @@ public class BlockPile extends BlockAntiquities {
             entityItem.motionX = 0.0D;
             entityItem.motionY = 0.0D;
             entityItem.motionZ = 0.0D;
-            spawnEntityClientSensitive(world, entityItem);
+            spawnEntity(world, entityItem);
             item.stackSize = 0;
-        }
-    }
-
-    public void spawnEntityClientSensitive(World world, Entity entityItem) {
-        if (!world.isRemote) {
-            world.spawnEntityInWorld((Entity) entityItem);
         }
     }
 

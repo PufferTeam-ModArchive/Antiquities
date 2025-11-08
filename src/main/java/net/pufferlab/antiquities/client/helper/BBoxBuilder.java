@@ -9,9 +9,15 @@ import net.pufferlab.antiquities.client.utils.ModelRenderer;
 
 public class BBoxBuilder {
 
-    List<AxisAlignedBB> list;
+    public List<AxisAlignedBB> list;
 
-    public List<AxisAlignedBB> buildBB(ModelRenderer renderer, float scale) {
+    public List<AxisAlignedBB> buildBoundsInList(ModelRenderer renderer, float scale) {
+        list = new ArrayList<>();
+        this.buildBounds(renderer, scale);
+        return list;
+    }
+
+    public void buildBounds(ModelRenderer renderer, float scale) {
         if (!renderer.isHidden && renderer.showModel) {
 
             // Render children first
@@ -36,7 +42,7 @@ public class BBoxBuilder {
                     child.rotationPointY += renderer.rotationPointY;
                     child.rotationPointZ += renderer.rotationPointZ;
 
-                    buildBB(child, scale);
+                    buildBounds(child, scale);
 
                     // Restore child state
                     child.rotateAngleX = oldRotateX;
@@ -49,7 +55,6 @@ public class BBoxBuilder {
             }
 
             if (renderer.cubeList != null) {
-                list = new ArrayList<>();
                 for (int i = 0; i < renderer.cubeList.size(); ++i) {
                     ModelBox box = renderer.cubeList.get(i);
 
@@ -67,6 +72,5 @@ public class BBoxBuilder {
             }
 
         }
-        return list;
     }
 }

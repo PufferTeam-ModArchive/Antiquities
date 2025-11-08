@@ -25,55 +25,40 @@ public class ModelBox {
     public final float posZ2;
     public String field_78247_g;
 
-    public ModelBox(ModelRenderer p_i1171_1_, int p_i1171_2_, int p_i1171_3_, float p_i1171_4_, float p_i1171_5_,
-        float p_i1171_6_, int p_i1171_7_, int p_i1171_8_, int p_i1171_9_, float p_i1171_10_) {
-        this.posX1 = p_i1171_4_;
-        this.posY1 = p_i1171_5_;
-        this.posZ1 = p_i1171_6_;
-        this.posX2 = p_i1171_4_ + (float) p_i1171_7_;
-        this.posY2 = p_i1171_5_ + (float) p_i1171_8_;
-        this.posZ2 = p_i1171_6_ + (float) p_i1171_9_;
+    public ModelBox(ModelRenderer body, int U, int V, float xMin, float yMin, float zMin, int xWidth, int yWidth,
+        int zWidth, float inflate) {
+        this.posX1 = xMin;
+        this.posY1 = yMin;
+        this.posZ1 = zMin;
+        this.posX2 = xMin + (float) xWidth;
+        this.posY2 = yMin + (float) yWidth;
+        this.posZ2 = zMin + (float) zWidth;
         this.vertexPositions = new PositionTextureVertex[8];
         this.quadList = new TexturedQuad[6];
-        float f4 = p_i1171_4_ + (float) p_i1171_7_;
-        float f5 = p_i1171_5_ + (float) p_i1171_8_;
-        float f6 = p_i1171_6_ + (float) p_i1171_9_;
-        p_i1171_4_ -= p_i1171_10_;
-        p_i1171_5_ -= p_i1171_10_;
-        p_i1171_6_ -= p_i1171_10_;
-        f4 += p_i1171_10_;
-        f5 += p_i1171_10_;
-        f6 += p_i1171_10_;
+        float f4 = xMin + (float) xWidth;
+        float f5 = yMin + (float) yWidth;
+        float f6 = zMin + (float) zWidth;
+        xMin -= inflate;
+        yMin -= inflate;
+        zMin -= inflate;
+        f4 += inflate;
+        f5 += inflate;
+        f6 += inflate;
 
-        if (p_i1171_1_.mirror) {
+        if (body.mirror) {
             float f7 = f4;
-            f4 = p_i1171_4_;
-            p_i1171_4_ = f7;
+            f4 = xMin;
+            xMin = f7;
         }
 
-        PositionTextureVertex positiontexturevertex7 = new PositionTextureVertex(
-            p_i1171_4_,
-            p_i1171_5_,
-            p_i1171_6_,
-            0.0F,
-            0.0F);
-        PositionTextureVertex positiontexturevertex = new PositionTextureVertex(f4, p_i1171_5_, p_i1171_6_, 0.0F, 8.0F);
-        PositionTextureVertex positiontexturevertex1 = new PositionTextureVertex(f4, f5, p_i1171_6_, 8.0F, 8.0F);
-        PositionTextureVertex positiontexturevertex2 = new PositionTextureVertex(
-            p_i1171_4_,
-            f5,
-            p_i1171_6_,
-            8.0F,
-            0.0F);
-        PositionTextureVertex positiontexturevertex3 = new PositionTextureVertex(
-            p_i1171_4_,
-            p_i1171_5_,
-            f6,
-            0.0F,
-            0.0F);
-        PositionTextureVertex positiontexturevertex4 = new PositionTextureVertex(f4, p_i1171_5_, f6, 0.0F, 8.0F);
+        PositionTextureVertex positiontexturevertex7 = new PositionTextureVertex(xMin, yMin, zMin, 0.0F, 0.0F);
+        PositionTextureVertex positiontexturevertex = new PositionTextureVertex(f4, yMin, zMin, 0.0F, 8.0F);
+        PositionTextureVertex positiontexturevertex1 = new PositionTextureVertex(f4, f5, zMin, 8.0F, 8.0F);
+        PositionTextureVertex positiontexturevertex2 = new PositionTextureVertex(xMin, f5, zMin, 8.0F, 0.0F);
+        PositionTextureVertex positiontexturevertex3 = new PositionTextureVertex(xMin, yMin, f6, 0.0F, 0.0F);
+        PositionTextureVertex positiontexturevertex4 = new PositionTextureVertex(f4, yMin, f6, 0.0F, 8.0F);
         PositionTextureVertex positiontexturevertex5 = new PositionTextureVertex(f4, f5, f6, 8.0F, 8.0F);
-        PositionTextureVertex positiontexturevertex6 = new PositionTextureVertex(p_i1171_4_, f5, f6, 8.0F, 0.0F);
+        PositionTextureVertex positiontexturevertex6 = new PositionTextureVertex(xMin, f5, f6, 8.0F, 0.0F);
         this.vertexPositions[0] = positiontexturevertex7;
         this.vertexPositions[1] = positiontexturevertex;
         this.vertexPositions[2] = positiontexturevertex1;
@@ -85,63 +70,73 @@ public class ModelBox {
         this.quadList[0] = new TexturedQuad(
             new PositionTextureVertex[] { positiontexturevertex4, positiontexturevertex, positiontexturevertex1,
                 positiontexturevertex5 },
-            p_i1171_2_ + p_i1171_9_ + p_i1171_7_,
-            p_i1171_3_ + p_i1171_9_,
-            p_i1171_2_ + p_i1171_9_ + p_i1171_7_ + p_i1171_9_,
-            p_i1171_3_ + p_i1171_9_ + p_i1171_8_,
-            p_i1171_1_.textureWidth,
-            p_i1171_1_.textureHeight);
+            U + zWidth + xWidth,
+            V + zWidth,
+            U + zWidth + xWidth + zWidth,
+            V + zWidth + yWidth,
+            body.textureWidth,
+            body.textureHeight);
         this.quadList[1] = new TexturedQuad(
             new PositionTextureVertex[] { positiontexturevertex7, positiontexturevertex3, positiontexturevertex6,
                 positiontexturevertex2 },
-            p_i1171_2_,
-            p_i1171_3_ + p_i1171_9_,
-            p_i1171_2_ + p_i1171_9_,
-            p_i1171_3_ + p_i1171_9_ + p_i1171_8_,
-            p_i1171_1_.textureWidth,
-            p_i1171_1_.textureHeight);
+            U,
+            V + zWidth,
+            U + zWidth,
+            V + zWidth + yWidth,
+            body.textureWidth,
+            body.textureHeight);
         this.quadList[2] = new TexturedQuad(
             new PositionTextureVertex[] { positiontexturevertex4, positiontexturevertex3, positiontexturevertex7,
                 positiontexturevertex },
-            p_i1171_2_ + p_i1171_9_,
-            p_i1171_3_,
-            p_i1171_2_ + p_i1171_9_ + p_i1171_7_,
-            p_i1171_3_ + p_i1171_9_,
-            p_i1171_1_.textureWidth,
-            p_i1171_1_.textureHeight);
+            U + zWidth,
+            V,
+            U + zWidth + xWidth,
+            V + zWidth,
+            body.textureWidth,
+            body.textureHeight);
         this.quadList[3] = new TexturedQuad(
             new PositionTextureVertex[] { positiontexturevertex1, positiontexturevertex2, positiontexturevertex6,
                 positiontexturevertex5 },
-            p_i1171_2_ + p_i1171_9_ + p_i1171_7_,
-            p_i1171_3_ + p_i1171_9_,
-            p_i1171_2_ + p_i1171_9_ + p_i1171_7_ + p_i1171_7_,
-            p_i1171_3_,
-            p_i1171_1_.textureWidth,
-            p_i1171_1_.textureHeight);
+            U + zWidth + xWidth,
+            V + zWidth,
+            U + zWidth + xWidth + xWidth,
+            V,
+            body.textureWidth,
+            body.textureHeight);
         this.quadList[4] = new TexturedQuad(
             new PositionTextureVertex[] { positiontexturevertex, positiontexturevertex7, positiontexturevertex2,
                 positiontexturevertex1 },
-            p_i1171_2_ + p_i1171_9_,
-            p_i1171_3_ + p_i1171_9_,
-            p_i1171_2_ + p_i1171_9_ + p_i1171_7_,
-            p_i1171_3_ + p_i1171_9_ + p_i1171_8_,
-            p_i1171_1_.textureWidth,
-            p_i1171_1_.textureHeight);
+            U + zWidth,
+            V + zWidth,
+            U + zWidth + xWidth,
+            V + zWidth + yWidth,
+            body.textureWidth,
+            body.textureHeight);
         this.quadList[5] = new TexturedQuad(
             new PositionTextureVertex[] { positiontexturevertex3, positiontexturevertex4, positiontexturevertex5,
                 positiontexturevertex6 },
-            p_i1171_2_ + p_i1171_9_ + p_i1171_7_ + p_i1171_9_,
-            p_i1171_3_ + p_i1171_9_,
-            p_i1171_2_ + p_i1171_9_ + p_i1171_7_ + p_i1171_9_ + p_i1171_7_,
-            p_i1171_3_ + p_i1171_9_ + p_i1171_8_,
-            p_i1171_1_.textureWidth,
-            p_i1171_1_.textureHeight);
+            U + zWidth + xWidth + zWidth,
+            V + zWidth,
+            U + zWidth + xWidth + zWidth + xWidth,
+            V + zWidth + yWidth,
+            body.textureWidth,
+            body.textureHeight);
 
-        if (p_i1171_1_.mirror) {
+        if (body.mirror) {
             for (int j1 = 0; j1 < this.quadList.length; ++j1) {
                 this.quadList[j1].flipFace();
             }
         }
+    }
+
+    public ModelBox(ModelRenderer body, int U, int V, float xMin, float yMin, float zMin, int xWidth, int yWidth,
+        int zWidth, float inflate, boolean mirror) {
+        this(setMirror(body, mirror), U, V, xMin, yMin, zMin, xWidth, yWidth, zWidth, inflate);
+    }
+
+    static ModelRenderer setMirror(ModelRenderer in, boolean mirrorToBe) {
+        in.mirror = mirrorToBe;
+        return in;
     }
 
     /**

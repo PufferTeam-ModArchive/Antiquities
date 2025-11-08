@@ -17,13 +17,10 @@ import net.pufferlab.antiquities.client.utils.ModelRenderer;
 public abstract class ModelFurniture extends ModelBase {
 
     public ModelRenderer bb_main;
-    public ModelTESS modelTESS;
-    public BBoxBuilder bbBuilder;
+    public ModelTESS modelTESS = new ModelTESS();
+    public BBoxBuilder bbBuilder = new BBoxBuilder();
 
     public ModelFurniture(int width, int height) {
-        modelTESS = new ModelTESS();
-        bbBuilder = new BBoxBuilder();
-
         textureWidth = width;
         textureHeight = height;
 
@@ -69,7 +66,7 @@ public abstract class ModelFurniture extends ModelBase {
 
     public List<AxisAlignedBB> buildBounds() {
         bb_main.rotateAngleX = (float) Math.toRadians(180);
-        return bbBuilder.buildBB(bb_main, Constants.ModelConstant);
+        return bbBuilder.buildBoundsInList(bb_main, Constants.ModelConstant);
     }
 
     double add = 0;

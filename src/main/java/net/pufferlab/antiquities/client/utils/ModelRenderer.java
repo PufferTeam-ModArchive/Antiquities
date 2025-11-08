@@ -53,8 +53,8 @@ public class ModelRenderer {
         this.setTextureSize(p_i1172_1_.textureWidth, p_i1172_1_.textureHeight);
     }
 
-    public ModelRenderer(ModelBase p_i1173_1_) {
-        this(p_i1173_1_, (String) null);
+    public ModelRenderer(ModelBase base) {
+        this(base, (String) null);
     }
 
     public ModelRenderer(ModelBase p_i1174_1_, int p_i1174_2_, int p_i1174_3_) {
@@ -135,10 +135,10 @@ public class ModelRenderer {
                 p_78790_7_));
     }
 
-    public void setRotationPoint(float p_78793_1_, float p_78793_2_, float p_78793_3_) {
-        this.rotationPointX = p_78793_1_;
-        this.rotationPointY = p_78793_2_;
-        this.rotationPointZ = p_78793_3_;
+    public void setRotationPoint(float rotPointX, float rotPointY, float rotPointZ) {
+        this.rotationPointX = rotPointX;
+        this.rotationPointY = rotPointY;
+        this.rotationPointZ = rotPointZ;
     }
 
     @SideOnly(Side.CLIENT)

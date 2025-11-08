@@ -6,7 +6,6 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -61,17 +60,6 @@ public class BlockRack extends BlockMetaContainer {
         List<AxisAlignedBB> list, Entity collider) {
         this.setBlockBoundsBasedOnState(worldIn, x, y, z);
         super.addCollisionBoxesToList(worldIn, x, y, z, mask, list, collider);
-    }
-
-    @Override
-    public void onBlockPlacedBy(World worldIn, int x, int y, int z, EntityLivingBase placer, ItemStack itemIn) {
-        super.onBlockPlacedBy(worldIn, x, y, z, placer, itemIn);
-
-        int metayaw = Utils.getMetaYaw(placer.rotationYaw);
-        TileEntityRack rack = (TileEntityRack) worldIn.getTileEntity(x, y, z);
-        if (rack != null) {
-            rack.setFacingMeta(metayaw);
-        }
     }
 
     @Override
@@ -181,7 +169,7 @@ public class BlockRack extends BlockMetaContainer {
                 entityItem.motionX = rando.nextGaussian() * factor;
                 entityItem.motionY = rando.nextGaussian() * factor + 0.20000000298023224D;
                 entityItem.motionZ = rando.nextGaussian() * factor;
-                spawnEntityClientSensitive(world, entityItem);
+                spawnEntity(world, entityItem);
                 item.stackSize = 0;
             }
         }
@@ -206,17 +194,11 @@ public class BlockRack extends BlockMetaContainer {
             entityItem.motionX = 0.0D;
             entityItem.motionY = 0.0D;
             entityItem.motionZ = 0.0D;
-            spawnEntityClientSensitive(world, entityItem);
+            spawnEntity(world, entityItem);
             item.stackSize = 0;
             return true;
         }
         return false;
-    }
-
-    public void spawnEntityClientSensitive(World world, Entity entityItem) {
-        if (!world.isRemote) {
-            world.spawnEntityInWorld((Entity) entityItem);
-        }
     }
 
     public boolean canRegister() {

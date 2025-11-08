@@ -18,6 +18,7 @@ public class Config {
     public static boolean renderBreakingTexture;
     public static boolean legacyTextures;
     public static boolean enableRecipes;
+    public static boolean calculateAdvancedBounds;
     public static boolean enableOreDictCompat;
     public static float globeMaxSpeed;
     public static float globeSpeedAcceleration;
@@ -59,6 +60,11 @@ public class Config {
             CATEGORY_RENDERING,
             false,
             "Whether to render blocks with simple planks texture or to use customized textures.");
+        calculateAdvancedBounds = configuration.getBoolean(
+            "calculateAdvancedBounds",
+            CATEGORY_RENDERING,
+            true,
+            "Whether to calculate advanced block bounds that change depending on connections.");
 
         enableRecipes = configuration
             .getBoolean("enableRecipes", Configuration.CATEGORY_GENERAL, true, "Whether to enable recipes in the mod.");

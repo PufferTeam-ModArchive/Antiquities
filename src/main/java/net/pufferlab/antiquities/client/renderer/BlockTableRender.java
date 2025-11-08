@@ -9,6 +9,7 @@ import net.pufferlab.antiquities.Antiquities;
 import net.pufferlab.antiquities.Config;
 import net.pufferlab.antiquities.blocks.BlockMetaContainer;
 import net.pufferlab.antiquities.client.helper.DirectionHelper;
+import net.pufferlab.antiquities.client.models.ModelFurniture;
 import net.pufferlab.antiquities.client.models.ModelTable;
 import net.pufferlab.antiquities.tileentities.TileEntityTable;
 
@@ -58,6 +59,19 @@ public class BlockTableRender extends BlockFurnitureRender {
         int meta = world.getBlockMetadata(table.xCoord, table.yCoord, table.zCoord);
         Tessellator tess = Tessellator.instance;
 
+        mutateModel(world, x, y, z, 0);
+
+        if (Config.legacyTextures) {
+            model.render(renderer, tess, block, meta, x, y, z);
+        } else {
+            model.renderWithoutAO(renderer, tess, block, meta, x, y, z);
+        }
+
+        return true;
+    }
+
+    @Override
+    public void mutateModel(IBlockAccess world, int x, int y, int z, int facing) {
         boolean connectNorth = DirectionHelper.isConnected(world, x, y, z, ForgeDirection.NORTH);
         boolean connectNorthWest = DirectionHelper
             .isConnected(world, x, y, z, ForgeDirection.NORTH, ForgeDirection.WEST);
@@ -137,17 +151,15 @@ public class BlockTableRender extends BlockFurnitureRender {
         model.updateCTM();
 
         model.setFacing(0);
-        if (Config.legacyTextures) {
-            model.render(renderer, tess, block, meta, x, y, z);
-        } else {
-            model.renderWithoutAO(renderer, tess, block, meta, x, y, z);
-        }
-
-        return true;
     }
 
     @Override
     public int getRenderId() {
         return Antiquities.proxy.getTableRenderID();
+    }
+
+    @Override
+    public ModelFurniture[] getModelObj() {
+        return new ModelTable[] { model };
     }
 }

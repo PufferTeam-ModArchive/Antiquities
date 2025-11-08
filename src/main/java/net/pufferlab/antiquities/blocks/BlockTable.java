@@ -1,8 +1,11 @@
 package net.pufferlab.antiquities.blocks;
 
-import net.minecraft.block.Block;
+import java.util.List;
+
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -28,16 +31,6 @@ public class BlockTable extends BlockMetaContainer {
             }
         }
         return false;
-    }
-
-    @Override
-    public void onNeighborBlockChange(World worldIn, int x, int y, int z, Block neighbor) {
-        super.onNeighborBlockChange(worldIn, x, y, z, neighbor);
-
-        TileEntity te = worldIn.getTileEntity(x, y, z);
-        if (te instanceof TileEntityTable table) {
-            table.updateConnections();
-        }
     }
 
     public boolean canRegister() {
@@ -72,5 +65,15 @@ public class BlockTable extends BlockMetaContainer {
     @Override
     public BlockFurnitureRender getRenderBlock() {
         return Antiquities.proxy.getTableRenderBlock();
+    }
+
+    @Override
+    public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB mask, List<AxisAlignedBB> list,
+        Entity entity) {
+        AxisAlignedBB shifted = AxisAlignedBB.getBoundingBox(0.0F, 0.75F, 0.0F, 1.0F, 1.0F, 1.0F)
+            .offset(x, y, z);
+        if (mask.intersectsWith(shifted)) {
+            list.add(shifted);
+        }
     }
 }

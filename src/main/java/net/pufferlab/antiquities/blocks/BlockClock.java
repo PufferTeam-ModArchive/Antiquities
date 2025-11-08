@@ -1,21 +1,14 @@
 package net.pufferlab.antiquities.blocks;
 
-import java.util.List;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.pufferlab.antiquities.Antiquities;
 import net.pufferlab.antiquities.Config;
 import net.pufferlab.antiquities.Registry;
-import net.pufferlab.antiquities.Utils;
 import net.pufferlab.antiquities.client.renderer.BlockFurnitureRender;
 import net.pufferlab.antiquities.tileentities.TileEntityClock;
 
@@ -53,24 +46,6 @@ public class BlockClock extends BlockAntiquities {
             } else {
                 this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
             }
-        }
-    }
-
-    @Override
-    public void addCollisionBoxesToList(World worldIn, int x, int y, int z, AxisAlignedBB mask,
-        List<AxisAlignedBB> list, Entity collider) {
-        this.setBlockBoundsBasedOnState(worldIn, x, y, z);
-        super.addCollisionBoxesToList(worldIn, x, y, z, mask, list, collider);
-    }
-
-    @Override
-    public void onBlockPlacedBy(World worldIn, int x, int y, int z, EntityLivingBase placer, ItemStack itemIn) {
-        super.onBlockPlacedBy(worldIn, x, y, z, placer, itemIn);
-
-        int metayaw = Utils.getMetaYaw(placer.rotationYaw);
-        TileEntityClock clock = (TileEntityClock) worldIn.getTileEntity(x, y, z);
-        if (clock != null) {
-            clock.setFacingMeta(metayaw);
         }
     }
 

@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
+import net.pufferlab.antiquities.Config;
 import net.pufferlab.antiquities.blocks.BlockMetaContainer;
 import net.pufferlab.antiquities.client.models.ModelFurniture;
 import net.pufferlab.antiquities.tileentities.TileEntityMetaFacing;
@@ -18,7 +19,7 @@ import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public abstract class BlockFurnitureRender implements ISimpleBlockRenderingHandler {
 
-    ModelFurniture[] model;
+    private ModelFurniture[] model;
 
     @Override
     public boolean shouldRender3DInInventory(int modelId) {
@@ -71,10 +72,15 @@ public abstract class BlockFurnitureRender implements ISimpleBlockRenderingHandl
         if (block instanceof BlockMetaContainer blockmeta) {
             num = blockmeta.getBlockType();
         }
+        int facing = 0;
+        if (te instanceof TileEntityMetaFacing tef) {
+            facing = tef.facingMeta;
+        }
         if (model[num] != null) {
-            if (te instanceof TileEntityMetaFacing tef) {
-                model[num].setFacing(tef.facingMeta);
+            if (te instanceof TileEntityMetaFacing) {
+                model[num].setFacing(facing);
             }
+            mutateModel(world, x, y, z, facing);
             if (useAORender()) {
                 model[num].render(renderer, tess, block, meta, x, y, z);
             } else {
@@ -96,10 +102,17 @@ public abstract class BlockFurnitureRender implements ISimpleBlockRenderingHandl
         if (block instanceof BlockMetaContainer blockmeta) {
             num = blockmeta.getBlockType();
         }
+        int facing = 0;
+        if (te instanceof TileEntityMetaFacing tef) {
+            facing = tef.facingMeta;
+        }
         if (model != null) {
             if (model[num] != null) {
-                if (te instanceof TileEntityMetaFacing tef) {
-                    model[num].setFacing(tef.facingMeta);
+                if (te instanceof TileEntityMetaFacing) {
+                    model[num].setFacing(facing);
+                }
+                if (Config.calculateAdvancedBounds) {
+                    mutateModel(world, x, y, z, facing);
                 }
                 return model[num].buildBounds();
             }
@@ -107,6 +120,8 @@ public abstract class BlockFurnitureRender implements ISimpleBlockRenderingHandl
 
         return null;
     }
+
+    public void mutateModel(IBlockAccess world, int x, int y, int z, int facing) {}
 
     public boolean useAORender() {
         return true;
