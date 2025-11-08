@@ -34,13 +34,13 @@ public class BBoxBuilder {
                     float oldPivotZ = child.rotationPointZ;
 
                     // Apply parent rotation/pivot to child
-                    child.rotateAngleX += renderer.rotateAngleX;
-                    child.rotateAngleY += renderer.rotateAngleY;
-                    child.rotateAngleZ += renderer.rotateAngleZ;
+                    child.rotateAngleX = renderer.rotateAngleX;
+                    child.rotateAngleY = renderer.rotateAngleY;
+                    child.rotateAngleZ = renderer.rotateAngleZ;
 
-                    child.rotationPointX += renderer.rotationPointX;
-                    child.rotationPointY += renderer.rotationPointY;
-                    child.rotationPointZ += renderer.rotationPointZ;
+                    child.rotationPointX = renderer.rotationPointX;
+                    child.rotationPointY = renderer.rotationPointY;
+                    child.rotationPointZ = renderer.rotationPointZ;
 
                     buildBounds(child, scale);
 

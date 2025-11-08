@@ -32,27 +32,27 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityClock.class, new TileEntityClockRenderer());
 
         chairRenderID = RenderingRegistry.getNextAvailableRenderId();
-        RenderingRegistry.registerBlockHandler(chairRender);
+        RenderingRegistry.registerBlockHandler(new BlockChairRender());
         tableRenderID = RenderingRegistry.getNextAvailableRenderId();
-        RenderingRegistry.registerBlockHandler(tableRender);
+        RenderingRegistry.registerBlockHandler(new BlockTableRender());
         shelfRenderID = RenderingRegistry.getNextAvailableRenderId();
-        RenderingRegistry.registerBlockHandler(shelfRender);
+        RenderingRegistry.registerBlockHandler(new BlockShelfRender());
         globeRenderID = RenderingRegistry.getNextAvailableRenderId();
-        RenderingRegistry.registerBlockHandler(globeRender);
+        RenderingRegistry.registerBlockHandler(new BlockGlobeRender());
         jarRenderID = RenderingRegistry.getNextAvailableRenderId();
-        RenderingRegistry.registerBlockHandler(jarRender);
+        RenderingRegistry.registerBlockHandler(new BlockJarRender());
         rackRenderID = RenderingRegistry.getNextAvailableRenderId();
-        RenderingRegistry.registerBlockHandler(rackRender);
+        RenderingRegistry.registerBlockHandler(new BlockRackRender());
         labelRenderID = RenderingRegistry.getNextAvailableRenderId();
-        RenderingRegistry.registerBlockHandler(labelRender);
+        RenderingRegistry.registerBlockHandler(new BlockLabelRender());
         clockRenderID = RenderingRegistry.getNextAvailableRenderId();
-        RenderingRegistry.registerBlockHandler(clockRender);
+        RenderingRegistry.registerBlockHandler(new BlockClockRender());
         pedestalRenderID = RenderingRegistry.getNextAvailableRenderId();
-        RenderingRegistry.registerBlockHandler(pedestalRender);
+        RenderingRegistry.registerBlockHandler(new BlockPedestalRender());
         pileRenderID = RenderingRegistry.getNextAvailableRenderId();
-        RenderingRegistry.registerBlockHandler(pileRender);
+        RenderingRegistry.registerBlockHandler(new BlockPileRender());
         couchRenderID = RenderingRegistry.getNextAvailableRenderId();
-        RenderingRegistry.registerBlockHandler(couchRender);
+        RenderingRegistry.registerBlockHandler(new BlockCouchRender());
     }
 
     @Override
