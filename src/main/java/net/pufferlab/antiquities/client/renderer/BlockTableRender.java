@@ -59,7 +59,7 @@ public class BlockTableRender extends BlockFurnitureRender {
         int meta = world.getBlockMetadata(table.xCoord, table.yCoord, table.zCoord);
         Tessellator tess = Tessellator.instance;
 
-        mutateModel(world, x, y, z, 0);
+        model = (ModelTable) mutateModel(model, world, x, y, z, 0);
 
         if (Config.legacyTextures) {
             model.render(renderer, tess, block, meta, x, y, z);
@@ -71,7 +71,8 @@ public class BlockTableRender extends BlockFurnitureRender {
     }
 
     @Override
-    public void mutateModel(IBlockAccess world, int x, int y, int z, int facing) {
+    public ModelFurniture mutateModel(ModelFurniture model0, IBlockAccess world, int x, int y, int z, int facing) {
+        ModelTable model = (ModelTable) model0;
         boolean connectNorth = DirectionHelper.isConnected(world, x, y, z, ForgeDirection.NORTH);
         boolean connectNorthWest = DirectionHelper
             .isConnected(world, x, y, z, ForgeDirection.NORTH, ForgeDirection.WEST);
@@ -84,6 +85,8 @@ public class BlockTableRender extends BlockFurnitureRender {
         boolean connectEast = DirectionHelper.isConnected(world, x, y, z, ForgeDirection.EAST);
         boolean connectSouthEast = DirectionHelper
             .isConnected(world, x, y, z, ForgeDirection.SOUTH, ForgeDirection.EAST);
+
+        setModel(model0);
 
         model.side3.isHidden = connectNorth;
         model.side4.isHidden = connectSouth;
@@ -151,6 +154,7 @@ public class BlockTableRender extends BlockFurnitureRender {
         model.updateCTM();
 
         model.setFacing(0);
+        return model;
     }
 
     @Override

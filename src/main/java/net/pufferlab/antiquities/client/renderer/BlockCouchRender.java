@@ -41,17 +41,20 @@ public class BlockCouchRender extends BlockFurnitureRender {
         int meta = world.getBlockMetadata(couch.xCoord, couch.yCoord, couch.zCoord);
         Tessellator tess = Tessellator.instance;
         int facing = couch.facingMeta;
-        mutateModel(world, x, y, z, facing);
+        model = (ModelCouch) mutateModel(model, world, x, y, z, facing);
         model.render(renderer, tess, block, meta, x, y, z);
         return true;
     }
 
     @Override
-    public void mutateModel(IBlockAccess world, int x, int y, int z, int facing) {
+    public ModelFurniture mutateModel(ModelFurniture model0, IBlockAccess world, int x, int y, int z, int facing) {
+        ModelCouch model = (ModelCouch) model0;
         boolean connectNorth = DirectionHelper.isConnected(world, x, y, z, ForgeDirection.NORTH);
         boolean connectSouth = DirectionHelper.isConnected(world, x, y, z, ForgeDirection.SOUTH);
         boolean connectWest = DirectionHelper.isConnected(world, x, y, z, ForgeDirection.WEST);
         boolean connectEast = DirectionHelper.isConnected(world, x, y, z, ForgeDirection.EAST);
+
+        setModel(model0);
 
         model.setFacing(facing);
 
@@ -144,6 +147,11 @@ public class BlockCouchRender extends BlockFurnitureRender {
         if (!model.corner1.isHidden) {
             model.side2.isHidden = true;
         }
+        if (!model.corner1.isHidden && !model.corner2.isHidden) {
+            model.corner1.isHidden = true;
+            model.corner2.isHidden = true;
+        }
+        return model;
     }
 
     @Override

@@ -80,7 +80,7 @@ public abstract class BlockFurnitureRender implements ISimpleBlockRenderingHandl
             if (te instanceof TileEntityMetaFacing) {
                 model[num].setFacing(facing);
             }
-            mutateModel(world, x, y, z, facing);
+            model[num] = mutateModel(model[num], world, x, y, z, facing);
             if (useAORender()) {
                 model[num].render(renderer, tess, block, meta, x, y, z);
             } else {
@@ -112,7 +112,7 @@ public abstract class BlockFurnitureRender implements ISimpleBlockRenderingHandl
                     model[num].setFacing(facing);
                 }
                 if (Config.calculateAdvancedBounds) {
-                    mutateModel(world, x, y, z, facing);
+                    model[num] = mutateModel(model[num], world, x, y, z, facing);
                 }
                 return model[num].buildBounds();
             }
@@ -121,7 +121,9 @@ public abstract class BlockFurnitureRender implements ISimpleBlockRenderingHandl
         return null;
     }
 
-    public void mutateModel(IBlockAccess world, int x, int y, int z, int facing) {}
+    public ModelFurniture mutateModel(ModelFurniture model0, IBlockAccess world, int x, int y, int z, int facing) {
+        return model0;
+    }
 
     public boolean useAORender() {
         return true;
@@ -141,6 +143,11 @@ public abstract class BlockFurnitureRender implements ISimpleBlockRenderingHandl
 
     public float getOffsetZ() {
         return 0;
+    }
+
+    public void setModel(ModelFurniture model0) {
+        this.model = new ModelFurniture[1];
+        this.model[0] = model0;
     }
 
     public ModelFurniture[] getModelObj() {

@@ -282,7 +282,7 @@ public class ModelTESS {
                     renderblocks2.quadXNeg = 0;
                     renderblocks2.quadXPos = 1;
                     // The Y quads is inverted because we flip the Y axis
-                    if (!(block instanceof BlockChair)) {
+                    if (!(block instanceof BlockChair) && !(block instanceof BlockShelf)) {
                         renderblocks2.quadYNeg = 3;
                         renderblocks2.quadYPos = 2;
                     }
