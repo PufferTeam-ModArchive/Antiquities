@@ -25,32 +25,34 @@ public class BBoxBuilder {
                 for (int i = 0; i < renderer.childModels.size(); ++i) {
                     ModelRenderer child = (ModelRenderer) renderer.childModels.get(i);
 
-                    // Backup child state
-                    float oldRotateX = child.rotateAngleX;
-                    float oldRotateY = child.rotateAngleY;
-                    float oldRotateZ = child.rotateAngleZ;
-                    float oldPivotX = child.rotationPointX;
-                    float oldPivotY = child.rotationPointY;
-                    float oldPivotZ = child.rotationPointZ;
+                    if (child != null) {
+                        // Backup child state
+                        float oldRotateX = child.rotateAngleX;
+                        float oldRotateY = child.rotateAngleY;
+                        float oldRotateZ = child.rotateAngleZ;
+                        float oldPivotX = child.rotationPointX;
+                        float oldPivotY = child.rotationPointY;
+                        float oldPivotZ = child.rotationPointZ;
 
-                    // Apply parent rotation/pivot to child
-                    child.rotateAngleX = renderer.rotateAngleX;
-                    child.rotateAngleY = renderer.rotateAngleY;
-                    child.rotateAngleZ = renderer.rotateAngleZ;
+                        // Apply parent rotation/pivot to child
+                        child.rotateAngleX = renderer.rotateAngleX;
+                        child.rotateAngleY = renderer.rotateAngleY;
+                        child.rotateAngleZ = renderer.rotateAngleZ;
 
-                    child.rotationPointX = renderer.rotationPointX;
-                    child.rotationPointY = renderer.rotationPointY;
-                    child.rotationPointZ = renderer.rotationPointZ;
+                        child.rotationPointX = renderer.rotationPointX;
+                        child.rotationPointY = renderer.rotationPointY;
+                        child.rotationPointZ = renderer.rotationPointZ;
 
-                    buildBounds(child, scale);
+                        buildBounds(child, scale);
 
-                    // Restore child state
-                    child.rotateAngleX = oldRotateX;
-                    child.rotateAngleY = oldRotateY;
-                    child.rotateAngleZ = oldRotateZ;
-                    child.rotationPointX = oldPivotX;
-                    child.rotationPointY = oldPivotY;
-                    child.rotationPointZ = oldPivotZ;
+                        // Restore child state
+                        child.rotateAngleX = oldRotateX;
+                        child.rotateAngleY = oldRotateY;
+                        child.rotateAngleZ = oldRotateZ;
+                        child.rotationPointX = oldPivotX;
+                        child.rotationPointY = oldPivotY;
+                        child.rotationPointZ = oldPivotZ;
+                    }
                 }
             }
 
