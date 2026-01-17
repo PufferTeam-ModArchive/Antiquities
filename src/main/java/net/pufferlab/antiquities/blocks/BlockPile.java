@@ -139,10 +139,10 @@ public class BlockPile extends BlockAntiquities {
                     }
                     if (pile2 != null) {
                         if (pile2.getNextSlot() != 1) {
-                            dropItem(world, x, y + j, z, pile2.getPrevSlot());
+                            giveOrDropItem(world, x, y + j, z, pile2, pile2.getPrevSlot(), player);
                             removeItemToPile(pile2);
                         } else {
-                            dropItem(world, x, y + j, z, 0);
+                            giveOrDropItem(world, x, y + j, z, pile2, 0, player);
                             pile2.setInventorySlotContentsUpdate(0);
                             world.setBlockToAir(x, y + j, z);
                         }
@@ -292,6 +292,41 @@ public class BlockPile extends BlockAntiquities {
             entityItem.motionY = 0.0D;
             entityItem.motionZ = 0.0D;
             spawnEntity(world, entityItem);
+            item.stackSize = 0;
+            return true;
+        }
+        return false;
+    }
+
+    private boolean giveOrDropItem(World world, int x, int y, int z, TileEntityPile pile, int index,
+        EntityPlayer player) {
+        if (pile == null) return false;
+
+        ItemStack item = null;
+        if ((index < pile.getSizeInventory()) && (index >= 0)) {
+            item = pile.getInventoryStack(index);
+        }
+        if (item != null && item.stackSize > 0) {
+            EntityItem entityItem = new EntityItem(
+                world,
+                x + 0.5,
+                y + 0.25F + (0.125F * pile.getLayer()),
+                z + 0.5,
+                item.copy());
+            entityItem.motionX = 0.0D;
+            entityItem.motionY = 0.0D;
+            entityItem.motionZ = 0.0D;
+
+            // Allow instant pickup.
+            entityItem.delayBeforeCanPickup = 0;
+
+            spawnEntity(world, entityItem);
+
+            // Immediately collide with the player to attempt pickup, server-side only.
+            if (Config.ingotPileGiveDirectly && player != null && !world.isRemote) {
+                entityItem.onCollideWithPlayer(player);
+            }
+
             item.stackSize = 0;
             return true;
         }

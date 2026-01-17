@@ -42,6 +42,9 @@ public class Config {
     public static boolean enableIngotPileModification;
     public static String[] ingotPileMetals;
 
+    /** If true, ingots taken from an ingot pile go directly into the player's inventory (falls back to dropping if full). */
+    public static boolean ingotPileGiveDirectly;
+
     public static void synchronizeConfiguration(File configFile) {
         Configuration configuration = new Configuration(configFile);
 
@@ -134,6 +137,13 @@ public class Config {
             CATEGORY_TECHNICAL,
             false,
             "Whether you want to enable modification of ingot pile metal types. By default it's off so metals are always synchronized to the default values.");
+
+        ingotPileGiveDirectly = configuration.getBoolean(
+            "ingotPileGiveDirectly",
+            CATEGORY_TECHNICAL,
+            false,
+            "If true, ingots taken from an ingot pile go directly into the player's inventory instead of dropping on the ground (falls back to dropping if the inventory is full)."
+        );
 
         if (enableIngotPileModification) {
             ingotPileMetals = configuration.getStringList(
