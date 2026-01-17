@@ -41,8 +41,6 @@ public class Config {
 
     public static boolean enableIngotPileModification;
     public static String[] ingotPileMetals;
-
-    /** If true, ingots taken from an ingot pile go directly into the player's inventory (falls back to dropping if full). */
     public static boolean ingotPileGiveDirectly;
 
     public static void synchronizeConfiguration(File configFile) {
