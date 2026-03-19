@@ -1,4 +1,23 @@
-tile.antiquities.globe.name=地球仪
+tile.antiquities.earth_globeglobe.name=地球仪
+tile.antiquities.sepia_globe.name=墨绘地球仪
+tile.antiquities.moon_globe.name=月球仪
+
+tile.antiquities.white_couch.name=白色沙发
+tile.antiquities.orange_couch.name=橙色沙发
+tile.antiquities.magenta_couch.name=品红色沙发
+tile.antiquities.light_blue_couch.name=淡蓝色沙发
+tile.antiquities.yellow_couch.name=黄色沙发
+tile.antiquities.lime_couch.name=黄绿色沙发
+tile.antiquities.pink_couch.name=粉色沙发
+tile.antiquities.gray_couch.name=灰色沙发
+tile.antiquities.light_gray_couch.name=淡灰色沙发
+tile.antiquities.cyan_couch.name=青色沙发
+tile.antiquities.purple_couch.name=紫色沙发
+tile.antiquities.blue_couch.name=蓝色沙发
+tile.antiquities.brown_couch.name=棕色沙发
+tile.antiquities.green_couch.name=绿色沙发
+tile.antiquities.red_couch.name=红色沙发
+tile.antiquities.black_couch.name=黑色沙发
 
 tile.antiquities.oak_chair.name=橡木椅
 tile.antiquities.spruce_chair.name=云杉木椅
@@ -25,6 +44,10 @@ tile.antiquities.mahogany_chair.name=桃花心木椅
 tile.antiquities.greatwood_chair.name=宏伟之木椅
 tile.antiquities.silverwood_chair.name=银树椅
 
+tile.antiquities.rowan_chair.name=山梨树椅
+tile.antiquities.alder_chair.name=赤杨树椅
+tile.antiquities.hawthorn_chair.name=山楂树椅
+
 tile.antiquities.oak_table.name=橡木桌
 tile.antiquities.spruce_table.name=云杉木桌
 tile.antiquities.birch_table.name=白桦木桌
@@ -49,6 +72,10 @@ tile.antiquities.mahogany_table.name=桃花心木桌
 
 tile.antiquities.greatwood_table.name=宏伟之木桌
 tile.antiquities.silverwood_table.name=银树桌
+
+tile.antiquities.rowan_table.name=山梨树桌
+tile.antiquities.alder_table.name=赤杨树桌
+tile.antiquities.hawthorn_table.name=山楂树桌
 
 tile.antiquities.oak_shelf_0.name=橡木架
 tile.antiquities.spruce_shelf_0.name=云杉木架
@@ -75,6 +102,10 @@ tile.antiquities.mahogany_shelf_0.name=桃花心木架
 tile.antiquities.greatwood_shelf_0.name=宏伟之木架
 tile.antiquities.silverwood_shelf_0.name=银树架
 
+tile.antiquities.rowan_shelf_0.name=山梨树架
+tile.antiquities.alder_shelf_0.name=赤杨树架
+tile.antiquities.hawthorn_shelf_0.name=山楂树架
+
 tile.antiquities.oak_shelf_1.name=橡木交叉架
 tile.antiquities.spruce_shelf_1.name=云杉木交叉架
 tile.antiquities.birch_shelf_1.name=白桦木交叉架
@@ -99,6 +130,10 @@ tile.antiquities.mahogany_shelf_1.name=桃花心木交叉架
 
 tile.antiquities.greatwood_shelf_1.name=宏伟之木交叉架
 tile.antiquities.silverwood_shelf_1.name=银树交叉架
+
+tile.antiquities.rowan_shelf_1.name=山梨树交叉架
+tile.antiquities.alder_shelf_1.name=赤杨树交叉架
+tile.antiquities.hawthorn_shelf_1.name=山楂树交叉架
 
 tile.antiquities.oak_shelf_2.name=橡木长架
 tile.antiquities.spruce_shelf_2.name=云杉木长架
@@ -125,6 +160,10 @@ tile.antiquities.mahogany_shelf_2.name=桃花心木长架
 tile.antiquities.greatwood_shelf_2.name=宏伟之木长架
 tile.antiquities.silverwood_shelf_2.name=银树长架
 
+tile.antiquities.rowan_shelf_2.name=山梨树长架
+tile.antiquities.alder_shelf_2.name=赤杨树长架
+tile.antiquities.hawthorn_shelf_2.name=山楂树长架
+
 tile.antiquities.oak_shelf_3.name=橡木储物架
 tile.antiquities.spruce_shelf_3.name=云杉木储物架
 tile.antiquities.birch_shelf_3.name=白桦木储物架
@@ -149,6 +188,10 @@ tile.antiquities.mahogany_shelf_3.name=桃花心木储物架
 
 tile.antiquities.greatwood_shelf_3.name=宏伟之木储物架
 tile.antiquities.silverwood_shelf_3.name=银树储物架
+
+tile.antiquities.rowan_shelf_3.name=山梨树储物架
+tile.antiquities.alder_shelf_3.name=赤杨树储物架
+tile.antiquities.hawthorn_shelf_3.name=山楂树储物架
 
 tile.antiquities.oak_shelf_4.name=橡木交叉储物架
 tile.antiquities.spruce_shelf_4.name=云杉木交叉储物架
@@ -175,6 +218,10 @@ tile.antiquities.mahogany_shelf_4.name=桃花心木交叉储物架
 tile.antiquities.greatwood_shelf_4.name=宏伟之木交叉储物架
 tile.antiquities.silverwood_shelf_4.name=银树交叉储物架
 
+tile.antiquities.rowan_shelf_4.name=山梨树交叉储物架
+tile.antiquities.alder_shelf_4.name=赤杨树交叉储物架
+tile.antiquities.hawthorn_shelf_4.name=山楂树交叉储物架
+
 tile.antiquities.oak_shelf_5.name=橡木长储物架
 tile.antiquities.spruce_shelf_5.name=云杉木长储物架
 tile.antiquities.birch_shelf_5.name=长储物架
@@ -199,6 +246,10 @@ tile.antiquities.mahogany_shelf_5.name=桃花心木长储物架
 
 tile.antiquities.greatwood_shelf_5.name=宏伟之木长储物架
 tile.antiquities.silverwood_shelf_5.name=银树长储物架
+
+tile.antiquities.rowan_shelf_5.name=山梨树长储物架
+tile.antiquities.alder_shelf_5.name=赤杨树长储物架
+tile.antiquities.hawthorn_shelf_5.name=山楂树长储物架
 
 tile.antiquities.oak_jar.name=橡木储物罐
 tile.antiquities.spruce_jar.name=云杉木储物罐
@@ -225,6 +276,10 @@ tile.antiquities.mahogany_jar.name=桃花心木储物罐
 tile.antiquities.greatwood_jar.name=宏伟之木储物罐
 tile.antiquities.silverwood_jar.name=银树储物罐
 
+tile.antiquities.rowan_jar.name=山梨树储物罐
+tile.antiquities.alder_jar.name=赤杨树储物罐
+tile.antiquities.hawthorn_jar.name=山楂树储物罐
+
 tile.antiquities.oak_rack.name=橡木工具架
 tile.antiquities.spruce_rack.name=云杉木工具架
 tile.antiquities.birch_rack.name=白桦木工具架
@@ -249,6 +304,10 @@ tile.antiquities.mahogany_rack.name=桃花心木工具架
 
 tile.antiquities.greatwood_rack.name=宏伟之木工具架
 tile.antiquities.silverwood_rack.name=银树工具架
+
+tile.antiquities.rowan_rack.name=山梨树工具架
+tile.antiquities.alder_rack.name=赤杨树工具架
+tile.antiquities.hawthorn_rack.name=山楂树工具架
 
 tile.antiquities.clock.name=时钟
 
