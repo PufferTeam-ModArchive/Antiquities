@@ -5,8 +5,6 @@ import net.pufferlab.antiquities.Antiquities;
 import net.pufferlab.antiquities.Config;
 import net.pufferlab.antiquities.events.PacketGlobeUpdate;
 
-import cpw.mods.fml.common.network.NetworkRegistry;
-
 public class TileEntityGlobe extends TileEntityMetaFacing {
 
     public float rotation;
@@ -34,9 +32,12 @@ public class TileEntityGlobe extends TileEntityMetaFacing {
 
     public void sendUpdate() {
         if (!worldObj.isRemote) {
-            Antiquities.NETWORK.sendToAllAround(
+            Antiquities.proxy.sendPacketToClientNear(
                 new PacketGlobeUpdate(this),
-                new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId, xCoord, yCoord, zCoord, 64.0D));
+                this.worldObj,
+                this.xCoord,
+                this.yCoord,
+                this.zCoord);
         }
     }
 

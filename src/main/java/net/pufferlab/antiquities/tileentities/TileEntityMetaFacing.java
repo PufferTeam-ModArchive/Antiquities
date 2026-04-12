@@ -33,7 +33,7 @@ public class TileEntityMetaFacing extends TileEntityAntiquities {
 
     public void setFacingMeta(int meta) {
         this.facingMeta = meta;
-        this.worldObj.notifyBlockChange(this.xCoord, this.yCoord, this.zCoord, this.blockType);
+        this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
         this.markDirty();
     }
 
@@ -55,5 +55,6 @@ public class TileEntityMetaFacing extends TileEntityAntiquities {
     public void onDataPacket(NetworkManager manager, S35PacketUpdateTileEntity packet) {
         NBTTagCompound nbtData = packet.func_148857_g();
         this.facingMeta = nbtData.getInteger("facingMeta");
+        this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
     }
 }

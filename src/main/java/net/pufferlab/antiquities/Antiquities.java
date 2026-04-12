@@ -1,9 +1,7 @@
 package net.pufferlab.antiquities;
 
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.MinecraftForge;
 import net.pufferlab.antiquities.client.compat.NEIConfig;
-import net.pufferlab.antiquities.events.PileHandler;
 import net.pufferlab.antiquities.recipes.*;
 
 import org.apache.logging.log4j.LogManager;
@@ -16,7 +14,6 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 
 @Mod(
@@ -29,13 +26,12 @@ public class Antiquities {
     public static final String MODID = "antiquities";
     public static final String MODNAME = "Antiquities";
     public static final Logger LOG = LogManager.getLogger(MODID);
-    public static final SimpleNetworkWrapper NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel(Antiquities.MODID);
+    public static SimpleNetworkWrapper NETWORK;
 
     @SidedProxy(
         clientSide = "net.pufferlab.antiquities.ClientProxy",
         serverSide = "net.pufferlab.antiquities.CommonProxy")
     public static CommonProxy proxy;
-    public static PileHandler pileHandler = new PileHandler();
 
     public static Registry registry = new Registry();
 
@@ -45,22 +41,20 @@ public class Antiquities {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         proxy.preInit(event);
-        registry.preInit(event);
+        registry.setup();
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         proxy.init(event);
 
-        registry.init();
+        registry.setupEntities();
+        registry.setupEvents();
+        registry.setupPackets();
         if (Loader.isModLoaded("NotEnoughItems")) {
             new NEIConfig().loadConfig();
         }
-        if (Config.enableIngotPile) {
-            MinecraftForge.EVENT_BUS.register(pileHandler);
-        }
         proxy.registerRenders();
-        proxy.registerMessages();
     }
 
     @Mod.EventHandler

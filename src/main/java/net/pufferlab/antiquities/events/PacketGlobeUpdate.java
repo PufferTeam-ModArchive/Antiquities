@@ -1,8 +1,8 @@
 package net.pufferlab.antiquities.events;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.pufferlab.antiquities.Antiquities;
 import net.pufferlab.antiquities.tileentities.TileEntityGlobe;
 
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -42,7 +42,7 @@ public class PacketGlobeUpdate implements IMessage, IMessageHandler<PacketGlobeU
 
     @Override
     public IMessage onMessage(PacketGlobeUpdate message, MessageContext ctx) {
-        World world = Minecraft.getMinecraft().theWorld;
+        World world = Antiquities.proxy.getClientWorld();
         if (world == null) return null;
 
         TileEntity tile = world.getTileEntity(message.x, message.y, message.z);

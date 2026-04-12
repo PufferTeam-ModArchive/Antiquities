@@ -3,15 +3,19 @@ package net.pufferlab.antiquities;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraftforge.common.MinecraftForge;
 import net.pufferlab.antiquities.blocks.*;
 import net.pufferlab.antiquities.entity.EntitySeat;
+import net.pufferlab.antiquities.events.PacketGlobeUpdate;
+import net.pufferlab.antiquities.events.PileHandler;
 import net.pufferlab.antiquities.itemblocks.ItemBlockMeta;
 import net.pufferlab.antiquities.tileentities.*;
 
 import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 public class Registry {
 
@@ -81,7 +85,7 @@ public class Registry {
         }
     };
 
-    public void preInit(FMLPreInitializationEvent event) {
+    public void setup() {
         chair = new BlockChair(Constants.woodTypes);
         table = new BlockTable(Constants.woodTypes);
         shelf_0 = new BlockShelf(0, Constants.woodTypes);
@@ -209,10 +213,32 @@ public class Registry {
         register(couch, "couch");
     }
 
-    public void init() {
+    public void setupEntities() {
         int id = 0;
         EntityRegistry
             .registerModEntity(EntitySeat.class, "EntitySeatAntiquities", id++, Antiquities.instance, 64, 20, true);
+    }
+
+    public void setupEvents() {
+        if (Config.enableIngotPile) {
+            registerEvent(new PileHandler());
+        }
+    }
+
+    public void setupPackets() {
+        Antiquities.NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel(Antiquities.MODID);
+        registerPacket(PacketGlobeUpdate.class, Side.CLIENT);
+    }
+
+    public void registerEvent(Object event) {
+        MinecraftForge.EVENT_BUS.register(event);
+    }
+
+    private static int nextPacketID = 0;
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public void registerPacket(Class cl, Side side) {
+        Antiquities.NETWORK.registerMessage(cl, cl, nextPacketID++, side);
     }
 
     public void register(Class<? extends TileEntityAntiquities> tileEntityClass, String id) {

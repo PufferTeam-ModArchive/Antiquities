@@ -1,11 +1,14 @@
 package net.pufferlab.antiquities;
 
+import net.minecraft.world.World;
 import net.pufferlab.antiquities.client.renderer.*;
 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
 public class CommonProxy {
 
@@ -30,13 +33,30 @@ public class CommonProxy {
 
     public void registerRenders() {}
 
-    public void registerMessages() {}
-
     public void init(FMLInitializationEvent event) {}
 
     public void postInit(FMLPostInitializationEvent event) {}
 
     public void serverStarting(FMLServerStartingEvent event) {}
+
+    public World getClientWorld() {
+        return null;
+    }
+
+    public <T extends IMessage> void sendPacketToClient(T object) {
+        Antiquities.NETWORK.sendToAll(object);
+    }
+
+    public <T extends IMessage> void sendPacketToClientInDimension(World world, T object) {
+        Antiquities.NETWORK.sendToDimension(object, world.provider.dimensionId);
+    }
+
+    public <T extends IMessage> void sendPacketToClientNear(T object, World world, int x, int y, int z) {
+        Antiquities.NETWORK
+            .sendToAllAround(object, new NetworkRegistry.TargetPoint(world.provider.dimensionId, x, y, z, 64.0D));
+    }
+
+    public <T extends IMessage> void sendPacketToServer(T object) {};
 
     public int getChairRenderID() {
         return 0;

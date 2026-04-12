@@ -140,8 +140,7 @@ public class Config {
             "ingotPileGiveDirectly",
             CATEGORY_TECHNICAL,
             false,
-            "If true, ingots taken from an ingot pile go directly into the player's inventory instead of dropping on the ground (falls back to dropping if the inventory is full)."
-        );
+            "If true, ingots taken from an ingot pile go directly into the player's inventory instead of dropping on the ground (falls back to dropping if the inventory is full).");
 
         if (enableIngotPileModification) {
             ingotPileMetals = configuration.getStringList(

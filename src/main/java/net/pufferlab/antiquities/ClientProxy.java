@@ -1,12 +1,12 @@
 package net.pufferlab.antiquities;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.world.World;
 import net.pufferlab.antiquities.client.renderer.*;
-import net.pufferlab.antiquities.events.PacketGlobeUpdate;
 import net.pufferlab.antiquities.tileentities.*;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.relauncher.Side;
 
 public class ClientProxy extends CommonProxy {
 
@@ -56,8 +56,8 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void registerMessages() {
-        Antiquities.NETWORK.registerMessage(PacketGlobeUpdate.class, PacketGlobeUpdate.class, 0, Side.CLIENT);
+    public World getClientWorld() {
+        return Minecraft.getMinecraft().theWorld;
     }
 
     @Override
